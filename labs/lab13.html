@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 13: Database Operations — Copilot Mastery</title>
+<link rel="stylesheet" href="../styles.css">
+<style>body{background:var(--bg-primary)}.lab-page{max-width:900px;margin:0 auto;padding:40px 24px 80px}.lab-page__back{display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);font-size:.875rem;margin-bottom:32px;text-decoration:none}.lab-page__back:hover{color:var(--accent-blue)}.lab-page__badge-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.lab-page__title{font-family:var(--font-display);font-size:2rem;font-weight:800;margin-bottom:12px}.lab-page__subtitle{color:var(--text-secondary);font-size:1rem;margin-bottom:32px;line-height:1.7}.lab-section{margin-bottom:40px}.lab-section__title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border-glass)}.step{margin-bottom:24px;padding:20px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md)}.step__number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(88,166,255,.15);color:var(--accent-blue);font-weight:700;font-size:.8125rem;margin-right:10px}.step__title{font-weight:700;font-size:1rem;margin-bottom:10px;display:flex;align-items:center}.step__body{color:var(--text-secondary);font-size:.875rem;line-height:1.7}.step__body code{background:rgba(110,118,129,.15);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:.8125rem}.objectives-list{list-style:none;padding:0}.objectives-list li{padding:8px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.objectives-list li::before{content:'✓';color:var(--accent-green);font-weight:700}.prereq-list{list-style:none;padding:0}.prereq-list li{padding:6px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.prereq-list li::before{content:'•';color:var(--accent-purple);font-weight:700}.expected-output{background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.expected-output__label{font-weight:700;color:var(--accent-green);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.tip-box{background:rgba(88,166,255,.06);border:1px solid rgba(88,166,255,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.tip-box__label{font-weight:700;color:var(--accent-blue);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.challenge-box{background:rgba(188,140,255,.06);border:1px solid rgba(188,140,255,.15);border-radius:var(--radius-md);padding:20px;margin-top:32px}.challenge-box__title{font-family:var(--font-display);font-weight:700;color:var(--accent-purple);margin-bottom:8px}.challenge-box__body{font-size:.875rem;color:var(--text-secondary);line-height:1.7}.tab-container{margin:16px 0}.tab-buttons{display:flex;gap:0;border-bottom:2px solid var(--border-glass)}.tab-btn{padding:10px 20px;border:none;background:transparent;color:var(--text-secondary);cursor:pointer;font-family:var(--font-mono);font-size:.8125rem;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}.tab-btn:hover{color:var(--text-primary)}.tab-btn.active{color:var(--accent-blue);border-bottom-color:var(--accent-blue);background:rgba(88,166,255,.05)}.tab-panel{display:none}.tab-panel.active{display:block}.nav-bottom{display:flex;justify-content:space-between;margin-top:48px;padding-top:24px;border-top:1px solid var(--border-glass)}.nav-bottom a{color:var(--accent-blue);text-decoration:none;font-size:.875rem}.nav-bottom a:hover{text-decoration:underline}</style>
+</head>
+<body>
+<div class="lab-page">
+  <a href="../index.html" class="lab-page__back">← Back to Course</a>
+  <div class="lab-page__badge-row"><span class="badge badge--intermediate">Intermediate</span><span class="badge badge--time">⏱ 40 minutes</span></div>
+
+  <h1 class="lab-page__title">Lab 13: Database Operations with Copilot</h1>
+  <p class="lab-page__subtitle">Build complete CRUD operations for both SQLite and MongoDB using GitHub Copilot. Compare relational vs. document database approaches with AI-assisted code generation.</p>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🎯 Objectives</h2>
+    <ul class="objectives-list">
+      <li>Design a database schema for a blog application</li>
+      <li>Generate SQL CREATE TABLE statements with Copilot</li>
+      <li>Build a complete Python CRUD layer using <code>sqlite3</code></li>
+      <li>Create an equivalent MongoDB layer using <code>pymongo</code></li>
+      <li>Write aggregation queries with Copilot assistance</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📋 Prerequisites</h2>
+    <ul class="prereq-list">
+      <li>Python 3.8+ installed</li>
+      <li>GitHub Copilot active in VS Code</li>
+      <li><code>pip install pymongo</code> (for MongoDB section, optional)</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🚀 Steps</h2>
+
+    <!-- STEP 1 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">1</span> Create the Project Structure</div>
+      <div class="step__body">
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Terminal</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code>mkdir blog-database-lab && cd blog-database-lab
+touch blog_sqlite.py blog_mongo.py</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">2</span> Design the Schema with Copilot</div>
+      <div class="step__body">
+        <p>Open <code>blog_sqlite.py</code> and type this comment. Let Copilot generate the schema:</p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">blog_sqlite.py — Type this, Copilot generates the rest</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="cm"># Blog Database with SQLite</span>
+<span class="cm"># Schema: users, posts, comments, tags, post_tags (many-to-many)</span>
+<span class="cm"># Each table has created_at and updated_at timestamps</span>
+
+<span class="kw">import</span> sqlite3
+<span class="kw">from</span> datetime <span class="kw">import</span> datetime
+<span class="kw">from</span> typing <span class="kw">import</span> List, Optional, Dict, Any
+
+DATABASE = <span class="str">"blog.db"</span>
+
+<span class="kw">def</span> <span class="fn">get_connection</span>():
+    conn = sqlite3.connect(DATABASE)
+    conn.row_factory = sqlite3.Row
+    conn.execute(<span class="str">"PRAGMA foreign_keys = ON"</span>)
+    <span class="kw">return</span> conn
+
+<span class="kw">def</span> <span class="fn">create_tables</span>():
+    <span class="str">"""Create all tables for the blog database."""</span>
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.executescript(<span class="str">"""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            bio TEXT DEFAULT '',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+
+        CREATE TABLE IF NOT EXISTS posts (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            content TEXT NOT NULL,
+            author_id INTEGER NOT NULL,
+            status TEXT DEFAULT 'draft' CHECK(status IN ('draft','published','archived')),
+            views INTEGER DEFAULT 0,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
+        );
+
+        CREATE TABLE IF NOT EXISTS comments (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            post_id INTEGER NOT NULL,
+            user_id INTEGER NOT NULL,
+            content TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        );
+
+        CREATE TABLE IF NOT EXISTS tags (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT UNIQUE NOT NULL
+        );
+
+        CREATE TABLE IF NOT EXISTS post_tags (
+            post_id INTEGER NOT NULL,
+            tag_id INTEGER NOT NULL,
+            PRIMARY KEY (post_id, tag_id),
+            FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
+            FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+        );
+    """</span>)
+
+    conn.commit()
+    conn.close()
+    <span class="kw">print</span>(<span class="str">"✅ All tables created successfully"</span>)</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">3</span> Build CRUD Operations</div>
+      <div class="step__body">
+        <p>Continue in the same file. Write the function signature and docstring — Copilot fills in the SQL:</p>
+
+        <div class="tab-container">
+          <div class="tab-buttons">
+            <button class="tab-btn active" onclick="switchTab(event,'create-ops')">Create</button>
+            <button class="tab-btn" onclick="switchTab(event,'read-ops')">Read</button>
+            <button class="tab-btn" onclick="switchTab(event,'update-ops')">Update</button>
+            <button class="tab-btn" onclick="switchTab(event,'delete-ops')">Delete</button>
+          </div>
+
+          <div class="tab-panel active" id="create-ops">
+            <div class="code-block">
+              <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">CREATE Operations</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+              <pre><code><span class="cm"># ==================== CREATE ====================</span>
+
+<span class="kw">def</span> <span class="fn">create_user</span>(username: str, email: str, bio: str = <span class="str">""</span>) -> <span class="kw">int</span>:
+    <span class="str">"""Create a new user and return their ID."""</span>
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        <span class="str">"INSERT INTO users (username, email, bio) VALUES (?, ?, ?)"</span>,
+        (username, email, bio)
+    )
+    conn.commit()
+    user_id = cursor.lastrowid
+    conn.close()
+    <span class="kw">return</span> user_id
+
+<span class="kw">def</span> <span class="fn">create_post</span>(title: str, content: str, author_id: <span class="kw">int</span>, 
+               status: str = <span class="str">"draft"</span>) -> <span class="kw">int</span>:
+    <span class="str">"""Create a new blog post and return its ID."""</span>
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        <span class="str">"INSERT INTO posts (title, content, author_id, status) VALUES (?, ?, ?, ?)"</span>,
+        (title, content, author_id, status)
+    )
+    conn.commit()
+    post_id = cursor.lastrowid
+    conn.close()
+    <span class="kw">return</span> post_id
+
+<span class="kw">def</span> <span class="fn">add_comment</span>(post_id: <span class="kw">int</span>, user_id: <span class="kw">int</span>, content: str) -> <span class="kw">int</span>:
+    <span class="str">"""Add a comment to a post."""</span>
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        <span class="str">"INSERT INTO comments (post_id, user_id, content) VALUES (?, ?, ?)"</span>,
+        (post_id, user_id, content)
+    )
+    conn.commit()
+    comment_id = cursor.lastrowid
+    conn.close()
+    <span class="kw">return</span> comment_id
+
+<span class="kw">def</span> <span class="fn">add_tag_to_post</span>(post_id: <span class="kw">int</span>, tag_name: str):
+    <span class="str">"""Add a tag to a post. Creates the tag if it doesn't exist."""</span>
+    conn = get_connection()
+    cursor = conn.cursor()
+    <span class="cm"># Insert tag if it doesn't exist</span>
+    cursor.execute(<span class="str">"INSERT OR IGNORE INTO tags (name) VALUES (?)"</span>, (tag_name,))
+    <span class="cm"># Get the tag ID</span>
+    cursor.execute(<span class="str">"SELECT id FROM tags WHERE name = ?"</span>, (tag_name,))
+    tag_id = cursor.fetchone()[<span class="str">"id"</span>]
+    <span class="cm"># Link post and tag</span>
+    cursor.execute(
+        <span class="str">"INSERT OR IGNORE INTO post_tags (post_id, tag_id) VALUES (?, ?)"</span>,
+        (post_id, tag_id)
+    )
+    conn.commit()
+    conn.close()</code></pre>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="read-ops">
+            <div class="code-block">
+              <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">READ Operations</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+              <pre><code><span class="cm"># ==================== READ ====================</span>
+
+<span class="kw">def</span> <span class="fn">get_post_with_author</span>(post_id: <span class="kw">int</span>) -> Optional[Dict]:
+    <span class="str">"""Get a post with its author info using a JOIN."""</span>
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(<span class="str">"""
+        SELECT p.*, u.username, u.email
+        FROM posts p
+        JOIN users u ON p.author_id = u.id
+        WHERE p.id = ?
+    """</span>, (post_id,))
+    row = cursor.fetchone()
+    conn.close()
+    <span class="kw">return</span> dict(row) <span class="kw">if</span> row <span class="kw">else None</span>
+
+<span class="kw">def</span> <span class="fn">get_posts_by_tag</span>(tag_name: str) -> List[Dict]:
+    <span class="str">"""Get all published posts with a specific tag."""</span>
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(<span class="str">"""
+        SELECT p.id, p.title, p.created_at, u.username
+        FROM posts p
+        JOIN post_tags pt ON p.id = pt.post_id
+        JOIN tags t ON pt.tag_id = t.id
+        JOIN users u ON p.author_id = u.id
+        WHERE t.name = ? AND p.status = 'published'
+        ORDER BY p.created_at DESC
+    """</span>, (tag_name,))
+    rows = cursor.fetchall()
+    conn.close()
+    <span class="kw">return</span> [dict(r) <span class="kw">for</span> r <span class="kw">in</span> rows]
+
+<span class="kw">def</span> <span class="fn">get_post_comments</span>(post_id: <span class="kw">int</span>) -> List[Dict]:
+    <span class="str">"""Get all comments for a post with usernames."""</span>
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(<span class="str">"""
+        SELECT c.content, c.created_at, u.username
+        FROM comments c
+        JOIN users u ON c.user_id = u.id
+        WHERE c.post_id = ?
+        ORDER BY c.created_at ASC
+    """</span>, (post_id,))
+    rows = cursor.fetchall()
+    conn.close()
+    <span class="kw">return</span> [dict(r) <span class="kw">for</span> r <span class="kw">in</span> rows]
+
+<span class="kw">def</span> <span class="fn">search_posts</span>(query: str) -> List[Dict]:
+    <span class="str">"""Search posts by title or content."""</span>
+    conn = get_connection()
+    cursor = conn.cursor()
+    search = <span class="str">f"%{query}%"</span>
+    cursor.execute(<span class="str">"""
+        SELECT id, title, substr(content, 1, 100) as excerpt, created_at
+        FROM posts
+        WHERE title LIKE ? OR content LIKE ?
+        ORDER BY created_at DESC
+    """</span>, (search, search))
+    rows = cursor.fetchall()
+    conn.close()
+    <span class="kw">return</span> [dict(r) <span class="kw">for</span> r <span class="kw">in</span> rows]</code></pre>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="update-ops">
+            <div class="code-block">
+              <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">UPDATE Operations</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+              <pre><code><span class="cm"># ==================== UPDATE ====================</span>
+
+<span class="kw">def</span> <span class="fn">update_post</span>(post_id: <span class="kw">int</span>, title: str = <span class="kw">None</span>, 
+               content: str = <span class="kw">None</span>, status: str = <span class="kw">None</span>) -> <span class="kw">bool</span>:
+    <span class="str">"""Update a post's fields. Only updates provided fields."""</span>
+    conn = get_connection()
+    updates, params = [], []
+    <span class="kw">if</span> title: updates.append(<span class="str">"title = ?"</span>); params.append(title)
+    <span class="kw">if</span> content: updates.append(<span class="str">"content = ?"</span>); params.append(content)
+    <span class="kw">if</span> status: updates.append(<span class="str">"status = ?"</span>); params.append(status)
+    updates.append(<span class="str">"updated_at = ?"</span>)
+    params.append(datetime.now().isoformat())
+    params.append(post_id)
+
+    cursor = conn.cursor()
+    cursor.execute(
+        <span class="str">f"UPDATE posts SET {', '.join(updates)} WHERE id = ?"</span>, params
+    )
+    conn.commit()
+    affected = cursor.rowcount
+    conn.close()
+    <span class="kw">return</span> affected > <span class="num">0</span>
+
+<span class="kw">def</span> <span class="fn">increment_views</span>(post_id: <span class="kw">int</span>):
+    <span class="str">"""Increment the view count for a post."""</span>
+    conn = get_connection()
+    conn.execute(<span class="str">"UPDATE posts SET views = views + 1 WHERE id = ?"</span>, (post_id,))
+    conn.commit()
+    conn.close()</code></pre>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="delete-ops">
+            <div class="code-block">
+              <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">DELETE Operations</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+              <pre><code><span class="cm"># ==================== DELETE ====================</span>
+
+<span class="kw">def</span> <span class="fn">delete_post</span>(post_id: <span class="kw">int</span>) -> <span class="kw">bool</span>:
+    <span class="str">"""Delete a post and its comments (cascading)."""</span>
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(<span class="str">"DELETE FROM posts WHERE id = ?"</span>, (post_id,))
+    conn.commit()
+    affected = cursor.rowcount
+    conn.close()
+    <span class="kw">return</span> affected > <span class="num">0</span>
+
+<span class="kw">def</span> <span class="fn">delete_comment</span>(comment_id: <span class="kw">int</span>) -> <span class="kw">bool</span>:
+    <span class="str">"""Delete a specific comment."""</span>
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute(<span class="str">"DELETE FROM comments WHERE id = ?"</span>, (comment_id,))
+    conn.commit()
+    affected = cursor.rowcount
+    conn.close()
+    <span class="kw">return</span> affected > <span class="num">0</span></code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">4</span> Aggregation Queries</div>
+      <div class="step__body">
+        <p>Ask Copilot Chat to generate analytics queries. Type these prompts in Copilot Chat:</p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Aggregation Queries — Copilot Generated</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="kw">def</span> <span class="fn">get_blog_stats</span>() -> Dict:
+    <span class="str">"""Get overall blog statistics."""</span>
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    stats = {}
+
+    <span class="cm"># Total counts</span>
+    cursor.execute(<span class="str">"SELECT COUNT(*) as count FROM users"</span>)
+    stats[<span class="str">"total_users"</span>] = cursor.fetchone()[<span class="str">"count"</span>]
+
+    cursor.execute(<span class="str">"SELECT COUNT(*) as count FROM posts WHERE status='published'"</span>)
+    stats[<span class="str">"published_posts"</span>] = cursor.fetchone()[<span class="str">"count"</span>]
+
+    <span class="cm"># Most active author</span>
+    cursor.execute(<span class="str">"""
+        SELECT u.username, COUNT(p.id) as post_count
+        FROM users u
+        JOIN posts p ON u.id = p.author_id
+        GROUP BY u.id
+        ORDER BY post_count DESC
+        LIMIT 1
+    """</span>)
+    row = cursor.fetchone()
+    stats[<span class="str">"top_author"</span>] = dict(row) <span class="kw">if</span> row <span class="kw">else None</span>
+
+    <span class="cm"># Most popular post by views</span>
+    cursor.execute(<span class="str">"""
+        SELECT title, views FROM posts
+        ORDER BY views DESC LIMIT 1
+    """</span>)
+    row = cursor.fetchone()
+    stats[<span class="str">"most_viewed"</span>] = dict(row) <span class="kw">if</span> row <span class="kw">else None</span>
+
+    <span class="cm"># Popular tags</span>
+    cursor.execute(<span class="str">"""
+        SELECT t.name, COUNT(pt.post_id) as usage_count
+        FROM tags t
+        JOIN post_tags pt ON t.id = pt.tag_id
+        GROUP BY t.id
+        ORDER BY usage_count DESC
+        LIMIT 5
+    """</span>)
+    stats[<span class="str">"popular_tags"</span>] = [dict(r) <span class="kw">for</span> r <span class="kw">in</span> cursor.fetchall()]
+
+    conn.close()
+    <span class="kw">return</span> stats</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5: Test -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">5</span> Test the Complete System</div>
+      <div class="step__body">
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Add at the bottom of blog_sqlite.py</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    <span class="cm"># Setup</span>
+    create_tables()
+
+    <span class="cm"># Create users</span>
+    alice_id = create_user(<span class="str">"alice"</span>, <span class="str">"alice@example.com"</span>, <span class="str">"Tech blogger"</span>)
+    bob_id = create_user(<span class="str">"bob"</span>, <span class="str">"bob@example.com"</span>, <span class="str">"Python enthusiast"</span>)
+    <span class="kw">print</span>(<span class="str">f"✅ Created users: Alice(#{alice_id}), Bob(#{bob_id})"</span>)
+
+    <span class="cm"># Create posts</span>
+    post1 = create_post(<span class="str">"Getting Started with Python"</span>,
+                        <span class="str">"Python is a versatile language..."</span>, alice_id, <span class="str">"published"</span>)
+    post2 = create_post(<span class="str">"Advanced SQL Techniques"</span>,
+                        <span class="str">"Let's explore window functions..."</span>, bob_id, <span class="str">"published"</span>)
+    <span class="kw">print</span>(<span class="str">f"✅ Created posts: #{post1}, #{post2}"</span>)
+
+    <span class="cm"># Add tags</span>
+    add_tag_to_post(post1, <span class="str">"python"</span>)
+    add_tag_to_post(post1, <span class="str">"beginner"</span>)
+    add_tag_to_post(post2, <span class="str">"sql"</span>)
+    add_tag_to_post(post2, <span class="str">"database"</span>)
+    <span class="kw">print</span>(<span class="str">"✅ Tags added"</span>)
+
+    <span class="cm"># Add comments</span>
+    add_comment(post1, bob_id, <span class="str">"Great intro article!"</span>)
+    add_comment(post1, alice_id, <span class="str">"Thanks Bob!"</span>)
+    <span class="kw">print</span>(<span class="str">"✅ Comments added"</span>)
+
+    <span class="cm"># Read operations</span>
+    post = get_post_with_author(post1)
+    <span class="kw">print</span>(<span class="str">f"\n📄 Post: {post['title']} by {post['username']}"</span>)
+
+    comments = get_post_comments(post1)
+    <span class="kw">print</span>(<span class="str">f"💬 Comments: {len(comments)}"</span>)
+
+    <span class="cm"># Search</span>
+    results = search_posts(<span class="str">"Python"</span>)
+    <span class="kw">print</span>(<span class="str">f"🔍 Search 'Python': {len(results)} results"</span>)
+
+    <span class="cm"># Stats</span>
+    stats = get_blog_stats()
+    <span class="kw">print</span>(<span class="str">f"\n📊 Stats: {stats}"</span>)</code></pre>
+        </div>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Output</div>
+          <pre style="margin:0;font-size:.8125rem;color:var(--text-secondary)">✅ All tables created successfully
+✅ Created users: Alice(#1), Bob(#2)
+✅ Created posts: #1, #2
+✅ Tags added
+✅ Comments added
+
+📄 Post: Getting Started with Python by alice
+💬 Comments: 2
+🔍 Search 'Python': 1 results
+
+📊 Stats: {'total_users': 2, 'published_posts': 2, ...}</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">6</span> MongoDB Equivalent (Optional)</div>
+      <div class="step__body">
+        <p>Now ask Copilot Chat: <em>"Convert this SQLite blog database to MongoDB using pymongo. Keep the same operations but use document-oriented patterns."</em></p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">blog_mongo.py — Key differences highlighted</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="kw">from</span> pymongo <span class="kw">import</span> MongoClient
+<span class="kw">from</span> datetime <span class="kw">import</span> datetime
+
+client = MongoClient(<span class="str">"mongodb://localhost:27017/"</span>)
+db = client[<span class="str">"blog_db"</span>]
+
+<span class="cm"># In MongoDB, comments are EMBEDDED inside posts (denormalized)</span>
+<span class="kw">def</span> <span class="fn">create_post_mongo</span>(title, content, author, tags=<span class="kw">None</span>):
+    <span class="str">"""MongoDB stores posts as rich documents with embedded data."""</span>
+    post = {
+        <span class="str">"title"</span>: title,
+        <span class="str">"content"</span>: content,
+        <span class="str">"author"</span>: {  <span class="cm"># Embedded document instead of foreign key</span>
+            <span class="str">"username"</span>: author[<span class="str">"username"</span>],
+            <span class="str">"email"</span>: author[<span class="str">"email"</span>]
+        },
+        <span class="str">"tags"</span>: tags <span class="kw">or</span> [],  <span class="cm"># Array field instead of join table</span>
+        <span class="str">"comments"</span>: [],       <span class="cm"># Embedded array instead of separate table</span>
+        <span class="str">"views"</span>: <span class="num">0</span>,
+        <span class="str">"status"</span>: <span class="str">"draft"</span>,
+        <span class="str">"created_at"</span>: datetime.now(),
+        <span class="str">"updated_at"</span>: datetime.now()
+    }
+    result = db.posts.insert_one(post)
+    <span class="kw">return</span> result.inserted_id
+
+<span class="cm"># Aggregation pipeline — equivalent to SQL GROUP BY + JOIN</span>
+<span class="kw">def</span> <span class="fn">get_posts_by_tag_mongo</span>(tag_name):
+    <span class="str">"""MongoDB aggregation replaces SQL JOINs."""</span>
+    pipeline = [
+        {<span class="str">"$match"</span>: {<span class="str">"tags"</span>: tag_name, <span class="str">"status"</span>: <span class="str">"published"</span>}},
+        {<span class="str">"$sort"</span>: {<span class="str">"created_at"</span>: -<span class="num">1</span>}},
+        {<span class="str">"$project"</span>: {
+            <span class="str">"title"</span>: <span class="num">1</span>,
+            <span class="str">"author.username"</span>: <span class="num">1</span>,
+            <span class="str">"comment_count"</span>: {<span class="str">"$size"</span>: <span class="str">"$comments"</span>},
+            <span class="str">"created_at"</span>: <span class="num">1</span>
+        }}
+    ]
+    <span class="kw">return</span> list(db.posts.aggregate(pipeline))</code></pre>
+        </div>
+
+        <div class="tip-box">
+          <div class="tip-box__label">💡 SQL vs MongoDB Key Differences</div>
+          <p style="margin:0;font-size:.875rem;color:var(--text-secondary)">
+            <strong>SQL</strong>: Normalized tables + JOINs + Foreign keys<br>
+            <strong>MongoDB</strong>: Denormalized documents + Embedded arrays + Aggregation pipelines<br>
+            Copilot understands both paradigms and adapts its suggestions based on the database driver you import.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Challenge -->
+  <div class="challenge-box">
+    <div class="challenge-box__title">🏆 Challenge Extension</div>
+    <div class="challenge-box__body">
+      <ol>
+        <li>Add <strong>full-text search</strong> using SQLite FTS5: ask Copilot to create a virtual table and search function</li>
+        <li>Add <strong>pagination</strong> to all list queries with LIMIT/OFFSET</li>
+        <li>Create a <strong>migration script</strong> that adds a new <code>likes</code> column to the posts table</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="nav-bottom">
+    <a href="lab12.html">← Lab 12: Multi-Language Challenge</a>
+    <a href="lab14.html">Lab 14: API Integration →</a>
+  </div>
+</div>
+
+<script>
+function switchTab(e, tabId) {
+  const container = e.target.closest('.tab-container');
+  container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  container.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  e.target.classList.add('active');
+  container.querySelector('#' + tabId).classList.add('active');
+}
+function copyCode(btn) {
+  const code = btn.closest('.code-block').querySelector('code');
+  navigator.clipboard.writeText(code.textContent).then(() => {
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = '⧉ Copy', 2000);
+  });
+}
+</script>
+</body>
+</html>

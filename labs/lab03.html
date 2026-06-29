@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 3: Chat-Driven Development — Copilot Mastery</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body{background:var(--bg-primary)}.lab-page{max-width:900px;margin:0 auto;padding:40px 24px 80px}.lab-page__back{display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);font-size:.875rem;margin-bottom:32px;text-decoration:none}.lab-page__back:hover{color:var(--accent-blue)}.lab-page__badge-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.lab-page__title{font-family:var(--font-display);font-size:2rem;font-weight:800;margin-bottom:12px}.lab-page__subtitle{color:var(--text-secondary);font-size:1rem;margin-bottom:32px;line-height:1.7}.lab-section{margin-bottom:40px}.lab-section__title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border-glass)}.step{margin-bottom:24px;padding:20px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md)}.step__number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(88,166,255,.15);color:var(--accent-blue);font-weight:700;font-size:.8125rem;margin-right:10px}.step__title{font-weight:700;font-size:1rem;margin-bottom:10px;display:flex;align-items:center}.step__body{color:var(--text-secondary);font-size:.875rem;line-height:1.7}.step__body ul,.step__body ol{padding-left:20px;margin:8px 0}.step__body li{margin-bottom:6px}.step__body code{background:rgba(110,118,129,.15);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:.8125rem}.objectives-list{list-style:none}.objectives-list li{padding:8px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.objectives-list li::before{content:'✓';color:var(--accent-green);font-weight:700}.prereq-list{list-style:none}.prereq-list li{padding:6px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.prereq-list li::before{content:'•';color:var(--accent-purple);font-weight:700}.expected-output{background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.expected-output__label{font-weight:700;color:var(--accent-green);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.challenge-box{background:rgba(188,140,255,.06);border:1px solid rgba(188,140,255,.15);border-radius:var(--radius-md);padding:20px;margin-top:32px}.challenge-box__title{font-family:var(--font-display);font-weight:700;color:var(--accent-purple);margin-bottom:8px}.challenge-box__body{font-size:.875rem;color:var(--text-secondary);line-height:1.7}
+</style>
+</head>
+<body>
+<div class="lab-page">
+  <a href="../index.html" class="lab-page__back">← Back to Course</a>
+  <div class="lab-page__badge-row">
+    <span class="badge badge--intermediate">Intermediate</span>
+    <span class="badge badge--time">⏱ 35 minutes</span>
+  </div>
+
+  <h1 class="lab-page__title">Lab 3: Chat-Driven Development</h1>
+  <p class="lab-page__subtitle">Build a complete Node.js REST API for a bookstore entirely through conversations with Copilot Chat. You'll use the chat panel, inline chat, and chat participants to create routes, models, and middleware.</p>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🎯 Objectives</h2>
+    <ul class="objectives-list">
+      <li>Use Copilot Chat to scaffold a Node.js project</li>
+      <li>Generate Express routes through conversation</li>
+      <li>Use @workspace to understand project structure</li>
+      <li>Use inline chat (Ctrl+I) for targeted edits</li>
+      <li>Build a complete CRUD API without writing code manually</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📋 Prerequisites</h2>
+    <ul class="prereq-list">
+      <li>Node.js 18+ installed</li>
+      <li>Completed Labs 1-2</li>
+      <li>Basic understanding of REST APIs and Express.js</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📝 Step-by-Step Instructions</h2>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">1</span>Initialize the Project with Chat</div>
+      <div class="step__body">
+        <ol>
+          <li>Create a folder called <code>bookstore-api</code> and open it in VS Code</li>
+          <li>Open Copilot Chat (<code>Ctrl+Shift+I</code>)</li>
+          <li>Type this prompt in the chat:</li>
+        </ol>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Copilot Chat Prompt</span>
+            <button class="code-block__copy">⧉ Copy</button>
+          </div>
+          <pre><code>I want to create a Node.js REST API for a bookstore. Set up the project with:
+- Express.js for the server
+- A simple in-memory array for data storage (no database needed)
+- CORS middleware
+- JSON body parsing
+- A Book model with: id, title, author, isbn, price, publishedYear, genre
+- Port 3000
+
+Please create a package.json and the main server file (server.js).</code></pre>
+        </div>
+        <p>Copilot will generate both files. Click <strong>"Create File"</strong> or <strong>"Insert into File"</strong> for each code block.</p>
+        <div class="callout callout--tip">
+          <span class="callout__icon">💡</span>
+          <div><strong>Tip:</strong> The more specific your prompt, the better the output. Notice we specified the exact model fields, port, and that we want in-memory storage.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">2</span>Generate CRUD Routes</div>
+      <div class="step__body">
+        <p>Continue the conversation in the same chat session:</p>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Copilot Chat Prompt</span>
+            <button class="code-block__copy">⧉ Copy</button>
+          </div>
+          <pre><code>Now create a routes file (routes/books.js) with full CRUD operations:
+- GET /api/books - List all books (support ?genre and ?author query filters)
+- GET /api/books/:id - Get a single book by ID
+- POST /api/books - Create a new book (validate required fields)
+- PUT /api/books/:id - Update a book
+- DELETE /api/books/:id - Delete a book
+
+Include proper HTTP status codes, error handling for not-found cases,
+and input validation. Also add 5 sample books as seed data.</code></pre>
+        </div>
+
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Output</div>
+          <div style="font-size:.875rem;color:var(--text-secondary)">A complete Express router with all five endpoints, proper status codes (200, 201, 404, 400), query filtering logic, and an array of 5 sample book objects.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">3</span>Add Search with Inline Chat</div>
+      <div class="step__body">
+        <ol>
+          <li>Open <code>routes/books.js</code></li>
+          <li>Place your cursor after the GET /api/books route</li>
+          <li>Press <code>Ctrl+I</code> to open inline chat</li>
+          <li>Type: <strong>"Add a GET /api/books/search endpoint that searches by title or author using a ?q query parameter. Case-insensitive partial matching."</strong></li>
+          <li>Review the diff and click <strong>Accept</strong></li>
+        </ol>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__lang">Expected generated route</span>
+            <button class="code-block__copy">⧉ Copy</button>
+          </div>
+          <pre><code><span class="cm">// GET /api/books/search?q=tolkien</span>
+<span class="var">router</span>.<span class="fn">get</span>(<span class="str">'/search'</span>, (<span class="var">req</span>, <span class="var">res</span>) => {
+  <span class="kw">const</span> { <span class="var">q</span> } = <span class="var">req</span>.<span class="prop">query</span>;
+  <span class="kw">if</span> (!q) {
+    <span class="kw">return</span> <span class="var">res</span>.<span class="fn">status</span>(<span class="num">400</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="str">'Query parameter q is required'</span> });
+  }
+  <span class="kw">const</span> <span class="var">query</span> = q.<span class="fn">toLowerCase</span>();
+  <span class="kw">const</span> <span class="var">results</span> = <span class="var">books</span>.<span class="fn">filter</span>(<span class="var">book</span> =>
+    <span class="var">book</span>.<span class="prop">title</span>.<span class="fn">toLowerCase</span>().<span class="fn">includes</span>(<span class="var">query</span>) ||
+    <span class="var">book</span>.<span class="prop">author</span>.<span class="fn">toLowerCase</span>().<span class="fn">includes</span>(<span class="var">query</span>)
+  );
+  <span class="var">res</span>.<span class="fn">json</span>(<span class="var">results</span>);
+});</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">4</span>Ask @workspace About the Project</div>
+      <div class="step__body">
+        <p>Try these @workspace queries in Copilot Chat:</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">Chat Prompts</span></div>
+          <pre><code>@workspace What is the overall structure of this project?
+
+@workspace What endpoints are available in this API?
+
+@workspace How is error handling done across the routes?</code></pre>
+        </div>
+        <p>The <code>@workspace</code> participant scans your entire project to provide comprehensive answers.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">5</span>Add Middleware with Chat</div>
+      <div class="step__body">
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">Copilot Chat Prompt</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code>Create a middleware file (middleware/logger.js) that logs each request with:
+- Timestamp
+- HTTP method
+- URL path
+- Response status code
+- Response time in milliseconds
+Format: [2024-01-15T10:30:00Z] GET /api/books 200 15ms
+
+Also create a middleware/validator.js with a validateBook middleware
+that checks all required fields exist when creating/updating a book.</code></pre>
+        </div>
+        <p>After Copilot generates the files, ask it to update <code>server.js</code> to use the new middleware.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">6</span>Test the API</div>
+      <div class="step__body">
+        <ol>
+          <li>Open the terminal and run <code>npm install</code>, then <code>node server.js</code></li>
+          <li>Ask Copilot Chat: <strong>"Generate curl commands to test all the endpoints in this API"</strong></li>
+          <li>Copilot will produce curl commands for each route — run them in a new terminal</li>
+        </ol>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">Expected test commands</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code><span class="cm"># List all books</span>
+curl http://localhost:3000/api/books
+
+<span class="cm"># Get a specific book</span>
+curl http://localhost:3000/api/books/1
+
+<span class="cm"># Create a new book</span>
+curl -X POST http://localhost:3000/api/books \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Dune","author":"Frank Herbert","isbn":"978-0441013593","price":9.99,"publishedYear":1965,"genre":"Science Fiction"}'
+
+<span class="cm"># Search books</span>
+curl "http://localhost:3000/api/books/search?q=tolkien"
+
+<span class="cm"># Delete a book</span>
+curl -X DELETE http://localhost:3000/api/books/1</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="challenge-box">
+    <div class="challenge-box__title">🏆 Extra Credit Challenge</div>
+    <div class="challenge-box__body">
+      <p>Continue the conversation with Copilot Chat to add:</p>
+      <ul style="margin-top:8px;padding-left:20px">
+        <li>Pagination for GET /api/books with <code>?page=1&limit=10</code></li>
+        <li>Sorting with <code>?sort=price&order=desc</code></li>
+        <li>A rate-limiting middleware</li>
+        <li>API documentation endpoint at GET /api/docs</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script src="../app.js"></script>
+</body>
+</html>

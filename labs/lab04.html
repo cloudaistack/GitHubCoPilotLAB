@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 4: Slash Command Workout — Copilot Mastery</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body{background:var(--bg-primary)}.lab-page{max-width:900px;margin:0 auto;padding:40px 24px 80px}.lab-page__back{display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);font-size:.875rem;margin-bottom:32px;text-decoration:none}.lab-page__back:hover{color:var(--accent-blue)}.lab-page__badge-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.lab-page__title{font-family:var(--font-display);font-size:2rem;font-weight:800;margin-bottom:12px}.lab-page__subtitle{color:var(--text-secondary);font-size:1rem;margin-bottom:32px;line-height:1.7}.lab-section{margin-bottom:40px}.lab-section__title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border-glass)}.step{margin-bottom:24px;padding:20px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md)}.step__number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(88,166,255,.15);color:var(--accent-blue);font-weight:700;font-size:.8125rem;margin-right:10px}.step__title{font-weight:700;font-size:1rem;margin-bottom:10px;display:flex;align-items:center}.step__body{color:var(--text-secondary);font-size:.875rem;line-height:1.7}.step__body code{background:rgba(110,118,129,.15);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:.8125rem}.step__body ol,.step__body ul{padding-left:20px;margin:8px 0}.step__body li{margin-bottom:6px}.objectives-list{list-style:none}.objectives-list li{padding:8px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.objectives-list li::before{content:'✓';color:var(--accent-green);font-weight:700}.prereq-list{list-style:none}.prereq-list li{padding:6px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.prereq-list li::before{content:'•';color:var(--accent-purple);font-weight:700}.expected-output{background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.expected-output__label{font-weight:700;color:var(--accent-green);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.challenge-box{background:rgba(188,140,255,.06);border:1px solid rgba(188,140,255,.15);border-radius:var(--radius-md);padding:20px;margin-top:32px}.challenge-box__title{font-family:var(--font-display);font-weight:700;color:var(--accent-purple);margin-bottom:8px}.challenge-box__body{font-size:.875rem;color:var(--text-secondary);line-height:1.7}
+</style>
+</head>
+<body>
+<div class="lab-page">
+  <a href="../index.html" class="lab-page__back">← Back to Course</a>
+  <div class="lab-page__badge-row">
+    <span class="badge badge--intermediate">Intermediate</span>
+    <span class="badge badge--time">⏱ 30 minutes</span>
+  </div>
+
+  <h1 class="lab-page__title">Lab 4: Slash Command Workout</h1>
+  <p class="lab-page__subtitle">You're given a deliberately messy, buggy JavaScript file. Your mission: use every slash command to transform it into clean, tested, documented production code.</p>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🎯 Objectives</h2>
+    <ul class="objectives-list">
+      <li>Use <code>/explain</code> to understand unfamiliar code</li>
+      <li>Use <code>/fix</code> to debug and resolve errors</li>
+      <li>Use <code>/tests</code> to generate comprehensive test suites</li>
+      <li>Use <code>/doc</code> to add professional documentation</li>
+      <li>Use <code>/refactor</code> to improve code quality</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📋 Prerequisites</h2>
+    <ul class="prereq-list">
+      <li>Completed Modules 1–4</li>
+      <li>Node.js 18+ installed</li>
+      <li>Basic JavaScript knowledge</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🗂️ The Messy Code</h2>
+    <p style="color:var(--text-secondary);font-size:.875rem;margin-bottom:16px">Create a file called <code>messy_utils.js</code> and paste this deliberately problematic code. It contains bugs, no documentation, poor naming, code smells, and missing error handling.</p>
+
+    <div class="code-block">
+      <div class="code-block__header">
+        <div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div>
+        <span class="code-block__lang">messy_utils.js — The starting code (paste this)</span>
+        <button class="code-block__copy">⧉ Copy</button>
+      </div>
+      <pre><code><span class="cm">// utils - various helper functions</span>
+<span class="kw">var</span> <span class="var">data</span> = []
+
+<span class="kw">function</span> <span class="fn">proc</span>(<span class="var">arr</span>) {
+  <span class="kw">var</span> <span class="var">r</span> = []
+  <span class="kw">for</span> (<span class="kw">var</span> <span class="var">i</span> = <span class="num">0</span>; i <= arr.<span class="prop">length</span>; i++) {  <span class="cm">// BUG: off-by-one</span>
+    <span class="kw">if</span> (arr[i] !== <span class="kw">null</span> && arr[i] !== <span class="kw">undefined</span>) {
+      r.<span class="fn">push</span>(arr[i].<span class="fn">toString</span>().<span class="fn">trim</span>().<span class="fn">toLowerCase</span>())
+    }
+  }
+  <span class="kw">return</span> r
+}
+
+<span class="kw">function</span> <span class="fn">calc</span>(<span class="var">items</span>) {
+  <span class="kw">var</span> <span class="var">t</span> = <span class="num">0</span>
+  <span class="kw">for</span>(<span class="kw">var</span> <span class="var">i</span>=<span class="num">0</span>;i&lt;items.<span class="prop">length</span>;i++){
+    t += items[i].<span class="prop">price</span> * items[i].<span class="prop">qty</span>  <span class="cm">// BUG: no check for missing fields</span>
+  }
+  <span class="kw">var</span> <span class="var">tax</span> = t * <span class="num">0.08</span>
+  <span class="kw">var</span> <span class="var">d</span> = <span class="num">0</span>
+  <span class="kw">if</span>(t > <span class="num">100</span>) d = t * <span class="num">0.1</span>
+  <span class="kw">if</span>(t > <span class="num">500</span>) d = t * <span class="num">0.15</span>  <span class="cm">// BUG: should be else if</span>
+  <span class="kw">return</span> {total: t, tax: tax, discount: d, final: t + tax - d}
+}
+
+<span class="kw">function</span> <span class="fn">fmt</span>(<span class="var">d</span>) {
+  <span class="kw">var</span> <span class="var">m</span> = d.<span class="fn">getMonth</span>()  <span class="cm">// BUG: months are 0-indexed, not handled</span>
+  <span class="kw">var</span> <span class="var">dy</span> = d.<span class="fn">getDate</span>()
+  <span class="kw">var</span> <span class="var">y</span> = d.<span class="fn">getFullYear</span>()
+  <span class="kw">return</span> m + <span class="str">'/'</span> + dy + <span class="str">'/'</span> + y
+}
+
+<span class="kw">function</span> <span class="fn">srch</span>(<span class="var">arr</span>, <span class="var">k</span>) {
+  <span class="kw">for</span>(<span class="kw">var</span> <span class="var">i</span>=<span class="num">0</span>;i&lt;arr.<span class="prop">length</span>;i++){
+    <span class="kw">if</span>(arr[i].<span class="prop">name</span>.<span class="fn">toLowerCase</span>() == k.<span class="fn">toLowerCase</span>())  <span class="cm">// BUG: == not ===, no null check</span>
+      <span class="kw">return</span> arr[i]
+  }
+  <span class="kw">return</span> <span class="kw">null</span>
+}
+
+<span class="kw">function</span> <span class="fn">dedupe</span>(<span class="var">a</span>) {
+  <span class="kw">var</span> <span class="var">seen</span> = {}
+  <span class="kw">var</span> <span class="var">out</span> = []
+  <span class="kw">for</span>(<span class="kw">var</span> <span class="var">i</span>=<span class="num">0</span>;i&lt;a.<span class="prop">length</span>;i++){
+    <span class="kw">if</span>(!seen[a[i]]){
+      seen[a[i]] = <span class="kw">true</span>
+      out.<span class="fn">push</span>(a[i])
+    }
+  }
+  <span class="kw">return</span> out
+}
+
+<span class="var">module</span>.<span class="prop">exports</span> = {proc, calc, fmt, srch, dedupe}</code></pre>
+    </div>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📝 Step-by-Step Instructions</h2>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">1</span>Exercise: /explain</div>
+      <div class="step__body">
+        <ol>
+          <li>Open <code>messy_utils.js</code> in VS Code</li>
+          <li>Select the entire <code>calc</code> function</li>
+          <li>Open Copilot Chat and type: <code>/explain</code></li>
+          <li>Read the explanation carefully — Copilot should identify what each variable does and explain the pricing logic</li>
+        </ol>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Result</div>
+          <div style="font-size:.875rem;color:var(--text-secondary)">Copilot explains that <code>calc</code> computes a shopping cart total with tax (8%) and tiered discounts (10% over $100, 15% over $500), and should note the potential bugs in the discount logic.</div>
+        </div>
+        <div class="callout callout--tip">
+          <span class="callout__icon">💡</span>
+          <div><strong>Tip:</strong> Try <code>/explain</code> on the whole file for a birds-eye view of all functions.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">2</span>Exercise: /fix</div>
+      <div class="step__body">
+        <ol>
+          <li>Select the entire file</li>
+          <li>Type <code>/fix</code> in Copilot Chat</li>
+          <li>Review the bugs Copilot identifies and the fixes it proposes</li>
+        </ol>
+        <p>Copilot should find at least these bugs:</p>
+        <ul>
+          <li><code>proc()</code>: Off-by-one error — <code>i &lt;= arr.length</code> should be <code>i &lt; arr.length</code></li>
+          <li><code>calc()</code>: Missing null checks for price/qty fields; discount logic should use <code>else if</code></li>
+          <li><code>fmt()</code>: Month is 0-indexed — need to add 1; missing zero-padding</li>
+          <li><code>srch()</code>: Using <code>==</code> instead of <code>===</code>; no null check on <code>arr[i].name</code> or <code>k</code></li>
+          <li>All functions: Using <code>var</code> instead of <code>const</code>/<code>let</code></li>
+        </ul>
+        <p>Accept the fixes and verify the code runs correctly.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">3</span>Exercise: /doc</div>
+      <div class="step__body">
+        <ol>
+          <li>Select each function one at a time</li>
+          <li>Type <code>/doc</code> in Copilot Chat</li>
+          <li>Accept the generated JSDoc documentation</li>
+        </ol>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Output (for calc function)</div>
+        </div>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">Expected JSDoc</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code><span class="cm">/**
+ * Calculates the total price of items in a shopping cart
+ * with tax and tiered discount applied.
+ *
+ * @param {Array&lt;{price: number, qty: number}&gt;} items - Array of cart items
+ * @returns {{total: number, tax: number, discount: number, final: number}}
+ *   Object containing total, tax amount, discount amount, and final price
+ * @throws {TypeError} If items is not an array or items lack price/qty
+ *
+ * @example
+ * const result = calculateCartTotal([
+ *   { price: 29.99, qty: 2 },
+ *   { price: 49.99, qty: 1 }
+ * ]);
+ * // { total: 109.97, tax: 8.80, discount: 11.00, final: 107.77 }
+ */</span></code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">4</span>Exercise: /refactor</div>
+      <div class="step__body">
+        <ol>
+          <li>Select the entire file</li>
+          <li>Type <code>/refactor</code> in chat — optionally add: <strong>"Refactor to use modern ES6+ syntax, descriptive function names, and clean code practices"</strong></li>
+          <li>Review the refactored code</li>
+        </ol>
+        <p>Expected improvements:</p>
+        <ul>
+          <li>Function names: <code>proc</code> → <code>cleanAndNormalize</code>, <code>calc</code> → <code>calculateCartTotal</code>, <code>fmt</code> → <code>formatDate</code>, <code>srch</code> → <code>findByName</code></li>
+          <li><code>var</code> → <code>const</code>/<code>let</code></li>
+          <li><code>for</code> loops → <code>.map()</code>, <code>.filter()</code>, <code>.reduce()</code>, <code>.find()</code></li>
+          <li>Arrow functions where appropriate</li>
+          <li>Template literals instead of string concatenation</li>
+          <li>Guard clauses for validation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">5</span>Exercise: /tests</div>
+      <div class="step__body">
+        <ol>
+          <li>Select the <code>calculateCartTotal</code> function (after refactoring)</li>
+          <li>Type <code>/tests</code> in Copilot Chat</li>
+          <li>Copilot generates a Jest test suite — save it as <code>messy_utils.test.js</code></li>
+          <li>Run the tests: <code>npm install jest --save-dev</code> then <code>npx jest</code></li>
+        </ol>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Test Coverage</div>
+          <div style="font-size:.875rem;color:var(--text-secondary)">Tests should cover: normal cart calculation, empty cart, items over $100 (10% discount), items over $500 (15% discount), items with missing fields, and zero quantities.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="challenge-box">
+    <div class="challenge-box__title">🏆 Extra Credit Challenge</div>
+    <div class="challenge-box__body">
+      <p>After completing all exercises, ask Copilot Chat: <strong>"Review this refactored file for any remaining code smells, performance issues, or edge cases I should handle."</strong> Apply any additional suggestions it makes.</p>
+    </div>
+  </div>
+</div>
+<script src="../app.js"></script>
+</body>
+</html>

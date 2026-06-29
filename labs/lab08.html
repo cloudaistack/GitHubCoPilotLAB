@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 8: Documentation Sprint — Copilot Mastery</title>
+<link rel="stylesheet" href="../styles.css">
+<style>body{background:var(--bg-primary)}.lab-page{max-width:900px;margin:0 auto;padding:40px 24px 80px}.lab-page__back{display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);font-size:.875rem;margin-bottom:32px;text-decoration:none}.lab-page__back:hover{color:var(--accent-blue)}.lab-page__badge-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.lab-page__title{font-family:var(--font-display);font-size:2rem;font-weight:800;margin-bottom:12px}.lab-page__subtitle{color:var(--text-secondary);font-size:1rem;margin-bottom:32px;line-height:1.7}.lab-section{margin-bottom:40px}.lab-section__title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border-glass)}.step{margin-bottom:24px;padding:20px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md)}.step__number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(88,166,255,.15);color:var(--accent-blue);font-weight:700;font-size:.8125rem;margin-right:10px}.step__title{font-weight:700;font-size:1rem;margin-bottom:10px;display:flex;align-items:center}.step__body{color:var(--text-secondary);font-size:.875rem;line-height:1.7}.step__body code{background:rgba(110,118,129,.15);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:.8125rem}.step__body ol,.step__body ul{padding-left:20px;margin:8px 0}.step__body li{margin-bottom:6px}.objectives-list{list-style:none}.objectives-list li{padding:8px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.objectives-list li::before{content:'✓';color:var(--accent-green);font-weight:700}.prereq-list{list-style:none}.prereq-list li{padding:6px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.prereq-list li::before{content:'•';color:var(--accent-purple);font-weight:700}.expected-output{background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.expected-output__label{font-weight:700;color:var(--accent-green);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.challenge-box{background:rgba(188,140,255,.06);border:1px solid rgba(188,140,255,.15);border-radius:var(--radius-md);padding:20px;margin-top:32px}.challenge-box__title{font-family:var(--font-display);font-weight:700;color:var(--accent-purple);margin-bottom:8px}.challenge-box__body{font-size:.875rem;color:var(--text-secondary);line-height:1.7}</style>
+</head>
+<body>
+<div class="lab-page">
+  <a href="../index.html" class="lab-page__back">← Back to Course</a>
+  <div class="lab-page__badge-row"><span class="badge badge--intermediate">Intermediate</span><span class="badge badge--time">⏱ 35 minutes</span></div>
+
+  <h1 class="lab-page__title">Lab 8: Documentation Sprint</h1>
+  <p class="lab-page__subtitle">Take an undocumented Python inventory management project and add complete documentation using Copilot: docstrings, README, CHANGELOG, and API reference.</p>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🎯 Objectives</h2>
+    <ul class="objectives-list">
+      <li>Generate professional Python docstrings with /doc</li>
+      <li>Create a comprehensive README.md using @workspace</li>
+      <li>Build a CHANGELOG from code changes</li>
+      <li>Generate API documentation</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📋 Prerequisites</h2>
+    <ul class="prereq-list"><li>Completed Module 8</li><li>Python 3.8+</li></ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🗂️ The Undocumented Project</h2>
+    <p style="color:var(--text-secondary);font-size:.875rem;margin-bottom:16px">Create a file <code>inventory.py</code> with this undocumented code:</p>
+    <div class="code-block">
+      <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">inventory.py — Paste this undocumented code</span><button class="code-block__copy">⧉ Copy</button></div>
+      <pre><code><span class="kw">from</span> datetime <span class="kw">import</span> datetime
+<span class="kw">from</span> typing <span class="kw">import</span> Optional
+<span class="kw">import</span> json
+
+<span class="kw">class</span> <span class="typ">Product</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="var">self</span>, <span class="var">sku</span>, <span class="var">name</span>, <span class="var">price</span>, <span class="var">quantity</span>=<span class="num">0</span>, <span class="var">category</span>=<span class="str">"general"</span>):
+        <span class="var">self</span>.sku = sku
+        <span class="var">self</span>.name = name
+        <span class="var">self</span>.price = price
+        <span class="var">self</span>.quantity = quantity
+        <span class="var">self</span>.category = category
+        <span class="var">self</span>.created_at = datetime.now()
+        <span class="var">self</span>.updated_at = datetime.now()
+
+    <span class="kw">def</span> <span class="fn">update_price</span>(<span class="var">self</span>, <span class="var">new_price</span>):
+        <span class="kw">if</span> new_price &lt; <span class="num">0</span>:
+            <span class="kw">raise</span> <span class="typ">ValueError</span>(<span class="str">"Price cannot be negative"</span>)
+        <span class="var">self</span>.price = new_price
+        <span class="var">self</span>.updated_at = datetime.now()
+
+    <span class="kw">def</span> <span class="fn">adjust_stock</span>(<span class="var">self</span>, <span class="var">amount</span>):
+        <span class="kw">if</span> <span class="var">self</span>.quantity + amount &lt; <span class="num">0</span>:
+            <span class="kw">raise</span> <span class="typ">ValueError</span>(<span class="str">"Insufficient stock"</span>)
+        <span class="var">self</span>.quantity += amount
+        <span class="var">self</span>.updated_at = datetime.now()
+
+    <span class="kw">def</span> <span class="fn">to_dict</span>(<span class="var">self</span>):
+        <span class="kw">return</span> {<span class="str">"sku"</span>: <span class="var">self</span>.sku, <span class="str">"name"</span>: <span class="var">self</span>.name, <span class="str">"price"</span>: <span class="var">self</span>.price,
+                <span class="str">"quantity"</span>: <span class="var">self</span>.quantity, <span class="str">"category"</span>: <span class="var">self</span>.category}
+
+
+<span class="kw">class</span> <span class="typ">Inventory</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="var">self</span>):
+        <span class="var">self</span>.products = {}
+
+    <span class="kw">def</span> <span class="fn">add_product</span>(<span class="var">self</span>, <span class="var">product</span>):
+        <span class="kw">if</span> product.sku <span class="kw">in</span> <span class="var">self</span>.products:
+            <span class="kw">raise</span> <span class="typ">ValueError</span>(<span class="str">f"SKU {product.sku} already exists"</span>)
+        <span class="var">self</span>.products[product.sku] = product
+
+    <span class="kw">def</span> <span class="fn">remove_product</span>(<span class="var">self</span>, <span class="var">sku</span>):
+        <span class="kw">if</span> sku <span class="kw">not in</span> <span class="var">self</span>.products:
+            <span class="kw">raise</span> <span class="typ">KeyError</span>(<span class="str">f"Product {sku} not found"</span>)
+        <span class="kw">del</span> <span class="var">self</span>.products[sku]
+
+    <span class="kw">def</span> <span class="fn">get_product</span>(<span class="var">self</span>, <span class="var">sku</span>):
+        <span class="kw">return</span> <span class="var">self</span>.products.get(sku)
+
+    <span class="kw">def</span> <span class="fn">search</span>(<span class="var">self</span>, <span class="var">query</span>, <span class="var">category</span>=<span class="kw">None</span>):
+        results = []
+        <span class="kw">for</span> p <span class="kw">in</span> <span class="var">self</span>.products.values():
+            <span class="kw">if</span> query.lower() <span class="kw">in</span> p.name.lower():
+                <span class="kw">if</span> category <span class="kw">is</span> <span class="kw">None</span> <span class="kw">or</span> p.category == category:
+                    results.append(p)
+        <span class="kw">return</span> results
+
+    <span class="kw">def</span> <span class="fn">get_low_stock</span>(<span class="var">self</span>, <span class="var">threshold</span>=<span class="num">5</span>):
+        <span class="kw">return</span> [p <span class="kw">for</span> p <span class="kw">in</span> <span class="var">self</span>.products.values() <span class="kw">if</span> p.quantity &lt;= threshold]
+
+    <span class="kw">def</span> <span class="fn">total_value</span>(<span class="var">self</span>):
+        <span class="kw">return</span> sum(p.price * p.quantity <span class="kw">for</span> p <span class="kw">in</span> <span class="var">self</span>.products.values())
+
+    <span class="kw">def</span> <span class="fn">export_json</span>(<span class="var">self</span>, <span class="var">filepath</span>):
+        data = [p.to_dict() <span class="kw">for</span> p <span class="kw">in</span> <span class="var">self</span>.products.values()]
+        <span class="kw">with</span> open(filepath, <span class="str">'w'</span>) <span class="kw">as</span> f:
+            json.dump(data, f, indent=<span class="num">2</span>)
+
+    <span class="kw">def</span> <span class="fn">import_json</span>(<span class="var">self</span>, <span class="var">filepath</span>):
+        <span class="kw">with</span> open(filepath, <span class="str">'r'</span>) <span class="kw">as</span> f:
+            data = json.load(f)
+        <span class="kw">for</span> item <span class="kw">in</span> data:
+            product = Product(**item)
+            <span class="var">self</span>.add_product(product)</code></pre>
+    </div>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📝 Step-by-Step Instructions</h2>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">1</span>Add Docstrings with /doc</div>
+      <div class="step__body">
+        <ol>
+          <li>Select the <code>Product</code> class (all of it)</li>
+          <li>In Copilot Chat, type <code>/doc</code></li>
+          <li>Review and accept the generated docstrings</li>
+          <li>Repeat for the <code>Inventory</code> class</li>
+          <li>Each method should now have: description, parameters with types, return value, raises info, and example</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">2</span>Generate README.md</div>
+      <div class="step__body">
+        <p>In Copilot Chat, type:</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">Copilot Chat Prompt</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code>@workspace Generate a comprehensive README.md for this project. Include:
+- Project title and description
+- Features list
+- Installation instructions
+- Quick start example showing how to create an inventory, add products, and search
+- API Reference section documenting all public classes and methods
+- Usage examples for each major feature
+- Contributing guidelines
+- License (MIT)</code></pre>
+        </div>
+        <p>Save the output as <code>README.md</code> in your project root.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">3</span>Generate CHANGELOG</div>
+      <div class="step__body">
+        <p>Ask Copilot Chat:</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">Copilot Chat Prompt</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code>Create a CHANGELOG.md for this project following the Keep a Changelog format.
+Start with version 1.0.0 with today's date. Categories: Added.
+List all features implemented in inventory.py.</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">4</span>Add Type Hints and Module Docstring</div>
+      <div class="step__body">
+        <ol>
+          <li>Select the entire <code>inventory.py</code> file</li>
+          <li>Use inline chat (<code>Ctrl+I</code>): <strong>"Add complete type hints to all method parameters and return types. Add a module-level docstring."</strong></li>
+          <li>Review and accept the changes</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">5</span>Generate API Reference Page</div>
+      <div class="step__body">
+        <p>Ask Copilot to create a standalone <code>API.md</code> with full API documentation in a table format, listing every method with its signature, description, parameters, return type, and exceptions.</p>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Final Deliverables</div>
+          <div style="font-size:.875rem;color:var(--text-secondary)">
+            <ul style="padding-left:16px">
+              <li>✅ <code>inventory.py</code> — Full docstrings on every class and method</li>
+              <li>✅ <code>README.md</code> — Comprehensive project documentation</li>
+              <li>✅ <code>CHANGELOG.md</code> — Versioned change log</li>
+              <li>✅ <code>API.md</code> — Complete API reference</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="challenge-box">
+    <div class="challenge-box__title">🏆 Extra Credit Challenge</div>
+    <div class="challenge-box__body">
+      <p>Use Copilot to generate a <code>CONTRIBUTING.md</code> with code style guidelines, PR process, and issue templates. Then create a <code>docs/</code> folder with a Sphinx-compatible <code>conf.py</code> for auto-generated API docs.</p>
+    </div>
+  </div>
+</div>
+<script src="../app.js"></script>
+</body>
+</html>

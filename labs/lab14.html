@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 14: API Integration — Copilot Mastery</title>
+<link rel="stylesheet" href="../styles.css">
+<style>body{background:var(--bg-primary)}.lab-page{max-width:900px;margin:0 auto;padding:40px 24px 80px}.lab-page__back{display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);font-size:.875rem;margin-bottom:32px;text-decoration:none}.lab-page__back:hover{color:var(--accent-blue)}.lab-page__badge-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.lab-page__title{font-family:var(--font-display);font-size:2rem;font-weight:800;margin-bottom:12px}.lab-page__subtitle{color:var(--text-secondary);font-size:1rem;margin-bottom:32px;line-height:1.7}.lab-section{margin-bottom:40px}.lab-section__title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border-glass)}.step{margin-bottom:24px;padding:20px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md)}.step__number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(88,166,255,.15);color:var(--accent-blue);font-weight:700;font-size:.8125rem;margin-right:10px}.step__title{font-weight:700;font-size:1rem;margin-bottom:10px;display:flex;align-items:center}.step__body{color:var(--text-secondary);font-size:.875rem;line-height:1.7}.step__body code{background:rgba(110,118,129,.15);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:.8125rem}.objectives-list{list-style:none;padding:0}.objectives-list li{padding:8px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.objectives-list li::before{content:'✓';color:var(--accent-green);font-weight:700}.prereq-list{list-style:none;padding:0}.prereq-list li{padding:6px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.prereq-list li::before{content:'•';color:var(--accent-purple);font-weight:700}.expected-output{background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.expected-output__label{font-weight:700;color:var(--accent-green);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.tip-box{background:rgba(88,166,255,.06);border:1px solid rgba(88,166,255,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.tip-box__label{font-weight:700;color:var(--accent-blue);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.warning-box{background:rgba(210,153,34,.06);border:1px solid rgba(210,153,34,.25);border-radius:var(--radius-md);padding:16px;margin:12px 0}.warning-box__label{font-weight:700;color:#d29922;font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.challenge-box{background:rgba(188,140,255,.06);border:1px solid rgba(188,140,255,.15);border-radius:var(--radius-md);padding:20px;margin-top:32px}.challenge-box__title{font-family:var(--font-display);font-weight:700;color:var(--accent-purple);margin-bottom:8px}.challenge-box__body{font-size:.875rem;color:var(--text-secondary);line-height:1.7}.nav-bottom{display:flex;justify-content:space-between;margin-top:48px;padding-top:24px;border-top:1px solid var(--border-glass)}.nav-bottom a{color:var(--accent-blue);text-decoration:none;font-size:.875rem}.nav-bottom a:hover{text-decoration:underline}</style>
+</head>
+<body>
+<div class="lab-page">
+  <a href="../index.html" class="lab-page__back">← Back to Course</a>
+  <div class="lab-page__badge-row"><span class="badge badge--intermediate">Intermediate</span><span class="badge badge--time">⏱ 35 minutes</span></div>
+
+  <h1 class="lab-page__title">Lab 14: API Integration with Copilot</h1>
+  <p class="lab-page__subtitle">Build Python API clients for weather data, GitHub repositories, and news feeds. Learn to handle authentication, error handling, rate limiting, and data modeling — all with Copilot's assistance.</p>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🎯 Objectives</h2>
+    <ul class="objectives-list">
+      <li>Build a reusable API client base class with Copilot</li>
+      <li>Integrate with the GitHub REST API</li>
+      <li>Create data models (dataclasses) for API responses</li>
+      <li>Handle errors, retries, and rate limiting</li>
+      <li>Build a unified multi-API data aggregator</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📋 Prerequisites</h2>
+    <ul class="prereq-list">
+      <li>Python 3.8+ installed</li>
+      <li><code>pip install requests</code></li>
+      <li>GitHub Copilot active in VS Code</li>
+      <li>A GitHub personal access token (optional, for higher rate limits)</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🚀 Steps</h2>
+
+    <!-- STEP 1 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">1</span> Create the Base API Client</div>
+      <div class="step__body">
+        <p>Create <code>api_client.py</code>. Write the class signature and let Copilot build the infrastructure:</p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">api_client.py</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="cm"># Base API client with retry logic, rate limiting, and error handling</span>
+
+<span class="kw">import</span> requests
+<span class="kw">import</span> time
+<span class="kw">import</span> logging
+<span class="kw">from</span> typing <span class="kw">import</span> Optional, Dict, Any
+<span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass, field
+<span class="kw">from</span> urllib.parse <span class="kw">import</span> urljoin
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+
+<span class="kw">class</span> <span class="type">APIError</span>(Exception):
+    <span class="str">"""Custom exception for API errors."""</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, status_code: <span class="kw">int</span>, message: str):
+        <span class="kw">self</span>.status_code = status_code
+        <span class="kw">self</span>.message = message
+        <span class="kw">super</span>().__init__(<span class="str">f"API Error {status_code}: {message}"</span>)
+
+
+<span class="kw">class</span> <span class="type">BaseAPIClient</span>:
+    <span class="str">"""Reusable base class for REST API clients with built-in resilience."""</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, base_url: str, api_key: Optional[str] = <span class="kw">None</span>,
+                 max_retries: <span class="kw">int</span> = <span class="num">3</span>, timeout: <span class="kw">int</span> = <span class="num">30</span>):
+        <span class="kw">self</span>.base_url = base_url.rstrip(<span class="str">"/"</span>)
+        <span class="kw">self</span>.api_key = api_key
+        <span class="kw">self</span>.max_retries = max_retries
+        <span class="kw">self</span>.timeout = timeout
+        <span class="kw">self</span>.session = requests.Session()
+        <span class="kw">self</span>._setup_headers()
+
+    <span class="kw">def</span> <span class="fn">_setup_headers</span>(<span class="kw">self</span>):
+        <span class="str">"""Set default headers. Override in subclasses."""</span>
+        <span class="kw">self</span>.session.headers.update({
+            <span class="str">"Accept"</span>: <span class="str">"application/json"</span>,
+            <span class="str">"User-Agent"</span>: <span class="str">"CopilotLabAPIClient/1.0"</span>
+        })
+
+    <span class="kw">def</span> <span class="fn">_request</span>(<span class="kw">self</span>, method: str, endpoint: str,
+                 params: Dict = <span class="kw">None</span>, data: Dict = <span class="kw">None</span>) -> Dict:
+        <span class="str">"""Make an HTTP request with retry logic and error handling."""</span>
+        url = <span class="str">f"{self.base_url}/{endpoint.lstrip('/')}"</span>
+
+        <span class="kw">for</span> attempt <span class="kw">in</span> range(<span class="kw">self</span>.max_retries):
+            <span class="kw">try</span>:
+                response = <span class="kw">self</span>.session.request(
+                    method=method,
+                    url=url,
+                    params=params,
+                    json=data,
+                    timeout=<span class="kw">self</span>.timeout
+                )
+
+                <span class="cm"># Handle rate limiting (429)</span>
+                <span class="kw">if</span> response.status_code == <span class="num">429</span>:
+                    retry_after = <span class="kw">int</span>(response.headers.get(<span class="str">"Retry-After"</span>, <span class="num">60</span>))
+                    logger.warning(<span class="str">f"Rate limited. Waiting {retry_after}s..."</span>)
+                    time.sleep(retry_after)
+                    <span class="kw">continue</span>
+
+                <span class="cm"># Handle server errors (5xx) with exponential backoff</span>
+                <span class="kw">if</span> response.status_code >= <span class="num">500</span>:
+                    wait = <span class="num">2</span> ** attempt
+                    logger.warning(<span class="str">f"Server error {response.status_code}. "
+                                   f"Retry {attempt+1}/{self.max_retries} in {wait}s"</span>)
+                    time.sleep(wait)
+                    <span class="kw">continue</span>
+
+                <span class="cm"># Raise for client errors (4xx)</span>
+                <span class="kw">if</span> response.status_code >= <span class="num">400</span>:
+                    <span class="kw">raise</span> APIError(response.status_code, response.text)
+
+                <span class="kw">return</span> response.json()
+
+            <span class="kw">except</span> requests.ConnectionError <span class="kw">as</span> e:
+                <span class="kw">if</span> attempt == <span class="kw">self</span>.max_retries - <span class="num">1</span>:
+                    <span class="kw">raise</span>
+                logger.warning(<span class="str">f"Connection error, retrying... ({attempt+1})"</span>)
+                time.sleep(<span class="num">2</span> ** attempt)
+
+        <span class="kw">raise</span> APIError(<span class="num">0</span>, <span class="str">"Max retries exceeded"</span>)
+
+    <span class="kw">def</span> <span class="fn">get</span>(<span class="kw">self</span>, endpoint: str, params: Dict = <span class="kw">None</span>) -> Dict:
+        <span class="kw">return self</span>._request(<span class="str">"GET"</span>, endpoint, params=params)
+
+    <span class="kw">def</span> <span class="fn">post</span>(<span class="kw">self</span>, endpoint: str, data: Dict = <span class="kw">None</span>) -> Dict:
+        <span class="kw">return self</span>._request(<span class="str">"POST"</span>, endpoint, data=data)</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">2</span> Build the GitHub API Client</div>
+      <div class="step__body">
+        <p>Create <code>github_client.py</code>. Type the class header and let Copilot generate the methods:</p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">github_client.py</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="cm"># GitHub API client — fetch repos, users, and issues</span>
+
+<span class="kw">from</span> api_client <span class="kw">import</span> BaseAPIClient
+<span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
+<span class="kw">from</span> typing <span class="kw">import</span> List, Optional
+<span class="kw">from</span> datetime <span class="kw">import</span> datetime
+
+
+<span class="dec">@dataclass</span>
+<span class="kw">class</span> <span class="type">Repository</span>:
+    <span class="str">"""Data model for a GitHub repository."""</span>
+    name: str
+    full_name: str
+    description: Optional[str]
+    stars: <span class="kw">int</span>
+    forks: <span class="kw">int</span>
+    language: Optional[str]
+    url: str
+    created_at: str
+    updated_at: str
+
+
+<span class="dec">@dataclass</span>
+<span class="kw">class</span> <span class="type">GitHubUser</span>:
+    <span class="str">"""Data model for a GitHub user."""</span>
+    login: str
+    name: Optional[str]
+    bio: Optional[str]
+    public_repos: <span class="kw">int</span>
+    followers: <span class="kw">int</span>
+    following: <span class="kw">int</span>
+    avatar_url: str
+
+
+<span class="kw">class</span> <span class="type">GitHubClient</span>(BaseAPIClient):
+    <span class="str">"""Client for the GitHub REST API."""</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, token: Optional[str] = <span class="kw">None</span>):
+        <span class="kw">super</span>().__init__(<span class="str">"https://api.github.com"</span>, api_key=token)
+        <span class="kw">if</span> token:
+            <span class="kw">self</span>.session.headers[<span class="str">"Authorization"</span>] = <span class="str">f"token {token}"</span>
+
+    <span class="kw">def</span> <span class="fn">get_user</span>(<span class="kw">self</span>, username: str) -> GitHubUser:
+        <span class="str">"""Fetch a GitHub user's profile."""</span>
+        data = <span class="kw">self</span>.get(<span class="str">f"/users/{username}"</span>)
+        <span class="kw">return</span> GitHubUser(
+            login=data[<span class="str">"login"</span>],
+            name=data.get(<span class="str">"name"</span>),
+            bio=data.get(<span class="str">"bio"</span>),
+            public_repos=data[<span class="str">"public_repos"</span>],
+            followers=data[<span class="str">"followers"</span>],
+            following=data[<span class="str">"following"</span>],
+            avatar_url=data[<span class="str">"avatar_url"</span>]
+        )
+
+    <span class="kw">def</span> <span class="fn">get_repos</span>(<span class="kw">self</span>, username: str, sort: str = <span class="str">"updated"</span>,
+                  per_page: <span class="kw">int</span> = <span class="num">10</span>) -> List[Repository]:
+        <span class="str">"""Fetch a user's repositories."""</span>
+        data = <span class="kw">self</span>.get(<span class="str">f"/users/{username}/repos"</span>, params={
+            <span class="str">"sort"</span>: sort,
+            <span class="str">"per_page"</span>: per_page,
+            <span class="str">"direction"</span>: <span class="str">"desc"</span>
+        })
+        <span class="kw">return</span> [
+            Repository(
+                name=r[<span class="str">"name"</span>],
+                full_name=r[<span class="str">"full_name"</span>],
+                description=r.get(<span class="str">"description"</span>),
+                stars=r[<span class="str">"stargazers_count"</span>],
+                forks=r[<span class="str">"forks_count"</span>],
+                language=r.get(<span class="str">"language"</span>),
+                url=r[<span class="str">"html_url"</span>],
+                created_at=r[<span class="str">"created_at"</span>],
+                updated_at=r[<span class="str">"updated_at"</span>]
+            )
+            <span class="kw">for</span> r <span class="kw">in</span> data
+        ]
+
+    <span class="kw">def</span> <span class="fn">get_repo_languages</span>(<span class="kw">self</span>, owner: str, repo: str) -> Dict:
+        <span class="str">"""Get language breakdown for a repository."""</span>
+        <span class="kw">return self</span>.get(<span class="str">f"/repos/{owner}/{repo}/languages"</span>)
+
+    <span class="kw">def</span> <span class="fn">search_repos</span>(<span class="kw">self</span>, query: str, language: str = <span class="kw">None</span>,
+                     min_stars: <span class="kw">int</span> = <span class="num">0</span>) -> List[Repository]:
+        <span class="str">"""Search GitHub repositories."""</span>
+        q = query
+        <span class="kw">if</span> language:
+            q += <span class="str">f" language:{language}"</span>
+        <span class="kw">if</span> min_stars:
+            q += <span class="str">f" stars:>={min_stars}"</span>
+
+        data = <span class="kw">self</span>.get(<span class="str">"/search/repositories"</span>, params={
+            <span class="str">"q"</span>: q,
+            <span class="str">"sort"</span>: <span class="str">"stars"</span>,
+            <span class="str">"per_page"</span>: <span class="num">10</span>
+        })
+
+        <span class="kw">return</span> [
+            Repository(
+                name=r[<span class="str">"name"</span>],
+                full_name=r[<span class="str">"full_name"</span>],
+                description=r.get(<span class="str">"description"</span>),
+                stars=r[<span class="str">"stargazers_count"</span>],
+                forks=r[<span class="str">"forks_count"</span>],
+                language=r.get(<span class="str">"language"</span>),
+                url=r[<span class="str">"html_url"</span>],
+                created_at=r[<span class="str">"created_at"</span>],
+                updated_at=r[<span class="str">"updated_at"</span>]
+            )
+            <span class="kw">for</span> r <span class="kw">in</span> data[<span class="str">"items"</span>]
+        ]</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">3</span> Build a Weather API Client</div>
+      <div class="step__body">
+        <p>Create <code>weather_client.py</code>. This demonstrates how Copilot handles API key authentication and data transformation:</p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">weather_client.py</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="cm"># Weather API client using OpenWeatherMap API pattern</span>
+<span class="cm"># Get your free API key at: https://openweathermap.org/api</span>
+
+<span class="kw">from</span> api_client <span class="kw">import</span> BaseAPIClient
+<span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
+<span class="kw">from</span> typing <span class="kw">import</span> List, Optional
+
+
+<span class="dec">@dataclass</span>
+<span class="kw">class</span> <span class="type">Weather</span>:
+    <span class="str">"""Current weather data."""</span>
+    city: str
+    country: str
+    temp_celsius: <span class="kw">float</span>
+    feels_like: <span class="kw">float</span>
+    humidity: <span class="kw">int</span>
+    description: str
+    wind_speed: <span class="kw">float</span>
+    icon: str
+
+    <span class="dec">@property</span>
+    <span class="kw">def</span> <span class="fn">temp_fahrenheit</span>(<span class="kw">self</span>) -> <span class="kw">float</span>:
+        <span class="kw">return</span> round(<span class="kw">self</span>.temp_celsius * <span class="num">9</span>/<span class="num">5</span> + <span class="num">32</span>, <span class="num">1</span>)
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="kw">self</span>):
+        <span class="kw">return</span> (<span class="str">f"🌍 {self.city}, {self.country}\n"</span>
+                <span class="str">f"🌡️  {self.temp_celsius}°C ({self.temp_fahrenheit}°F)\n"</span>
+                <span class="str">f"💧 Humidity: {self.humidity}%\n"</span>
+                <span class="str">f"🌬️  Wind: {self.wind_speed} m/s\n"</span>
+                <span class="str">f"☁️  {self.description}"</span>)
+
+
+<span class="kw">class</span> <span class="type">WeatherClient</span>(BaseAPIClient):
+    <span class="str">"""Client for the OpenWeatherMap API."""</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, api_key: str):
+        <span class="kw">super</span>().__init__(<span class="str">"https://api.openweathermap.org/data/2.5"</span>,
+                         api_key=api_key)
+
+    <span class="kw">def</span> <span class="fn">get_current</span>(<span class="kw">self</span>, city: str) -> Weather:
+        <span class="str">"""Get current weather for a city."""</span>
+        data = <span class="kw">self</span>.get(<span class="str">"/weather"</span>, params={
+            <span class="str">"q"</span>: city,
+            <span class="str">"appid"</span>: <span class="kw">self</span>.api_key,
+            <span class="str">"units"</span>: <span class="str">"metric"</span>
+        })
+        <span class="kw">return</span> Weather(
+            city=data[<span class="str">"name"</span>],
+            country=data[<span class="str">"sys"</span>][<span class="str">"country"</span>],
+            temp_celsius=data[<span class="str">"main"</span>][<span class="str">"temp"</span>],
+            feels_like=data[<span class="str">"main"</span>][<span class="str">"feels_like"</span>],
+            humidity=data[<span class="str">"main"</span>][<span class="str">"humidity"</span>],
+            description=data[<span class="str">"weather"</span>][<span class="num">0</span>][<span class="str">"description"</span>].title(),
+            wind_speed=data[<span class="str">"wind"</span>][<span class="str">"speed"</span>],
+            icon=data[<span class="str">"weather"</span>][<span class="num">0</span>][<span class="str">"icon"</span>]
+        )
+
+    <span class="kw">def</span> <span class="fn">get_forecast</span>(<span class="kw">self</span>, city: str, days: <span class="kw">int</span> = <span class="num">5</span>) -> List[Weather]:
+        <span class="str">"""Get weather forecast for upcoming days."""</span>
+        data = <span class="kw">self</span>.get(<span class="str">"/forecast"</span>, params={
+            <span class="str">"q"</span>: city,
+            <span class="str">"appid"</span>: <span class="kw">self</span>.api_key,
+            <span class="str">"units"</span>: <span class="str">"metric"</span>,
+            <span class="str">"cnt"</span>: days * <span class="num">8</span>  <span class="cm"># API returns 3-hour intervals</span>
+        })
+        <span class="cm"># Get one reading per day (noon)</span>
+        daily = [item <span class="kw">for</span> item <span class="kw">in</span> data[<span class="str">"list"</span>]
+                 <span class="kw">if</span> <span class="str">"12:00:00"</span> <span class="kw">in</span> item[<span class="str">"dt_txt"</span>]]
+        <span class="kw">return</span> [
+            Weather(
+                city=data[<span class="str">"city"</span>][<span class="str">"name"</span>],
+                country=data[<span class="str">"city"</span>][<span class="str">"country"</span>],
+                temp_celsius=d[<span class="str">"main"</span>][<span class="str">"temp"</span>],
+                feels_like=d[<span class="str">"main"</span>][<span class="str">"feels_like"</span>],
+                humidity=d[<span class="str">"main"</span>][<span class="str">"humidity"</span>],
+                description=d[<span class="str">"weather"</span>][<span class="num">0</span>][<span class="str">"description"</span>].title(),
+                wind_speed=d[<span class="str">"wind"</span>][<span class="str">"speed"</span>],
+                icon=d[<span class="str">"weather"</span>][<span class="num">0</span>][<span class="str">"icon"</span>]
+            )
+            <span class="kw">for</span> d <span class="kw">in</span> daily
+        ]</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">4</span> Test the Clients</div>
+      <div class="step__body">
+        <p>Create <code>main.py</code> to test everything. The GitHub API works without a key (lower rate limit):</p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">main.py</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="kw">from</span> github_client <span class="kw">import</span> GitHubClient
+
+<span class="kw">def</span> <span class="fn">demo_github</span>():
+    <span class="str">"""Demo the GitHub API client."""</span>
+    client = GitHubClient()  <span class="cm"># No token = public access</span>
+
+    <span class="cm"># Fetch a user profile</span>
+    user = client.get_user(<span class="str">"torvalds"</span>)
+    <span class="kw">print</span>(<span class="str">f"👤 {user.name} (@{user.login})"</span>)
+    <span class="kw">print</span>(<span class="str">f"   📦 {user.public_repos} repos | "
+          f"👥 {user.followers} followers"</span>)
+
+    <span class="cm"># Fetch their repos</span>
+    repos = client.get_repos(<span class="str">"torvalds"</span>, sort=<span class="str">"stars"</span>, per_page=<span class="num">5</span>)
+    <span class="kw">print</span>(<span class="str">f"\n📦 Top {len(repos)} repos:"</span>)
+    <span class="kw">for</span> repo <span class="kw">in</span> repos:
+        <span class="kw">print</span>(<span class="str">f"   ⭐ {repo.stars:,} | {repo.name} — {repo.description}"</span>)
+
+    <span class="cm"># Search for repos</span>
+    <span class="kw">print</span>(<span class="str">"\n🔍 Searching for 'machine learning' in Python..."</span>)
+    results = client.search_repos(<span class="str">"machine learning"</span>,
+                                   language=<span class="str">"python"</span>, min_stars=<span class="num">1000</span>)
+    <span class="kw">for</span> r <span class="kw">in</span> results[:<span class="num">5</span>]:
+        <span class="kw">print</span>(<span class="str">f"   ⭐ {r.stars:,} | {r.full_name}"</span>)
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    demo_github()</code></pre>
+        </div>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Output</div>
+          <pre style="margin:0;font-size:.8125rem;color:var(--text-secondary)">👤 Linus Torvalds (@torvalds)
+   📦 7 repos | 👥 228,000+ followers
+
+📦 Top 5 repos:
+   ⭐ 185,000+ | linux — Linux kernel source tree
+   ⭐ 9,000+   | subsurface-for-dirk — ...
+   ...
+
+🔍 Searching for 'machine learning' in Python...
+   ⭐ 65,000+ | tensorflow/tensorflow
+   ...</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">5</span> Use <code>/explain</code> and <code>/refactor</code></div>
+      <div class="step__body">
+        <p>Select the <code>BaseAPIClient._request</code> method and try these Copilot commands:</p>
+        <ul>
+          <li><code>/explain</code> — Copilot will break down the retry logic, exponential backoff, and error handling</li>
+          <li><code>/refactor</code> — Copilot may suggest using <code>tenacity</code> library for retries or <code>httpx</code> for async support</li>
+          <li><code>/tests</code> — Copilot will generate mock-based unit tests using <code>unittest.mock</code></li>
+        </ul>
+        <div class="tip-box">
+          <div class="tip-box__label">💡 Prompt Tip</div>
+          <p style="margin:0;font-size:.875rem;color:var(--text-secondary)">When building API clients, name your file descriptively (e.g., <code>github_client.py</code> not <code>client.py</code>). Copilot uses the filename as context to generate more relevant suggestions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Challenge -->
+  <div class="challenge-box">
+    <div class="challenge-box__title">🏆 Challenge Extension</div>
+    <div class="challenge-box__body">
+      <ol>
+        <li>Add <strong>caching</strong> with a TTL: store API responses in a dictionary with timestamps, only re-fetch if the cache has expired</li>
+        <li>Add <strong>async support</strong>: ask Copilot to convert the client to use <code>httpx</code> with <code>async/await</code></li>
+        <li>Build a <strong>unified dashboard</strong> function that fetches data from multiple APIs concurrently using <code>asyncio.gather</code></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="nav-bottom">
+    <a href="lab13.html">← Lab 13: Database Operations</a>
+    <a href="lab15.html">Lab 15: Capstone Project →</a>
+  </div>
+</div>
+
+<script>
+function copyCode(btn) {
+  const code = btn.closest('.code-block').querySelector('code');
+  navigator.clipboard.writeText(code.textContent).then(() => {
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = '⧉ Copy', 2000);
+  });
+}
+</script>
+</body>
+</html>

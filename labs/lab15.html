@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 15: Capstone Project — Weather Dashboard — Copilot Mastery</title>
+<link rel="stylesheet" href="../styles.css">
+<style>body{background:var(--bg-primary)}.lab-page{max-width:900px;margin:0 auto;padding:40px 24px 80px}.lab-page__back{display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);font-size:.875rem;margin-bottom:32px;text-decoration:none}.lab-page__back:hover{color:var(--accent-blue)}.lab-page__badge-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.lab-page__title{font-family:var(--font-display);font-size:2rem;font-weight:800;margin-bottom:12px}.lab-page__subtitle{color:var(--text-secondary);font-size:1rem;margin-bottom:32px;line-height:1.7}.lab-section{margin-bottom:40px}.lab-section__title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border-glass)}.step{margin-bottom:24px;padding:20px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md)}.step__number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(88,166,255,.15);color:var(--accent-blue);font-weight:700;font-size:.8125rem;margin-right:10px}.step__title{font-weight:700;font-size:1rem;margin-bottom:10px;display:flex;align-items:center}.step__body{color:var(--text-secondary);font-size:.875rem;line-height:1.7}.step__body code{background:rgba(110,118,129,.15);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:.8125rem}.step__body ol,.step__body ul{padding-left:20px;margin:8px 0}.step__body li{margin-bottom:6px}.objectives-list{list-style:none;padding:0}.objectives-list li{padding:8px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.objectives-list li::before{content:'✓';color:var(--accent-green);font-weight:700}.prereq-list{list-style:none;padding:0}.prereq-list li{padding:6px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.prereq-list li::before{content:'•';color:var(--accent-purple);font-weight:700}.expected-output{background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.expected-output__label{font-weight:700;color:var(--accent-green);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.tip-box{background:rgba(88,166,255,.06);border:1px solid rgba(88,166,255,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.tip-box__label{font-weight:700;color:var(--accent-blue);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.warning-box{background:rgba(210,153,34,.06);border:1px solid rgba(210,153,34,.25);border-radius:var(--radius-md);padding:16px;margin:12px 0}.warning-box__label{font-weight:700;color:#d29922;font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.challenge-box{background:rgba(188,140,255,.06);border:1px solid rgba(188,140,255,.15);border-radius:var(--radius-md);padding:20px;margin-top:32px}.challenge-box__title{font-family:var(--font-display);font-weight:700;color:var(--accent-purple);margin-bottom:8px}.challenge-box__body{font-size:.875rem;color:var(--text-secondary);line-height:1.7}.copilot-skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}.copilot-skill{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md);padding:12px 16px;font-size:.8125rem;text-align:center}.copilot-skill__icon{font-size:1.5rem;margin-bottom:4px}.copilot-skill__label{color:var(--text-secondary)}.nav-bottom{display:flex;justify-content:space-between;margin-top:48px;padding-top:24px;border-top:1px solid var(--border-glass)}.nav-bottom a{color:var(--accent-blue);text-decoration:none;font-size:.875rem}.nav-bottom a:hover{text-decoration:underline}.file-tree{background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md);padding:16px;font-family:var(--font-mono);font-size:.8125rem;line-height:2;color:var(--text-secondary)}.file-tree .dir{color:var(--accent-blue)}.file-tree .file{color:var(--text-secondary)}.file-tree .new{color:var(--accent-green)}</style>
+</head>
+<body>
+<div class="lab-page">
+  <a href="../index.html" class="lab-page__back">← Back to Course</a>
+  <div class="lab-page__badge-row"><span class="badge badge--advanced">Advanced</span><span class="badge badge--time">⏱ 90 minutes</span></div>
+
+  <h1 class="lab-page__title">Lab 15: Capstone Project — Weather Dashboard</h1>
+  <p class="lab-page__subtitle">Build a complete, polished weather dashboard web application from scratch using <strong>every GitHub Copilot feature</strong> you've learned. This is your graduation project.</p>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🎯 Objectives</h2>
+    <ul class="objectives-list">
+      <li>Use <strong>Agent Mode</strong> to scaffold the entire project</li>
+      <li>Use <strong>Code Completion</strong> to build JavaScript modules</li>
+      <li>Use <strong>Copilot Chat</strong> for design decisions and debugging</li>
+      <li>Use <strong>/tests</strong> to generate unit tests</li>
+      <li>Use <strong>/doc</strong> to document the entire project</li>
+      <li>Use <strong>Custom Instructions</strong> to enforce coding standards</li>
+      <li>Use <strong>/refactor</strong> to optimize the final code</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🛠️ Copilot Skills Used</h2>
+    <div class="copilot-skills">
+      <div class="copilot-skill"><div class="copilot-skill__icon">🤖</div><div class="copilot-skill__label">Agent Mode</div></div>
+      <div class="copilot-skill"><div class="copilot-skill__icon">✨</div><div class="copilot-skill__label">Code Completion</div></div>
+      <div class="copilot-skill"><div class="copilot-skill__icon">💬</div><div class="copilot-skill__label">Copilot Chat</div></div>
+      <div class="copilot-skill"><div class="copilot-skill__icon">🔧</div><div class="copilot-skill__label">Slash Commands</div></div>
+      <div class="copilot-skill"><div class="copilot-skill__icon">📝</div><div class="copilot-skill__label">Custom Instructions</div></div>
+      <div class="copilot-skill"><div class="copilot-skill__icon">📋</div><div class="copilot-skill__label">Prompt Files</div></div>
+    </div>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📋 Prerequisites</h2>
+    <ul class="prereq-list">
+      <li>Completed Labs 1–14 (all previous Copilot skills)</li>
+      <li>VS Code with GitHub Copilot extension</li>
+      <li>Node.js or Python installed (your choice)</li>
+      <li>Basic HTML/CSS/JavaScript knowledge</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🚀 Steps</h2>
+
+    <!-- Phase 1 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">1</span> Phase 1: Project Setup with Agent Mode</div>
+      <div class="step__body">
+        <p>Open Agent Mode (<code>Ctrl+Shift+Alt+L</code> or click the Agent Mode icon) and give it this prompt:</p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Agent Mode Prompt</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code>Create a weather dashboard web app with this structure:
+- index.html (main page with search bar, current weather card, 5-day forecast)
+- css/styles.css (dark theme, glassmorphism cards, responsive grid)
+- js/app.js (main controller, event listeners)
+- js/weatherApi.js (API calls with mock data fallback)
+- js/ui.js (DOM manipulation and rendering)
+- js/storage.js (localStorage for favorite cities)
+
+Use vanilla HTML/CSS/JS, no frameworks. The design should be modern
+with a dark gradient background, glass-effect cards, and weather icons.</code></pre>
+        </div>
+        <p>Review the files Agent Mode creates. The project structure should look like:</p>
+        <div class="file-tree">
+          <span class="dir">weather-dashboard/</span><br>
+          ├── <span class="file">index.html</span><br>
+          ├── <span class="dir">css/</span><br>
+          │   └── <span class="file">styles.css</span><br>
+          ├── <span class="dir">js/</span><br>
+          │   ├── <span class="file">app.js</span><br>
+          │   ├── <span class="file">weatherApi.js</span><br>
+          │   ├── <span class="file">ui.js</span><br>
+          │   └── <span class="file">storage.js</span><br>
+          └── <span class="dir">.github/</span><br>
+              └── <span class="file new">copilot-instructions.md</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">2</span> Phase 2: Set Up Custom Instructions</div>
+      <div class="step__body">
+        <p>Before writing any code, create <code>.github/copilot-instructions.md</code> to guide Copilot:</p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">.github/copilot-instructions.md</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="cm"># Weather Dashboard — Copilot Instructions</span>
+
+## Code Style
+- Use ES6+ features (const/let, arrow functions, template literals, destructuring)
+- Use JSDoc comments for all public functions
+- Prefer async/await over .then() chains
+- Use descriptive variable names (not single letters)
+- Handle errors with try/catch blocks
+
+## Architecture
+- Each JS module should export its public API as an object
+- weatherApi.js must include a mock data fallback when no API key is set
+- ui.js should never call the API directly — it receives data as arguments
+- storage.js should validate data before saving to localStorage
+
+## Design
+- Use CSS custom properties for all colors
+- All measurements should use rem units
+- Cards should use backdrop-filter for glassmorphism effect
+- Animations should respect prefers-reduced-motion</code></pre>
+        </div>
+        <div class="tip-box">
+          <div class="tip-box__label">💡 Why This Matters</div>
+          <p style="margin:0;font-size:.875rem;color:var(--text-secondary)">With these instructions in place, every Copilot suggestion in this project will follow your team's standards. Try writing a function without these instructions, then with — you'll see the difference in suggestion quality.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">3</span> Phase 3: Build the Weather API Module</div>
+      <div class="step__body">
+        <p>Open <code>js/weatherApi.js</code>. Write these comments and let Copilot implement each function:</p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">js/weatherApi.js</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="cm">/**
+ * Weather API module with mock data fallback.
+ * Uses OpenWeatherMap API when API_KEY is set,
+ * otherwise returns realistic mock data for development.
+ */</span>
+
+<span class="kw">const</span> API_KEY = <span class="str">""</span>; <span class="cm">// Leave empty to use mock data</span>
+<span class="kw">const</span> BASE_URL = <span class="str">"https://api.openweathermap.org/data/2.5"</span>;
+
+<span class="cm">// Mock data for development without an API key</span>
+<span class="kw">const</span> MOCK_WEATHER = {
+  <span class="str">"London"</span>:    { temp: <span class="num">14</span>, feels: <span class="num">12</span>, humidity: <span class="num">72</span>, wind: <span class="num">5.2</span>, desc: <span class="str">"Overcast Clouds"</span>, icon: <span class="str">"04d"</span> },
+  <span class="str">"New York"</span>:  { temp: <span class="num">28</span>, feels: <span class="num">31</span>, humidity: <span class="num">65</span>, wind: <span class="num">3.8</span>, desc: <span class="str">"Partly Cloudy"</span>, icon: <span class="str">"02d"</span> },
+  <span class="str">"Tokyo"</span>:     { temp: <span class="num">26</span>, feels: <span class="num">29</span>, humidity: <span class="num">80</span>, wind: <span class="num">2.1</span>, desc: <span class="str">"Light Rain"</span>, icon: <span class="str">"10d"</span> },
+  <span class="str">"Sydney"</span>:    { temp: <span class="num">18</span>, feels: <span class="num">16</span>, humidity: <span class="num">55</span>, wind: <span class="num">6.7</span>, desc: <span class="str">"Clear Sky"</span>, icon: <span class="str">"01d"</span> },
+  <span class="str">"Mumbai"</span>:    { temp: <span class="num">32</span>, feels: <span class="num">38</span>, humidity: <span class="num">85</span>, wind: <span class="num">4.5</span>, desc: <span class="str">"Thunderstorm"</span>, icon: <span class="str">"11d"</span> },
+  <span class="str">"Paris"</span>:     { temp: <span class="num">20</span>, feels: <span class="num">19</span>, humidity: <span class="num">60</span>, wind: <span class="num">3.2</span>, desc: <span class="str">"Scattered Clouds"</span>, icon: <span class="str">"03d"</span> }
+};
+
+<span class="cm">/**
+ * Get current weather for a city.
+ * @param {string} city - City name
+ * @returns {Promise&lt;Object&gt;} Weather data
+ */</span>
+<span class="kw">async function</span> <span class="fn">getCurrentWeather</span>(city) {
+  <span class="kw">if</span> (!API_KEY) {
+    <span class="kw">return</span> getMockWeather(city);
+  }
+
+  <span class="kw">try</span> {
+    <span class="kw">const</span> response = <span class="kw">await</span> fetch(
+      <span class="str">`${BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`</span>
+    );
+
+    <span class="kw">if</span> (!response.ok) {
+      <span class="kw">throw new</span> Error(<span class="str">`City not found: ${city}`</span>);
+    }
+
+    <span class="kw">const</span> data = <span class="kw">await</span> response.json();
+    <span class="kw">return</span> {
+      city: data.name,
+      country: data.sys.country,
+      temp: Math.round(data.main.temp),
+      feelsLike: Math.round(data.main.feels_like),
+      humidity: data.main.humidity,
+      windSpeed: data.wind.speed,
+      description: data.weather[<span class="num">0</span>].description,
+      icon: data.weather[<span class="num">0</span>].icon,
+      timestamp: <span class="kw">new</span> Date()
+    };
+  } <span class="kw">catch</span> (error) {
+    console.error(<span class="str">`Error fetching weather for ${city}:`</span>, error);
+    <span class="kw">return</span> getMockWeather(city); <span class="cm">// Graceful fallback</span>
+  }
+}
+
+<span class="cm">/**
+ * Get 5-day forecast for a city.
+ * @param {string} city - City name
+ * @returns {Promise&lt;Array&gt;} Array of daily forecast objects
+ */</span>
+<span class="kw">async function</span> <span class="fn">getForecast</span>(city) {
+  <span class="kw">if</span> (!API_KEY) {
+    <span class="kw">return</span> getMockForecast(city);
+  }
+
+  <span class="kw">const</span> response = <span class="kw">await</span> fetch(
+    <span class="str">`${BASE_URL}/forecast?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`</span>
+  );
+  <span class="kw">const</span> data = <span class="kw">await</span> response.json();
+
+  <span class="cm">// Group by day and take noon reading</span>
+  <span class="kw">const</span> daily = data.list.filter(item => item.dt_txt.includes(<span class="str">"12:00:00"</span>));
+  <span class="kw">return</span> daily.map(d => ({
+    date: <span class="kw">new</span> Date(d.dt * <span class="num">1000</span>),
+    temp: Math.round(d.main.temp),
+    tempMin: Math.round(d.main.temp_min),
+    tempMax: Math.round(d.main.temp_max),
+    description: d.weather[<span class="num">0</span>].description,
+    icon: d.weather[<span class="num">0</span>].icon,
+    humidity: d.main.humidity
+  }));
+}
+
+<span class="kw">function</span> <span class="fn">getMockWeather</span>(city) {
+  <span class="kw">const</span> mock = MOCK_WEATHER[city] || MOCK_WEATHER[<span class="str">"London"</span>];
+  <span class="kw">return</span> {
+    city: city,
+    country: <span class="str">"--"</span>,
+    temp: mock.temp,
+    feelsLike: mock.feels,
+    humidity: mock.humidity,
+    windSpeed: mock.wind,
+    description: mock.desc,
+    icon: mock.icon,
+    timestamp: <span class="kw">new</span> Date(),
+    isMock: <span class="kw">true</span>
+  };
+}
+
+<span class="kw">function</span> <span class="fn">getMockForecast</span>(city) {
+  <span class="kw">const</span> base = MOCK_WEATHER[city] || MOCK_WEATHER[<span class="str">"London"</span>];
+  <span class="kw">return</span> Array.from({ length: <span class="num">5</span> }, (_, i) => ({
+    date: <span class="kw">new</span> Date(Date.now() + (i + <span class="num">1</span>) * <span class="num">86400000</span>),
+    temp: base.temp + Math.floor(Math.random() * <span class="num">6</span>) - <span class="num">3</span>,
+    tempMin: base.temp - <span class="num">3</span>,
+    tempMax: base.temp + <span class="num">3</span>,
+    description: base.desc,
+    icon: base.icon,
+    humidity: base.humidity + Math.floor(Math.random() * <span class="num">10</span>) - <span class="num">5</span>
+  }));
+}
+
+<span class="cm">// Export public API</span>
+<span class="kw">const</span> WeatherAPI = { getCurrentWeather, getForecast };</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 4 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">4</span> Phase 4: Build the Storage Module</div>
+      <div class="step__body">
+        <p>Open <code>js/storage.js</code> and write the comment header. Let Copilot complete each function:</p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">js/storage.js</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="cm">/**
+ * LocalStorage manager for favorite cities and cached weather data.
+ */</span>
+
+<span class="kw">const</span> FAVORITES_KEY = <span class="str">"weather_favorites"</span>;
+<span class="kw">const</span> CACHE_KEY = <span class="str">"weather_cache"</span>;
+<span class="kw">const</span> CACHE_TTL = <span class="num">600000</span>; <span class="cm">// 10 minutes in ms</span>
+
+<span class="kw">const</span> Storage = {
+  <span class="cm">/** Get list of favorite cities */</span>
+  <span class="fn">getFavorites</span>() {
+    <span class="kw">try</span> {
+      <span class="kw">const</span> data = localStorage.getItem(FAVORITES_KEY);
+      <span class="kw">return</span> data ? JSON.parse(data) : [];
+    } <span class="kw">catch</span> {
+      <span class="kw">return</span> [];
+    }
+  },
+
+  <span class="cm">/** Add a city to favorites (max 10) */</span>
+  <span class="fn">addFavorite</span>(city) {
+    <span class="kw">const</span> favorites = <span class="kw">this</span>.getFavorites();
+    <span class="kw">const</span> normalized = city.trim();
+    <span class="kw">if</span> (!normalized || favorites.includes(normalized)) <span class="kw">return false</span>;
+    <span class="kw">if</span> (favorites.length >= <span class="num">10</span>) favorites.shift(); <span class="cm">// Remove oldest</span>
+    favorites.push(normalized);
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+    <span class="kw">return true</span>;
+  },
+
+  <span class="cm">/** Remove a city from favorites */</span>
+  <span class="fn">removeFavorite</span>(city) {
+    <span class="kw">const</span> favorites = <span class="kw">this</span>.getFavorites().filter(c => c !== city);
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+  },
+
+  <span class="cm">/** Check if city is a favorite */</span>
+  <span class="fn">isFavorite</span>(city) {
+    <span class="kw">return this</span>.getFavorites().includes(city);
+  },
+
+  <span class="cm">/** Cache weather data with TTL */</span>
+  <span class="fn">cacheWeather</span>(city, data) {
+    <span class="kw">try</span> {
+      <span class="kw">const</span> cache = JSON.parse(localStorage.getItem(CACHE_KEY) || <span class="str">"{}"</span>);
+      cache[city] = { data, timestamp: Date.now() };
+      localStorage.setItem(CACHE_KEY, JSON.stringify(cache));
+    } <span class="kw">catch</span> (e) {
+      console.warn(<span class="str">"Cache write failed:"</span>, e);
+    }
+  },
+
+  <span class="cm">/** Get cached weather if not expired */</span>
+  <span class="fn">getCachedWeather</span>(city) {
+    <span class="kw">try</span> {
+      <span class="kw">const</span> cache = JSON.parse(localStorage.getItem(CACHE_KEY) || <span class="str">"{}"</span>);
+      <span class="kw">const</span> entry = cache[city];
+      <span class="kw">if</span> (entry && (Date.now() - entry.timestamp) < CACHE_TTL) {
+        <span class="kw">return</span> entry.data;
+      }
+    } <span class="kw">catch</span> { }
+    <span class="kw">return null</span>;
+  }
+};</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 5 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">5</span> Phase 5: Build the UI Module</div>
+      <div class="step__body">
+        <p>Open <code>js/ui.js</code>. This is the rendering layer. Ask Copilot Chat: <em>"Create a UI module that renders weather data to the DOM with animated cards and weather icons using emoji."</em></p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">js/ui.js — Key rendering functions</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="cm">/**
+ * UI rendering module — handles all DOM manipulation.
+ * Never calls the API directly; receives data as arguments.
+ */</span>
+
+<span class="kw">const</span> WEATHER_ICONS = {
+  <span class="str">"01d"</span>: <span class="str">"☀️"</span>, <span class="str">"01n"</span>: <span class="str">"🌙"</span>,
+  <span class="str">"02d"</span>: <span class="str">"⛅"</span>, <span class="str">"02n"</span>: <span class="str">"☁️"</span>,
+  <span class="str">"03d"</span>: <span class="str">"☁️"</span>, <span class="str">"03n"</span>: <span class="str">"☁️"</span>,
+  <span class="str">"04d"</span>: <span class="str">"☁️"</span>, <span class="str">"04n"</span>: <span class="str">"☁️"</span>,
+  <span class="str">"09d"</span>: <span class="str">"🌧️"</span>, <span class="str">"09n"</span>: <span class="str">"🌧️"</span>,
+  <span class="str">"10d"</span>: <span class="str">"🌦️"</span>, <span class="str">"10n"</span>: <span class="str">"🌧️"</span>,
+  <span class="str">"11d"</span>: <span class="str">"⛈️"</span>, <span class="str">"11n"</span>: <span class="str">"⛈️"</span>,
+  <span class="str">"13d"</span>: <span class="str">"❄️"</span>, <span class="str">"13n"</span>: <span class="str">"❄️"</span>,
+  <span class="str">"50d"</span>: <span class="str">"🌫️"</span>, <span class="str">"50n"</span>: <span class="str">"🌫️"</span>
+};
+
+<span class="kw">const</span> UI = {
+  <span class="cm">/** Render the main weather card */</span>
+  <span class="fn">renderCurrentWeather</span>(weather) {
+    <span class="kw">const</span> container = document.getElementById(<span class="str">"current-weather"</span>);
+    <span class="kw">const</span> icon = WEATHER_ICONS[weather.icon] || <span class="str">"🌍"</span>;
+
+    container.innerHTML = <span class="str">`
+      &lt;div class="weather-card weather-card--current"&gt;
+        &lt;div class="weather-card__icon"&gt;${icon}&lt;/div&gt;
+        &lt;h2 class="weather-card__city"&gt;${weather.city}&lt;/h2&gt;
+        &lt;p class="weather-card__country"&gt;${weather.country}&lt;/p&gt;
+        &lt;div class="weather-card__temp"&gt;${weather.temp}°C&lt;/div&gt;
+        &lt;p class="weather-card__desc"&gt;${weather.description}&lt;/p&gt;
+        &lt;div class="weather-card__details"&gt;
+          &lt;div&gt;💧 ${weather.humidity}%&lt;/div&gt;
+          &lt;div&gt;🌬️ ${weather.windSpeed} m/s&lt;/div&gt;
+          &lt;div&gt;🌡️ Feels ${weather.feelsLike}°C&lt;/div&gt;
+        &lt;/div&gt;
+        ${weather.isMock ? '&lt;p class="weather-card__mock"&gt;📋 Mock Data&lt;/p&gt;' : ''}
+      &lt;/div&gt;
+    `</span>;
+
+    container.querySelector(<span class="str">".weather-card"</span>).classList.add(<span class="str">"fade-in"</span>);
+  },
+
+  <span class="cm">/** Render the 5-day forecast */</span>
+  <span class="fn">renderForecast</span>(forecast) {
+    <span class="kw">const</span> container = document.getElementById(<span class="str">"forecast"</span>);
+    <span class="kw">const</span> days = [<span class="str">"Sun"</span>,<span class="str">"Mon"</span>,<span class="str">"Tue"</span>,<span class="str">"Wed"</span>,<span class="str">"Thu"</span>,<span class="str">"Fri"</span>,<span class="str">"Sat"</span>];
+
+    container.innerHTML = forecast.map((day, i) => {
+      <span class="kw">const</span> date = <span class="kw">new</span> Date(day.date);
+      <span class="kw">const</span> icon = WEATHER_ICONS[day.icon] || <span class="str">"🌍"</span>;
+      <span class="kw">return</span> <span class="str">`
+        &lt;div class="forecast-card fade-in" style="animation-delay:${i * 0.1}s"&gt;
+          &lt;div class="forecast-card__day"&gt;${days[date.getDay()]}&lt;/div&gt;
+          &lt;div class="forecast-card__icon"&gt;${icon}&lt;/div&gt;
+          &lt;div class="forecast-card__temp"&gt;${day.temp}°C&lt;/div&gt;
+          &lt;div class="forecast-card__range"&gt;${day.tempMin}° / ${day.tempMax}°&lt;/div&gt;
+          &lt;div class="forecast-card__desc"&gt;${day.description}&lt;/div&gt;
+        &lt;/div&gt;
+      `</span>;
+    }).join(<span class="str">""</span>);
+  },
+
+  <span class="cm">/** Render favorites list */</span>
+  <span class="fn">renderFavorites</span>(favorites, onCityClick) {
+    <span class="kw">const</span> container = document.getElementById(<span class="str">"favorites"</span>);
+    <span class="kw">if</span> (!favorites.length) {
+      container.innerHTML = <span class="str">'&lt;p class="no-favorites"&gt;No favorites yet. Click ⭐ to add.&lt;/p&gt;'</span>;
+      <span class="kw">return</span>;
+    }
+    container.innerHTML = favorites.map(city => <span class="str">`
+      &lt;button class="favorite-btn" data-city="${city}"&gt;${city}&lt;/button&gt;
+    `</span>).join(<span class="str">""</span>);
+
+    container.querySelectorAll(<span class="str">".favorite-btn"</span>).forEach(btn => {
+      btn.addEventListener(<span class="str">"click"</span>, () => onCityClick(btn.dataset.city));
+    });
+  },
+
+  <span class="cm">/** Show loading spinner */</span>
+  <span class="fn">showLoading</span>() {
+    document.getElementById(<span class="str">"current-weather"</span>).innerHTML =
+      <span class="str">'&lt;div class="loading-spinner"&gt;&lt;/div&gt;'</span>;
+  },
+
+  <span class="cm">/** Show error message */</span>
+  <span class="fn">showError</span>(message) {
+    document.getElementById(<span class="str">"current-weather"</span>).innerHTML = <span class="str">`
+      &lt;div class="error-card"&gt;
+        &lt;span class="error-card__icon"&gt;⚠️&lt;/span&gt;
+        &lt;p&gt;${message}&lt;/p&gt;
+      &lt;/div&gt;
+    `</span>;
+  }
+};</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 6 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">6</span> Phase 6: Wire Everything Together</div>
+      <div class="step__body">
+        <p>Open <code>js/app.js</code> — this is the main controller. Use Copilot Chat:</p>
+        <p><em>"Create the main app controller that wires together WeatherAPI, Storage, and UI modules with search functionality and favorite city management."</em></p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">js/app.js</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="cm">/**
+ * Main application controller.
+ * Wires together WeatherAPI, Storage, and UI modules.
+ */</span>
+
+document.addEventListener(<span class="str">"DOMContentLoaded"</span>, () => {
+  <span class="kw">const</span> searchForm = document.getElementById(<span class="str">"search-form"</span>);
+  <span class="kw">const</span> searchInput = document.getElementById(<span class="str">"search-input"</span>);
+  <span class="kw">const</span> favBtn = document.getElementById(<span class="str">"fav-btn"</span>);
+  <span class="kw">let</span> currentCity = <span class="str">"London"</span>;
+
+  <span class="cm">/** Fetch and display weather for a city */</span>
+  <span class="kw">async function</span> <span class="fn">loadWeather</span>(city) {
+    UI.showLoading();
+    currentCity = city;
+
+    <span class="cm">// Check cache first</span>
+    <span class="kw">const</span> cached = Storage.getCachedWeather(city);
+    <span class="kw">if</span> (cached) {
+      UI.renderCurrentWeather(cached.current);
+      UI.renderForecast(cached.forecast);
+      updateFavButton();
+      <span class="kw">return</span>;
+    }
+
+    <span class="kw">try</span> {
+      <span class="kw">const</span> [current, forecast] = <span class="kw">await</span> Promise.all([
+        WeatherAPI.getCurrentWeather(city),
+        WeatherAPI.getForecast(city)
+      ]);
+
+      UI.renderCurrentWeather(current);
+      UI.renderForecast(forecast);
+      Storage.cacheWeather(city, { current, forecast });
+      updateFavButton();
+    } <span class="kw">catch</span> (error) {
+      UI.showError(<span class="str">`Could not find weather for "${city}"`</span>);
+    }
+  }
+
+  <span class="cm">/** Update the favorite button state */</span>
+  <span class="kw">function</span> <span class="fn">updateFavButton</span>() {
+    <span class="kw">if</span> (favBtn) {
+      favBtn.textContent = Storage.isFavorite(currentCity) ? <span class="str">"★"</span> : <span class="str">"☆"</span>;
+    }
+  }
+
+  <span class="cm">// Event: Search form submit</span>
+  searchForm.addEventListener(<span class="str">"submit"</span>, (e) => {
+    e.preventDefault();
+    <span class="kw">const</span> city = searchInput.value.trim();
+    <span class="kw">if</span> (city) loadWeather(city);
+  });
+
+  <span class="cm">// Event: Toggle favorite</span>
+  favBtn?.addEventListener(<span class="str">"click"</span>, () => {
+    <span class="kw">if</span> (Storage.isFavorite(currentCity)) {
+      Storage.removeFavorite(currentCity);
+    } <span class="kw">else</span> {
+      Storage.addFavorite(currentCity);
+    }
+    updateFavButton();
+    UI.renderFavorites(Storage.getFavorites(), loadWeather);
+  });
+
+  <span class="cm">// Initial load</span>
+  UI.renderFavorites(Storage.getFavorites(), loadWeather);
+  loadWeather(<span class="str">"London"</span>);
+});</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 7 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">7</span> Phase 7: Generate Tests with <code>/tests</code></div>
+      <div class="step__body">
+        <p>Select the <code>Storage</code> object in <code>storage.js</code>, then use <code>/tests</code>. Copilot will generate tests like:</p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Expected test output from /tests</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="cm">// storage.test.js — Generated by /tests</span>
+
+describe(<span class="str">"Storage"</span>, () => {
+  beforeEach(() => localStorage.clear());
+
+  test(<span class="str">"getFavorites returns empty array when no data"</span>, () => {
+    expect(Storage.getFavorites()).toEqual([]);
+  });
+
+  test(<span class="str">"addFavorite adds a city"</span>, () => {
+    Storage.addFavorite(<span class="str">"London"</span>);
+    expect(Storage.getFavorites()).toContain(<span class="str">"London"</span>);
+  });
+
+  test(<span class="str">"addFavorite prevents duplicates"</span>, () => {
+    Storage.addFavorite(<span class="str">"London"</span>);
+    Storage.addFavorite(<span class="str">"London"</span>);
+    expect(Storage.getFavorites().length).toBe(<span class="num">1</span>);
+  });
+
+  test(<span class="str">"addFavorite limits to 10 cities"</span>, () => {
+    <span class="kw">for</span> (<span class="kw">let</span> i = <span class="num">0</span>; i &lt; <span class="num">12</span>; i++) Storage.addFavorite(<span class="str">`City${i}`</span>);
+    expect(Storage.getFavorites().length).toBe(<span class="num">10</span>);
+  });
+
+  test(<span class="str">"removeFavorite removes a city"</span>, () => {
+    Storage.addFavorite(<span class="str">"Paris"</span>);
+    Storage.removeFavorite(<span class="str">"Paris"</span>);
+    expect(Storage.isFavorite(<span class="str">"Paris"</span>)).toBe(<span class="kw">false</span>);
+  });
+
+  test(<span class="str">"cache returns null for expired data"</span>, () => {
+    <span class="cm">// Manually set old cache</span>
+    <span class="kw">const</span> old = { data: {}, timestamp: Date.now() - <span class="num">700000</span> };
+    localStorage.setItem(<span class="str">"weather_cache"</span>, JSON.stringify({ London: old }));
+    expect(Storage.getCachedWeather(<span class="str">"London"</span>)).toBeNull();
+  });
+});</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 8 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">8</span> Phase 8: Document with <code>/doc</code> and Create README</div>
+      <div class="step__body">
+        <p>Final polish! Select each module and use <code>/doc</code> to ensure all functions have JSDoc comments. Then ask Copilot Chat:</p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Copilot Chat Prompt</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code>@workspace Generate a comprehensive README.md for this weather dashboard
+project. Include: project description, screenshot placeholder, features
+list, setup instructions, project structure, technologies used, and
+contributing guidelines.</code></pre>
+        </div>
+        <p>Then use <code>/refactor</code> on any module to get optimization suggestions before shipping.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Challenge -->
+  <div class="challenge-box">
+    <div class="challenge-box__title">🏆 Challenge Extensions</div>
+    <div class="challenge-box__body">
+      <ol>
+        <li>Add a <strong>5-day forecast chart</strong> using Chart.js (ask Copilot to integrate it)</li>
+        <li>Add <strong>geolocation</strong> to auto-detect the user's city on first load</li>
+        <li>Add a <strong>theme toggle</strong> between dark and light modes</li>
+        <li>Add <strong>unit conversion</strong> (°C / °F toggle)</li>
+        <li>Deploy to <strong>GitHub Pages</strong> and create a CI/CD workflow with Copilot</li>
+      </ol>
+    </div>
+  </div>
+
+  <div style="margin-top:40px;padding:24px;background:rgba(63,185,80,.08);border:1px solid rgba(63,185,80,.2);border-radius:var(--radius-md);text-align:center">
+    <h3 style="color:var(--accent-green);margin-bottom:8px;font-family:var(--font-display)">🎓 Congratulations!</h3>
+    <p style="color:var(--text-secondary);font-size:.9rem;margin:0">You've completed the GitHub Copilot Mastery Course! You've used every major feature — from basic code completion to Agent Mode, custom instructions, and full project building. You're now ready to use Copilot as a true AI pair programmer.</p>
+  </div>
+
+  <div class="nav-bottom">
+    <a href="lab14.html">← Lab 14: API Integration</a>
+    <a href="../index.html">🏠 Back to Course Home</a>
+  </div>
+</div>
+
+<script>
+function copyCode(btn) {
+  const code = btn.closest('.code-block').querySelector('code');
+  navigator.clipboard.writeText(code.textContent).then(() => {
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = '⧉ Copy', 2000);
+  });
+}
+</script>
+</body>
+</html>

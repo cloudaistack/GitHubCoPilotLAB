@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 12: Multi-Language Challenge — Copilot Mastery</title>
+<link rel="stylesheet" href="../styles.css">
+<style>body{background:var(--bg-primary)}.lab-page{max-width:900px;margin:0 auto;padding:40px 24px 80px}.lab-page__back{display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);font-size:.875rem;margin-bottom:32px;text-decoration:none}.lab-page__back:hover{color:var(--accent-blue)}.lab-page__badge-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.lab-page__title{font-family:var(--font-display);font-size:2rem;font-weight:800;margin-bottom:12px}.lab-page__subtitle{color:var(--text-secondary);font-size:1rem;margin-bottom:32px;line-height:1.7}.lab-section{margin-bottom:40px}.lab-section__title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border-glass)}.step{margin-bottom:24px;padding:20px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md)}.step__number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(88,166,255,.15);color:var(--accent-blue);font-weight:700;font-size:.8125rem;margin-right:10px}.step__title{font-weight:700;font-size:1rem;margin-bottom:10px;display:flex;align-items:center}.step__body{color:var(--text-secondary);font-size:.875rem;line-height:1.7}.step__body code{background:rgba(110,118,129,.15);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:.8125rem}.objectives-list{list-style:none;padding:0}.objectives-list li{padding:8px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.objectives-list li::before{content:'✓';color:var(--accent-green);font-weight:700}.prereq-list{list-style:none;padding:0}.prereq-list li{padding:6px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.prereq-list li::before{content:'•';color:var(--accent-purple);font-weight:700}.expected-output{background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.expected-output__label{font-weight:700;color:var(--accent-green);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.tip-box{background:rgba(88,166,255,.06);border:1px solid rgba(88,166,255,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.tip-box__label{font-weight:700;color:var(--accent-blue);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.challenge-box{background:rgba(188,140,255,.06);border:1px solid rgba(188,140,255,.15);border-radius:var(--radius-md);padding:20px;margin-top:32px}.challenge-box__title{font-family:var(--font-display);font-weight:700;color:var(--accent-purple);margin-bottom:8px}.challenge-box__body{font-size:.875rem;color:var(--text-secondary);line-height:1.7}.tab-container{margin:16px 0}.tab-buttons{display:flex;gap:0;border-bottom:2px solid var(--border-glass);margin-bottom:0}.tab-btn{padding:10px 20px;border:none;background:transparent;color:var(--text-secondary);cursor:pointer;font-family:var(--font-mono);font-size:.8125rem;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}.tab-btn:hover{color:var(--text-primary)}.tab-btn.active{color:var(--accent-blue);border-bottom-color:var(--accent-blue);background:rgba(88,166,255,.05)}.tab-panel{display:none}.tab-panel.active{display:block}.nav-bottom{display:flex;justify-content:space-between;margin-top:48px;padding-top:24px;border-top:1px solid var(--border-glass)}.nav-bottom a{color:var(--accent-blue);text-decoration:none;font-size:.875rem}.nav-bottom a:hover{text-decoration:underline}</style>
+</head>
+<body>
+<div class="lab-page">
+  <a href="../index.html" class="lab-page__back">← Back to Course</a>
+  <div class="lab-page__badge-row"><span class="badge badge--intermediate">Intermediate</span><span class="badge badge--time">⏱ 45 minutes</span></div>
+
+  <h1 class="lab-page__title">Lab 12: Multi-Language Challenge</h1>
+  <p class="lab-page__subtitle">Solve the same problem — a Linked List implementation — in Python, JavaScript, Java, and C# using GitHub Copilot. Compare how Copilot adapts to different languages and idioms.</p>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🎯 Objectives</h2>
+    <ul class="objectives-list">
+      <li>Implement a singly linked list in 4 different languages using Copilot</li>
+      <li>Observe how Copilot adapts suggestions to language-specific idioms</li>
+      <li>Compare OOP patterns across Python, JavaScript, Java, and C#</li>
+      <li>Practice prompt consistency across different file types</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📋 Prerequisites</h2>
+    <ul class="prereq-list">
+      <li>GitHub Copilot active in VS Code</li>
+      <li>Python 3.x, Node.js, JDK 11+, .NET SDK (install any you have)</li>
+      <li>Completed Labs 1–5 (Copilot basics &amp; prompt engineering)</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📝 The Problem</h2>
+    <div class="step">
+      <div class="step__body">
+        <p>Implement a <strong>Singly Linked List</strong> with these operations:</p>
+        <ul>
+          <li><code>insert(value)</code> — Add a node at the end</li>
+          <li><code>insert_at(index, value)</code> — Insert at a specific position</li>
+          <li><code>delete(value)</code> — Remove the first node with the given value</li>
+          <li><code>search(value)</code> — Return true/false if value exists</li>
+          <li><code>reverse()</code> — Reverse the linked list in place</li>
+          <li><code>display()</code> — Print all values</li>
+          <li><code>size()</code> — Return the number of elements</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🚀 Steps</h2>
+
+    <!-- STEP 1 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">1</span> Create Your Project Structure</div>
+      <div class="step__body">
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Terminal</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code>mkdir multi-language-challenge
+cd multi-language-challenge
+touch linked_list.py linked_list.js LinkedList.java LinkedList.cs</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: The implementations -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">2</span> Implement in Each Language</div>
+      <div class="step__body">
+        <p>For each file, write only the <strong>class comment and constructor</strong>. Let Copilot complete the rest. Here's what you type vs. what Copilot generates:</p>
+
+        <div class="tab-container">
+          <div class="tab-buttons">
+            <button class="tab-btn active" onclick="switchTab(event,'python')">Python</button>
+            <button class="tab-btn" onclick="switchTab(event,'javascript')">JavaScript</button>
+            <button class="tab-btn" onclick="switchTab(event,'java')">Java</button>
+            <button class="tab-btn" onclick="switchTab(event,'csharp')">C#</button>
+          </div>
+
+          <!-- Python -->
+          <div class="tab-panel active" id="python">
+            <div class="code-block">
+              <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">linked_list.py</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+              <pre><code><span class="cm"># Singly Linked List implementation in Python</span>
+<span class="cm"># Operations: insert, insert_at, delete, search, reverse, display, size</span>
+
+<span class="kw">class</span> <span class="type">Node</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>, data):
+        <span class="kw">self</span>.data = data
+        <span class="kw">self</span>.next = <span class="kw">None</span>
+
+<span class="kw">class</span> <span class="type">LinkedList</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>):
+        <span class="kw">self</span>.head = <span class="kw">None</span>
+
+    <span class="kw">def</span> <span class="fn">insert</span>(<span class="kw">self</span>, value):
+        <span class="str">"""Insert a new node at the end of the list."""</span>
+        new_node = Node(value)
+        <span class="kw">if not</span> <span class="kw">self</span>.head:
+            <span class="kw">self</span>.head = new_node
+            <span class="kw">return</span>
+        current = <span class="kw">self</span>.head
+        <span class="kw">while</span> current.next:
+            current = current.next
+        current.next = new_node
+
+    <span class="kw">def</span> <span class="fn">insert_at</span>(<span class="kw">self</span>, index, value):
+        <span class="str">"""Insert a node at a specific index."""</span>
+        new_node = Node(value)
+        <span class="kw">if</span> index == <span class="num">0</span>:
+            new_node.next = <span class="kw">self</span>.head
+            <span class="kw">self</span>.head = new_node
+            <span class="kw">return</span>
+        current = <span class="kw">self</span>.head
+        <span class="kw">for</span> _ <span class="kw">in</span> range(index - <span class="num">1</span>):
+            <span class="kw">if</span> current <span class="kw">is None</span>:
+                <span class="kw">raise</span> IndexError(<span class="str">"Index out of range"</span>)
+            current = current.next
+        new_node.next = current.next
+        current.next = new_node
+
+    <span class="kw">def</span> <span class="fn">delete</span>(<span class="kw">self</span>, value):
+        <span class="str">"""Delete the first node with the given value."""</span>
+        <span class="kw">if not</span> <span class="kw">self</span>.head:
+            <span class="kw">return False</span>
+        <span class="kw">if</span> <span class="kw">self</span>.head.data == value:
+            <span class="kw">self</span>.head = <span class="kw">self</span>.head.next
+            <span class="kw">return True</span>
+        current = <span class="kw">self</span>.head
+        <span class="kw">while</span> current.next:
+            <span class="kw">if</span> current.next.data == value:
+                current.next = current.next.next
+                <span class="kw">return True</span>
+            current = current.next
+        <span class="kw">return False</span>
+
+    <span class="kw">def</span> <span class="fn">search</span>(<span class="kw">self</span>, value):
+        <span class="str">"""Return True if value exists in the list."""</span>
+        current = <span class="kw">self</span>.head
+        <span class="kw">while</span> current:
+            <span class="kw">if</span> current.data == value:
+                <span class="kw">return True</span>
+            current = current.next
+        <span class="kw">return False</span>
+
+    <span class="kw">def</span> <span class="fn">reverse</span>(<span class="kw">self</span>):
+        <span class="str">"""Reverse the linked list in place."""</span>
+        prev = <span class="kw">None</span>
+        current = <span class="kw">self</span>.head
+        <span class="kw">while</span> current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        <span class="kw">self</span>.head = prev
+
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="kw">self</span>):
+        <span class="str">"""Print all values in the list."""</span>
+        elements = []
+        current = <span class="kw">self</span>.head
+        <span class="kw">while</span> current:
+            elements.append(str(current.data))
+            current = current.next
+        <span class="kw">print</span>(<span class="str">" -> "</span>.join(elements) + <span class="str">" -> None"</span>)
+
+    <span class="kw">def</span> <span class="fn">size</span>(<span class="kw">self</span>):
+        <span class="str">"""Return the number of elements."""</span>
+        count = <span class="num">0</span>
+        current = <span class="kw">self</span>.head
+        <span class="kw">while</span> current:
+            count += <span class="num">1</span>
+            current = current.next
+        <span class="kw">return</span> count
+
+
+<span class="cm"># --- Test it ---</span>
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    ll = LinkedList()
+    ll.insert(<span class="num">10</span>)
+    ll.insert(<span class="num">20</span>)
+    ll.insert(<span class="num">30</span>)
+    ll.display()          <span class="cm"># 10 -> 20 -> 30 -> None</span>
+    ll.insert_at(<span class="num">1</span>, <span class="num">15</span>)
+    ll.display()          <span class="cm"># 10 -> 15 -> 20 -> 30 -> None</span>
+    <span class="kw">print</span>(ll.search(<span class="num">20</span>))  <span class="cm"># True</span>
+    ll.delete(<span class="num">20</span>)
+    ll.display()          <span class="cm"># 10 -> 15 -> 30 -> None</span>
+    ll.reverse()
+    ll.display()          <span class="cm"># 30 -> 15 -> 10 -> None</span>
+    <span class="kw">print</span>(ll.size())      <span class="cm"># 3</span></code></pre>
+            </div>
+          </div>
+
+          <!-- JavaScript -->
+          <div class="tab-panel" id="javascript">
+            <div class="code-block">
+              <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">linked_list.js</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+              <pre><code><span class="cm">// Singly Linked List implementation in JavaScript</span>
+<span class="cm">// Operations: insert, insertAt, delete, search, reverse, display, size</span>
+
+<span class="kw">class</span> <span class="type">Node</span> {
+  <span class="fn">constructor</span>(data) {
+    <span class="kw">this</span>.data = data;
+    <span class="kw">this</span>.next = <span class="kw">null</span>;
+  }
+}
+
+<span class="kw">class</span> <span class="type">LinkedList</span> {
+  <span class="fn">constructor</span>() {
+    <span class="kw">this</span>.head = <span class="kw">null</span>;
+  }
+
+  <span class="fn">insert</span>(value) {
+    <span class="kw">const</span> newNode = <span class="kw">new</span> Node(value);
+    <span class="kw">if</span> (!<span class="kw">this</span>.head) {
+      <span class="kw">this</span>.head = newNode;
+      <span class="kw">return</span>;
+    }
+    <span class="kw">let</span> current = <span class="kw">this</span>.head;
+    <span class="kw">while</span> (current.next) {
+      current = current.next;
+    }
+    current.next = newNode;
+  }
+
+  <span class="fn">insertAt</span>(index, value) {
+    <span class="kw">const</span> newNode = <span class="kw">new</span> Node(value);
+    <span class="kw">if</span> (index === <span class="num">0</span>) {
+      newNode.next = <span class="kw">this</span>.head;
+      <span class="kw">this</span>.head = newNode;
+      <span class="kw">return</span>;
+    }
+    <span class="kw">let</span> current = <span class="kw">this</span>.head;
+    <span class="kw">for</span> (<span class="kw">let</span> i = <span class="num">0</span>; i < index - <span class="num">1</span>; i++) {
+      <span class="kw">if</span> (!current) <span class="kw">throw new</span> Error(<span class="str">"Index out of range"</span>);
+      current = current.next;
+    }
+    newNode.next = current.next;
+    current.next = newNode;
+  }
+
+  <span class="fn">delete</span>(value) {
+    <span class="kw">if</span> (!<span class="kw">this</span>.head) <span class="kw">return false</span>;
+    <span class="kw">if</span> (<span class="kw">this</span>.head.data === value) {
+      <span class="kw">this</span>.head = <span class="kw">this</span>.head.next;
+      <span class="kw">return true</span>;
+    }
+    <span class="kw">let</span> current = <span class="kw">this</span>.head;
+    <span class="kw">while</span> (current.next) {
+      <span class="kw">if</span> (current.next.data === value) {
+        current.next = current.next.next;
+        <span class="kw">return true</span>;
+      }
+      current = current.next;
+    }
+    <span class="kw">return false</span>;
+  }
+
+  <span class="fn">search</span>(value) {
+    <span class="kw">let</span> current = <span class="kw">this</span>.head;
+    <span class="kw">while</span> (current) {
+      <span class="kw">if</span> (current.data === value) <span class="kw">return true</span>;
+      current = current.next;
+    }
+    <span class="kw">return false</span>;
+  }
+
+  <span class="fn">reverse</span>() {
+    <span class="kw">let</span> prev = <span class="kw">null</span>;
+    <span class="kw">let</span> current = <span class="kw">this</span>.head;
+    <span class="kw">while</span> (current) {
+      <span class="kw">const</span> next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+    }
+    <span class="kw">this</span>.head = prev;
+  }
+
+  <span class="fn">display</span>() {
+    <span class="kw">const</span> elements = [];
+    <span class="kw">let</span> current = <span class="kw">this</span>.head;
+    <span class="kw">while</span> (current) {
+      elements.push(current.data);
+      current = current.next;
+    }
+    console.log(elements.join(<span class="str">" -> "</span>) + <span class="str">" -> null"</span>);
+  }
+
+  <span class="fn">size</span>() {
+    <span class="kw">let</span> count = <span class="num">0</span>;
+    <span class="kw">let</span> current = <span class="kw">this</span>.head;
+    <span class="kw">while</span> (current) { count++; current = current.next; }
+    <span class="kw">return</span> count;
+  }
+}
+
+<span class="cm">// --- Test it ---</span>
+<span class="kw">const</span> ll = <span class="kw">new</span> LinkedList();
+ll.insert(<span class="num">10</span>); ll.insert(<span class="num">20</span>); ll.insert(<span class="num">30</span>);
+ll.display();          <span class="cm">// 10 -> 20 -> 30 -> null</span>
+ll.insertAt(<span class="num">1</span>, <span class="num">15</span>);
+ll.display();          <span class="cm">// 10 -> 15 -> 20 -> 30 -> null</span>
+console.log(ll.search(<span class="num">20</span>));  <span class="cm">// true</span>
+ll.delete(<span class="num">20</span>);
+ll.display();          <span class="cm">// 10 -> 15 -> 30 -> null</span>
+ll.reverse();
+ll.display();          <span class="cm">// 30 -> 15 -> 10 -> null</span>
+console.log(ll.size());     <span class="cm">// 3</span></code></pre>
+            </div>
+          </div>
+
+          <!-- Java -->
+          <div class="tab-panel" id="java">
+            <div class="code-block">
+              <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">LinkedList.java</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+              <pre><code><span class="cm">// Singly Linked List implementation in Java</span>
+<span class="cm">// Operations: insert, insertAt, delete, search, reverse, display, size</span>
+
+<span class="kw">public class</span> <span class="type">LinkedList</span> {
+    <span class="kw">private</span> <span class="type">Node</span> head;
+
+    <span class="kw">private static class</span> <span class="type">Node</span> {
+        <span class="kw">int</span> data;
+        <span class="type">Node</span> next;
+        <span class="type">Node</span>(<span class="kw">int</span> data) {
+            <span class="kw">this</span>.data = data;
+            <span class="kw">this</span>.next = <span class="kw">null</span>;
+        }
+    }
+
+    <span class="kw">public void</span> <span class="fn">insert</span>(<span class="kw">int</span> value) {
+        <span class="type">Node</span> newNode = <span class="kw">new</span> Node(value);
+        <span class="kw">if</span> (head == <span class="kw">null</span>) { head = newNode; <span class="kw">return</span>; }
+        <span class="type">Node</span> current = head;
+        <span class="kw">while</span> (current.next != <span class="kw">null</span>) current = current.next;
+        current.next = newNode;
+    }
+
+    <span class="kw">public void</span> <span class="fn">insertAt</span>(<span class="kw">int</span> index, <span class="kw">int</span> value) {
+        <span class="type">Node</span> newNode = <span class="kw">new</span> Node(value);
+        <span class="kw">if</span> (index == <span class="num">0</span>) {
+            newNode.next = head;
+            head = newNode;
+            <span class="kw">return</span>;
+        }
+        <span class="type">Node</span> current = head;
+        <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; index - <span class="num">1</span>; i++) {
+            <span class="kw">if</span> (current == <span class="kw">null</span>) <span class="kw">throw new</span> IndexOutOfBoundsException();
+            current = current.next;
+        }
+        newNode.next = current.next;
+        current.next = newNode;
+    }
+
+    <span class="kw">public boolean</span> <span class="fn">delete</span>(<span class="kw">int</span> value) {
+        <span class="kw">if</span> (head == <span class="kw">null</span>) <span class="kw">return false</span>;
+        <span class="kw">if</span> (head.data == value) { head = head.next; <span class="kw">return true</span>; }
+        <span class="type">Node</span> current = head;
+        <span class="kw">while</span> (current.next != <span class="kw">null</span>) {
+            <span class="kw">if</span> (current.next.data == value) {
+                current.next = current.next.next;
+                <span class="kw">return true</span>;
+            }
+            current = current.next;
+        }
+        <span class="kw">return false</span>;
+    }
+
+    <span class="kw">public boolean</span> <span class="fn">search</span>(<span class="kw">int</span> value) {
+        <span class="type">Node</span> current = head;
+        <span class="kw">while</span> (current != <span class="kw">null</span>) {
+            <span class="kw">if</span> (current.data == value) <span class="kw">return true</span>;
+            current = current.next;
+        }
+        <span class="kw">return false</span>;
+    }
+
+    <span class="kw">public void</span> <span class="fn">reverse</span>() {
+        <span class="type">Node</span> prev = <span class="kw">null</span>, current = head;
+        <span class="kw">while</span> (current != <span class="kw">null</span>) {
+            <span class="type">Node</span> next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        head = prev;
+    }
+
+    <span class="kw">public void</span> <span class="fn">display</span>() {
+        StringBuilder sb = <span class="kw">new</span> StringBuilder();
+        <span class="type">Node</span> current = head;
+        <span class="kw">while</span> (current != <span class="kw">null</span>) {
+            sb.append(current.data).append(<span class="str">" -> "</span>);
+            current = current.next;
+        }
+        sb.append(<span class="str">"null"</span>);
+        System.out.println(sb.toString());
+    }
+
+    <span class="kw">public int</span> <span class="fn">size</span>() {
+        <span class="kw">int</span> count = <span class="num">0</span>;
+        <span class="type">Node</span> current = head;
+        <span class="kw">while</span> (current != <span class="kw">null</span>) { count++; current = current.next; }
+        <span class="kw">return</span> count;
+    }
+
+    <span class="kw">public static void</span> <span class="fn">main</span>(String[] args) {
+        LinkedList ll = <span class="kw">new</span> LinkedList();
+        ll.insert(<span class="num">10</span>); ll.insert(<span class="num">20</span>); ll.insert(<span class="num">30</span>);
+        ll.display();                    <span class="cm">// 10 -> 20 -> 30 -> null</span>
+        ll.insertAt(<span class="num">1</span>, <span class="num">15</span>);
+        ll.display();                    <span class="cm">// 10 -> 15 -> 20 -> 30 -> null</span>
+        System.out.println(ll.search(<span class="num">20</span>)); <span class="cm">// true</span>
+        ll.delete(<span class="num">20</span>);
+        ll.display();                    <span class="cm">// 10 -> 15 -> 30 -> null</span>
+        ll.reverse();
+        ll.display();                    <span class="cm">// 30 -> 15 -> 10 -> null</span>
+        System.out.println(ll.size());   <span class="cm">// 3</span>
+    }
+}</code></pre>
+            </div>
+          </div>
+
+          <!-- C# -->
+          <div class="tab-panel" id="csharp">
+            <div class="code-block">
+              <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">LinkedList.cs</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+              <pre><code><span class="cm">// Singly Linked List implementation in C#</span>
+<span class="kw">using</span> System;
+
+<span class="kw">public class</span> <span class="type">SinglyLinkedList</span> {
+    <span class="kw">private class</span> <span class="type">Node</span> {
+        <span class="kw">public int</span> Data;
+        <span class="kw">public</span> <span class="type">Node</span>? Next;
+        <span class="kw">public</span> <span class="fn">Node</span>(<span class="kw">int</span> data) { Data = data; Next = <span class="kw">null</span>; }
+    }
+
+    <span class="kw">private</span> <span class="type">Node</span>? _head;
+
+    <span class="kw">public void</span> <span class="fn">Insert</span>(<span class="kw">int</span> value) {
+        <span class="kw">var</span> newNode = <span class="kw">new</span> Node(value);
+        <span class="kw">if</span> (_head == <span class="kw">null</span>) { _head = newNode; <span class="kw">return</span>; }
+        <span class="kw">var</span> current = _head;
+        <span class="kw">while</span> (current.Next != <span class="kw">null</span>) current = current.Next;
+        current.Next = newNode;
+    }
+
+    <span class="kw">public void</span> <span class="fn">InsertAt</span>(<span class="kw">int</span> index, <span class="kw">int</span> value) {
+        <span class="kw">var</span> newNode = <span class="kw">new</span> Node(value);
+        <span class="kw">if</span> (index == <span class="num">0</span>) {
+            newNode.Next = _head;
+            _head = newNode;
+            <span class="kw">return</span>;
+        }
+        <span class="kw">var</span> current = _head;
+        <span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">0</span>; i &lt; index - <span class="num">1</span>; i++) {
+            <span class="kw">if</span> (current == <span class="kw">null</span>) <span class="kw">throw new</span> IndexOutOfRangeException();
+            current = current.Next!;
+        }
+        newNode.Next = current!.Next;
+        current.Next = newNode;
+    }
+
+    <span class="kw">public bool</span> <span class="fn">Delete</span>(<span class="kw">int</span> value) {
+        <span class="kw">if</span> (_head == <span class="kw">null</span>) <span class="kw">return false</span>;
+        <span class="kw">if</span> (_head.Data == value) { _head = _head.Next; <span class="kw">return true</span>; }
+        <span class="kw">var</span> current = _head;
+        <span class="kw">while</span> (current.Next != <span class="kw">null</span>) {
+            <span class="kw">if</span> (current.Next.Data == value) {
+                current.Next = current.Next.Next;
+                <span class="kw">return true</span>;
+            }
+            current = current.Next;
+        }
+        <span class="kw">return false</span>;
+    }
+
+    <span class="kw">public bool</span> <span class="fn">Search</span>(<span class="kw">int</span> value) {
+        <span class="kw">var</span> current = _head;
+        <span class="kw">while</span> (current != <span class="kw">null</span>) {
+            <span class="kw">if</span> (current.Data == value) <span class="kw">return true</span>;
+            current = current.Next;
+        }
+        <span class="kw">return false</span>;
+    }
+
+    <span class="kw">public void</span> <span class="fn">Reverse</span>() {
+        <span class="type">Node</span>? prev = <span class="kw">null</span>, current = _head;
+        <span class="kw">while</span> (current != <span class="kw">null</span>) {
+            <span class="kw">var</span> next = current.Next;
+            current.Next = prev;
+            prev = current;
+            current = next;
+        }
+        _head = prev;
+    }
+
+    <span class="kw">public void</span> <span class="fn">Display</span>() {
+        <span class="kw">var</span> current = _head;
+        <span class="kw">while</span> (current != <span class="kw">null</span>) {
+            Console.Write($<span class="str">"{current.Data} -> "</span>);
+            current = current.Next;
+        }
+        Console.WriteLine(<span class="str">"null"</span>);
+    }
+
+    <span class="kw">public int</span> <span class="fn">Size</span>() {
+        <span class="kw">int</span> count = <span class="num">0</span>;
+        <span class="kw">var</span> current = _head;
+        <span class="kw">while</span> (current != <span class="kw">null</span>) { count++; current = current.Next; }
+        <span class="kw">return</span> count;
+    }
+
+    <span class="kw">public static void</span> <span class="fn">Main</span>() {
+        <span class="kw">var</span> ll = <span class="kw">new</span> SinglyLinkedList();
+        ll.Insert(<span class="num">10</span>); ll.Insert(<span class="num">20</span>); ll.Insert(<span class="num">30</span>);
+        ll.Display();                          <span class="cm">// 10 -> 20 -> 30 -> null</span>
+        ll.InsertAt(<span class="num">1</span>, <span class="num">15</span>);
+        ll.Display();                          <span class="cm">// 10 -> 15 -> 20 -> 30 -> null</span>
+        Console.WriteLine(ll.Search(<span class="num">20</span>));     <span class="cm">// True</span>
+        ll.Delete(<span class="num">20</span>);
+        ll.Display();                          <span class="cm">// 10 -> 15 -> 30 -> null</span>
+        ll.Reverse();
+        ll.Display();                          <span class="cm">// 30 -> 15 -> 10 -> null</span>
+        Console.WriteLine(ll.Size());          <span class="cm">// 3</span>
+    }
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">3</span> Compare Language Patterns with <code>/explain</code></div>
+      <div class="step__body">
+        <p>Select each implementation and use the <code>/explain</code> slash command. Notice how Copilot highlights language-specific patterns:</p>
+        <ul>
+          <li><strong>Python</strong>: Duck typing, no explicit type declarations, <code>None</code> as null</li>
+          <li><strong>JavaScript</strong>: Prototype-based (ES6 classes), <code>null</code> checks with <code>!</code> operator</li>
+          <li><strong>Java</strong>: Static typing, inner <code>Node</code> class, <code>StringBuilder</code> for string concatenation</li>
+          <li><strong>C#</strong>: Nullable reference types (<code>Node?</code>), PascalCase naming, string interpolation</li>
+        </ul>
+        <div class="tip-box">
+          <div class="tip-box__label">💡 Key Insight</div>
+          <p style="margin:0;font-size:.875rem;color:var(--text-secondary)">Notice how Copilot automatically adapts naming conventions: <code>insert_at</code> (Python, snake_case), <code>insertAt</code> (JS/Java, camelCase), <code>InsertAt</code> (C#, PascalCase). It understands each language's idioms.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Challenge -->
+  <div class="challenge-box">
+    <div class="challenge-box__title">🏆 Challenge Extension</div>
+    <div class="challenge-box__body">
+      <p>Add a <strong>merge sort</strong> method to each implementation using Copilot. Write the comment <code>// Sort the linked list using merge sort</code> and let Copilot implement it. Compare the 4 implementations — do they use the same algorithm strategy?</p>
+    </div>
+  </div>
+
+  <div class="nav-bottom">
+    <a href="lab11.html">← Lab 11: Copilot CLI</a>
+    <a href="lab13.html">Lab 13: Database Operations →</a>
+  </div>
+</div>
+
+<script>
+function switchTab(e, tabId) {
+  const container = e.target.closest('.tab-container');
+  container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  container.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  e.target.classList.add('active');
+  container.querySelector('#' + tabId).classList.add('active');
+}
+function copyCode(btn) {
+  const code = btn.closest('.code-block').querySelector('code');
+  navigator.clipboard.writeText(code.textContent).then(() => {
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = '⧉ Copy', 2000);
+  });
+}
+</script>
+</body>
+</html>

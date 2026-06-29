@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 7: TDD with Copilot — Copilot Mastery</title>
+<link rel="stylesheet" href="../styles.css">
+<style>body{background:var(--bg-primary)}.lab-page{max-width:900px;margin:0 auto;padding:40px 24px 80px}.lab-page__back{display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);font-size:.875rem;margin-bottom:32px;text-decoration:none}.lab-page__back:hover{color:var(--accent-blue)}.lab-page__badge-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.lab-page__title{font-family:var(--font-display);font-size:2rem;font-weight:800;margin-bottom:12px}.lab-page__subtitle{color:var(--text-secondary);font-size:1rem;margin-bottom:32px;line-height:1.7}.lab-section{margin-bottom:40px}.lab-section__title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border-glass)}.step{margin-bottom:24px;padding:20px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md)}.step__number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(88,166,255,.15);color:var(--accent-blue);font-weight:700;font-size:.8125rem;margin-right:10px}.step__title{font-weight:700;font-size:1rem;margin-bottom:10px;display:flex;align-items:center}.step__body{color:var(--text-secondary);font-size:.875rem;line-height:1.7}.step__body code{background:rgba(110,118,129,.15);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:.8125rem}.step__body ol,.step__body ul{padding-left:20px;margin:8px 0}.step__body li{margin-bottom:6px}.objectives-list{list-style:none}.objectives-list li{padding:8px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.objectives-list li::before{content:'✓';color:var(--accent-green);font-weight:700}.prereq-list{list-style:none}.prereq-list li{padding:6px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.prereq-list li::before{content:'•';color:var(--accent-purple);font-weight:700}.expected-output{background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.expected-output__label{font-weight:700;color:var(--accent-green);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.challenge-box{background:rgba(188,140,255,.06);border:1px solid rgba(188,140,255,.15);border-radius:var(--radius-md);padding:20px;margin-top:32px}.challenge-box__title{font-family:var(--font-display);font-weight:700;color:var(--accent-purple);margin-bottom:8px}.challenge-box__body{font-size:.875rem;color:var(--text-secondary);line-height:1.7}</style>
+</head>
+<body>
+<div class="lab-page">
+  <a href="../index.html" class="lab-page__back">← Back to Course</a>
+  <div class="lab-page__badge-row">
+    <span class="badge badge--intermediate">Intermediate</span>
+    <span class="badge badge--time">⏱ 40 minutes</span>
+  </div>
+
+  <h1 class="lab-page__title">Lab 7: TDD with Copilot</h1>
+  <p class="lab-page__subtitle">Practice the Red-Green-Refactor cycle of Test-Driven Development with AI assistance. Write tests first using Copilot, then implement code to make them pass.</p>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🎯 Objectives</h2>
+    <ul class="objectives-list">
+      <li>Write comprehensive tests before any implementation code</li>
+      <li>Use Copilot to generate pytest tests from specifications</li>
+      <li>Implement functions to make failing tests pass</li>
+      <li>Use parametrized tests and fixtures</li>
+      <li>Cover edge cases systematically</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📋 Prerequisites</h2>
+    <ul class="prereq-list">
+      <li>Python 3.8+ with pytest installed (<code>pip install pytest</code>)</li>
+      <li>Completed Module 7</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📝 Step-by-Step Instructions</h2>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">1</span>The Specification</div>
+      <div class="step__body">
+        <p>You'll build a <code>StringProcessor</code> class with these methods. <strong>Do NOT implement them yet</strong> — you'll write tests first!</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">string_processor.py — Create this stub file first</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code><span class="str">"""String processing utility class."""</span>
+
+<span class="kw">class</span> <span class="typ">StringProcessor</span>:
+    <span class="str">"""A utility class for common string operations."""</span>
+
+    <span class="kw">def</span> <span class="fn">reverse_words</span>(<span class="var">self</span>, <span class="var">text</span>: <span class="typ">str</span>) -> <span class="typ">str</span>:
+        <span class="str">"""Reverse the order of words in a string, preserving whitespace."""</span>
+        <span class="kw">pass</span>
+
+    <span class="kw">def</span> <span class="fn">count_vowels</span>(<span class="var">self</span>, <span class="var">text</span>: <span class="typ">str</span>) -> <span class="typ">dict</span>:
+        <span class="str">"""Count each vowel (a,e,i,o,u) in text. Return dict with counts. Case-insensitive."""</span>
+        <span class="kw">pass</span>
+
+    <span class="kw">def</span> <span class="fn">to_title_case</span>(<span class="var">self</span>, <span class="var">text</span>: <span class="typ">str</span>) -> <span class="typ">str</span>:
+        <span class="str">"""Convert to title case, but keep small words (a, an, the, of, in, on, at, to, for, and, but, or) lowercase unless they are the first word."""</span>
+        <span class="kw">pass</span>
+
+    <span class="kw">def</span> <span class="fn">truncate</span>(<span class="var">self</span>, <span class="var">text</span>: <span class="typ">str</span>, <span class="var">max_length</span>: <span class="typ">int</span>, <span class="var">suffix</span>: <span class="typ">str</span> = <span class="str">"..."</span>) -> <span class="typ">str</span>:
+        <span class="str">"""Truncate text to max_length, adding suffix. Don't break mid-word."""</span>
+        <span class="kw">pass</span>
+
+    <span class="kw">def</span> <span class="fn">is_palindrome</span>(<span class="var">self</span>, <span class="var">text</span>: <span class="typ">str</span>) -> <span class="typ">bool</span>:
+        <span class="str">"""Check if text is a palindrome. Ignore spaces, punctuation, and case."""</span>
+        <span class="kw">pass</span></code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">2</span>Write Tests with Copilot (Red Phase)</div>
+      <div class="step__body">
+        <p>Create <code>test_string_processor.py</code>. Type this header, then use Copilot to generate comprehensive tests for each method:</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">test_string_processor.py — Let Copilot generate tests</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code><span class="kw">import</span> pytest
+<span class="kw">from</span> string_processor <span class="kw">import</span> StringProcessor
+
+
+<span class="dec">@pytest.fixture</span>
+<span class="kw">def</span> <span class="fn">processor</span>():
+    <span class="str">"""Create a StringProcessor instance for each test."""</span>
+    <span class="kw">return</span> StringProcessor()
+
+
+<span class="cm"># ---- Tests for reverse_words ----</span>
+<span class="cm"># Test: normal sentence reverses word order</span>
+<span class="cm"># Test: single word returns same word</span>
+<span class="cm"># Test: empty string returns empty string</span>
+<span class="cm"># Test: extra whitespace is preserved between words</span>
+
+<span class="kw">class</span> <span class="typ">TestReverseWords</span>:
+    <span class="kw">def</span> <span class="fn">test_normal_sentence</span>(<span class="var">self</span>, <span class="var">processor</span>):</code></pre>
+        </div>
+        <p>After each test comment, press Enter and let Copilot generate the test method. Continue for all five methods. Aim for <strong>at least 3-5 tests per method</strong>.</p>
+
+        <div class="callout callout--tip">
+          <span class="callout__icon">💡</span>
+          <div><strong>Pro Tip:</strong> Use <code>@pytest.mark.parametrize</code> for data-driven tests. Write the first parametrize decorator and Copilot will suggest test data:</div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">Example parametrized test</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code><span class="dec">@pytest.mark.parametrize</span>(<span class="str">"input_text, expected"</span>, [
+    (<span class="str">"racecar"</span>, <span class="kw">True</span>),
+    (<span class="str">"A man a plan a canal Panama"</span>, <span class="kw">True</span>),
+    (<span class="str">"hello"</span>, <span class="kw">False</span>),
+    (<span class="str">"Was it a car or a cat I saw?"</span>, <span class="kw">True</span>),
+    (<span class="str">""</span>, <span class="kw">True</span>),
+])
+<span class="kw">def</span> <span class="fn">test_is_palindrome</span>(<span class="var">self</span>, <span class="var">processor</span>, <span class="var">input_text</span>, <span class="var">expected</span>):
+    <span class="kw">assert</span> processor.<span class="fn">is_palindrome</span>(input_text) == expected</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">3</span>Run Tests — Watch Them Fail (Red)</div>
+      <div class="step__body">
+        <ol>
+          <li>Run: <code>pytest test_string_processor.py -v</code></li>
+          <li>All tests should <strong>FAIL</strong> (because methods return <code>None</code>)</li>
+          <li>This confirms your tests are actually checking something</li>
+        </ol>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Output</div>
+          <div style="font-size:.875rem;color:var(--text-secondary)">All tests should show <code>FAILED</code> with assertion errors. This is the "Red" phase of TDD — failing tests that define the desired behavior.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">4</span>Implement with Copilot (Green Phase)</div>
+      <div class="step__body">
+        <p>Now go back to <code>string_processor.py</code>. For each method:</p>
+        <ol>
+          <li>Delete the <code>pass</code> statement</li>
+          <li>Let Copilot suggest the implementation based on the docstring</li>
+          <li>Accept the suggestion</li>
+          <li>Run <code>pytest -v</code> to see if the tests pass</li>
+          <li>If tests fail, use <code>/fix</code> to debug</li>
+        </ol>
+        <div class="callout callout--info">
+          <span class="callout__icon">ℹ️</span>
+          <div>Because your test file is open in another tab, Copilot uses it as context when generating implementations. It "knows" what behavior is expected from your tests!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">5</span>Refactor (Refactor Phase)</div>
+      <div class="step__body">
+        <ol>
+          <li>Once all tests pass, select each method</li>
+          <li>Use <code>/refactor</code> to improve the implementations</li>
+          <li>Run tests after each refactor to ensure nothing breaks</li>
+          <li>Add <code>/doc</code> to generate complete docstrings</li>
+        </ol>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Final Expected Output</div>
+        </div>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">terminal</span></div>
+          <pre><code>$ pytest test_string_processor.py -v
+========================= test session starts ==========================
+test_string_processor.py::TestReverseWords::test_normal_sentence PASSED
+test_string_processor.py::TestReverseWords::test_single_word PASSED
+test_string_processor.py::TestReverseWords::test_empty_string PASSED
+test_string_processor.py::TestCountVowels::test_mixed_case PASSED
+test_string_processor.py::TestCountVowels::test_no_vowels PASSED
+test_string_processor.py::TestTitleCase::test_small_words PASSED
+test_string_processor.py::TestTitleCase::test_first_word_capitalized PASSED
+test_string_processor.py::TestTruncate::test_within_limit PASSED
+test_string_processor.py::TestTruncate::test_word_boundary PASSED
+test_string_processor.py::TestIsPalindrome::test_parametrized[racecar] PASSED
+test_string_processor.py::TestIsPalindrome::test_parametrized[A man...] PASSED
+========================= <span class="num">all passed</span> ==========================</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="challenge-box">
+    <div class="challenge-box__title">🏆 Extra Credit Challenge</div>
+    <div class="challenge-box__body">
+      <p>Add two more methods to <code>StringProcessor</code> using strict TDD:</p>
+      <ul style="margin-top:8px;padding-left:20px">
+        <li><code>slugify(text)</code> — Convert text to URL slug ("Hello World!" → "hello-world")</li>
+        <li><code>extract_emails(text)</code> — Find all email addresses in a block of text</li>
+      </ul>
+      <p style="margin-top:8px">Write tests first, then implement. Aim for 100% branch coverage.</p>
+    </div>
+  </div>
+</div>
+<script src="../app.js"></script>
+</body>
+</html>

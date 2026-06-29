@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 10: Security &amp; Best Practices Audit — Copilot Mastery</title>
+<link rel="stylesheet" href="../styles.css">
+<style>body{background:var(--bg-primary)}.lab-page{max-width:900px;margin:0 auto;padding:40px 24px 80px}.lab-page__back{display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);font-size:.875rem;margin-bottom:32px;text-decoration:none}.lab-page__back:hover{color:var(--accent-blue)}.lab-page__badge-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.lab-page__title{font-family:var(--font-display);font-size:2rem;font-weight:800;margin-bottom:12px}.lab-page__subtitle{color:var(--text-secondary);font-size:1rem;margin-bottom:32px;line-height:1.7}.lab-section{margin-bottom:40px}.lab-section__title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border-glass)}.step{margin-bottom:24px;padding:20px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md)}.step__number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(88,166,255,.15);color:var(--accent-blue);font-weight:700;font-size:.8125rem;margin-right:10px}.step__title{font-weight:700;font-size:1rem;margin-bottom:10px;display:flex;align-items:center}.step__body{color:var(--text-secondary);font-size:.875rem;line-height:1.7}.step__body code{background:rgba(110,118,129,.15);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:.8125rem}.step__body ol,.step__body ul{padding-left:20px;margin:8px 0}.step__body li{margin-bottom:6px}.objectives-list{list-style:none}.objectives-list li{padding:8px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.objectives-list li::before{content:'✓';color:var(--accent-green);font-weight:700}.prereq-list{list-style:none}.prereq-list li{padding:6px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.prereq-list li::before{content:'•';color:var(--accent-purple);font-weight:700}.expected-output{background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.expected-output__label{font-weight:700;color:var(--accent-green);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.challenge-box{background:rgba(188,140,255,.06);border:1px solid rgba(188,140,255,.15);border-radius:var(--radius-md);padding:20px;margin-top:32px}.challenge-box__title{font-family:var(--font-display);font-weight:700;color:var(--accent-purple);margin-bottom:8px}.challenge-box__body{font-size:.875rem;color:var(--text-secondary);line-height:1.7}</style>
+</head>
+<body>
+<div class="lab-page">
+  <a href="../index.html" class="lab-page__back">← Back to Course</a>
+  <div class="lab-page__badge-row"><span class="badge badge--advanced">Advanced</span><span class="badge badge--time">⏱ 40 minutes</span></div>
+
+  <h1 class="lab-page__title">Lab 10: Security &amp; Best Practices Audit</h1>
+  <p class="lab-page__subtitle">Audit a sample codebase for security vulnerabilities using Copilot, create an organization Copilot policy document, and review AI-generated code for quality and security.</p>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🎯 Objectives</h2>
+    <ul class="objectives-list">
+      <li>Identify security vulnerabilities using Copilot</li>
+      <li>Fix SQL injection, XSS, and authentication issues</li>
+      <li>Create an organization Copilot usage policy</li>
+      <li>Review AI-generated code for quality issues</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🗂️ The Vulnerable Code</h2>
+    <p style="color:var(--text-secondary);font-size:.875rem;margin-bottom:16px">Create <code>vulnerable_app.py</code> with this intentionally insecure code:</p>
+    <div class="code-block">
+      <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">vulnerable_app.py — Paste this</span><button class="code-block__copy">⧉ Copy</button></div>
+      <pre><code><span class="kw">from</span> flask <span class="kw">import</span> Flask, request, render_template_string
+<span class="kw">import</span> sqlite3
+<span class="kw">import</span> hashlib
+<span class="kw">import</span> os
+
+app = Flask(__name__)
+SECRET_KEY = <span class="str">"hardcoded_secret_123"</span>  <span class="cm"># VULN: Hardcoded secret</span>
+DB_PATH = <span class="str">"users.db"</span>
+
+<span class="kw">def</span> <span class="fn">get_db</span>():
+    <span class="kw">return</span> sqlite3.connect(DB_PATH)
+
+<span class="dec">@app.route</span>(<span class="str">'/login'</span>, methods=[<span class="str">'POST'</span>])
+<span class="kw">def</span> <span class="fn">login</span>():
+    username = request.form[<span class="str">'username'</span>]
+    password = request.form[<span class="str">'password'</span>]
+
+    <span class="cm"># VULN: SQL Injection</span>
+    db = get_db()
+    query = <span class="str">f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"</span>
+    user = db.execute(query).fetchone()
+
+    <span class="kw">if</span> user:
+        <span class="kw">return</span> <span class="str">f"Welcome {username}"</span>  <span class="cm"># VULN: XSS</span>
+    <span class="kw">return</span> <span class="str">"Invalid credentials"</span>
+
+<span class="dec">@app.route</span>(<span class="str">'/register'</span>, methods=[<span class="str">'POST'</span>])
+<span class="kw">def</span> <span class="fn">register</span>():
+    username = request.form[<span class="str">'username'</span>]
+    password = request.form[<span class="str">'password'</span>]
+
+    <span class="cm"># VULN: Weak hashing (MD5, no salt)</span>
+    hashed = hashlib.md5(password.encode()).hexdigest()
+
+    db = get_db()
+    <span class="cm"># VULN: SQL Injection again</span>
+    db.execute(<span class="str">f"INSERT INTO users (username, password) VALUES ('{username}', '{hashed}')"</span>)
+    db.commit()
+    <span class="kw">return</span> <span class="str">"Registered!"</span>
+
+<span class="dec">@app.route</span>(<span class="str">'/profile/&lt;username&gt;'</span>)
+<span class="kw">def</span> <span class="fn">profile</span>(username):
+    <span class="cm"># VULN: Template injection</span>
+    template = <span class="str">f"&lt;h1&gt;Profile: {username}&lt;/h1&gt;"</span>
+    <span class="kw">return</span> render_template_string(template)
+
+<span class="dec">@app.route</span>(<span class="str">'/files'</span>)
+<span class="kw">def</span> <span class="fn">get_file</span>():
+    filename = request.args.get(<span class="str">'name'</span>)
+    <span class="cm"># VULN: Path traversal</span>
+    <span class="kw">with</span> open(<span class="str">f"/uploads/{filename}"</span>) <span class="kw">as</span> f:
+        <span class="kw">return</span> f.read()
+
+<span class="kw">if</span> __name__ == <span class="str">'__main__'</span>:
+    app.run(debug=<span class="kw">True</span>)  <span class="cm"># VULN: Debug mode in production</span></code></pre>
+    </div>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📝 Step-by-Step Instructions</h2>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">1</span>Security Audit with Copilot</div>
+      <div class="step__body">
+        <p>Select the entire file and ask Copilot Chat:</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">Copilot Chat Prompt</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code>Review this Flask application for security vulnerabilities. For each vulnerability found:
+1. Identify the type (OWASP Top 10 category)
+2. Explain the risk
+3. Show the vulnerable code
+4. Provide the fixed code
+5. Rate severity: Critical / High / Medium / Low</code></pre>
+        </div>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Findings</div>
+          <div style="font-size:.875rem;color:var(--text-secondary)">
+            Copilot should identify at least these 7 vulnerabilities:
+            <ol style="padding-left:16px;margin-top:8px">
+              <li><strong>SQL Injection (Critical)</strong> — String formatting in SQL queries</li>
+              <li><strong>Hardcoded secrets (High)</strong> — SECRET_KEY in source code</li>
+              <li><strong>Weak password hashing (High)</strong> — MD5 without salt</li>
+              <li><strong>XSS (High)</strong> — Unescaped user input in HTML</li>
+              <li><strong>Template injection (Critical)</strong> — User input in render_template_string</li>
+              <li><strong>Path traversal (Critical)</strong> — Unsanitized file path</li>
+              <li><strong>Debug mode (Medium)</strong> — app.run(debug=True)</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">2</span>Fix All Vulnerabilities</div>
+      <div class="step__body">
+        <p>Ask Copilot to fix the entire file:</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">Copilot Chat Prompt</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code>Fix all the security vulnerabilities in this file. Use:
+- Parameterized queries for SQL
+- bcrypt for password hashing
+- Environment variables for secrets
+- Input validation and sanitization
+- Proper template rendering (not render_template_string)
+- Path validation with os.path.realpath
+- Debug mode from environment variable</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">3</span>Create Organization Policy</div>
+      <div class="step__body">
+        <p>Ask Copilot Chat to generate a Copilot usage policy:</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">Copilot Chat Prompt</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code>Create a comprehensive "GitHub Copilot Usage Policy" document (Markdown) for
+our engineering organization. Include sections on:
+1. Acceptable Use - what Copilot can/cannot be used for
+2. Code Review Requirements for AI-generated code
+3. Security Guidelines - what never to share with Copilot
+4. Data Privacy - handling PII and sensitive data
+5. Intellectual Property - licensing considerations
+6. Quality Standards - minimum review requirements
+7. Prohibited Actions - things developers must never do
+8. Incident Response - what to do if Copilot suggests harmful code
+9. Training Requirements - onboarding for new team members
+10. Metrics & Reporting - how we measure Copilot ROI</code></pre>
+        </div>
+        <p>Save as <code>COPILOT_POLICY.md</code></p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">4</span>Review AI-Generated Code Quality</div>
+      <div class="step__body">
+        <p>Generate some code with Copilot, then critically review it. Ask Copilot to generate a user authentication middleware, then ask it to review its own output for issues:</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">Review prompt</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code>Review this code you just generated. Check for:
+- Security vulnerabilities
+- Error handling gaps
+- Edge cases not covered
+- Performance issues
+- Any assumptions that could be wrong
+Be critical and thorough.</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="challenge-box">
+    <div class="challenge-box__title">🏆 Extra Credit Challenge</div>
+    <div class="challenge-box__body">
+      <p>Use Copilot to create a security checklist that developers must complete before submitting any PR that includes AI-generated code. Format it as a GitHub issue template (<code>.github/ISSUE_TEMPLATE/security-review.md</code>).</p>
+    </div>
+  </div>
+</div>
+<script src="../app.js"></script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 6: Full-Stack App with Agent Mode — Copilot Mastery</title>
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body{background:var(--bg-primary)}.lab-page{max-width:900px;margin:0 auto;padding:40px 24px 80px}.lab-page__back{display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);font-size:.875rem;margin-bottom:32px;text-decoration:none}.lab-page__back:hover{color:var(--accent-blue)}.lab-page__badge-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.lab-page__title{font-family:var(--font-display);font-size:2rem;font-weight:800;margin-bottom:12px}.lab-page__subtitle{color:var(--text-secondary);font-size:1rem;margin-bottom:32px;line-height:1.7}.lab-section{margin-bottom:40px}.lab-section__title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border-glass)}.step{margin-bottom:24px;padding:20px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md)}.step__number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(88,166,255,.15);color:var(--accent-blue);font-weight:700;font-size:.8125rem;margin-right:10px}.step__title{font-weight:700;font-size:1rem;margin-bottom:10px;display:flex;align-items:center}.step__body{color:var(--text-secondary);font-size:.875rem;line-height:1.7}.step__body code{background:rgba(110,118,129,.15);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:.8125rem}.step__body ol,.step__body ul{padding-left:20px;margin:8px 0}.step__body li{margin-bottom:6px}.objectives-list{list-style:none}.objectives-list li{padding:8px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.objectives-list li::before{content:'✓';color:var(--accent-green);font-weight:700}.prereq-list{list-style:none}.prereq-list li{padding:6px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.prereq-list li::before{content:'•';color:var(--accent-purple);font-weight:700}.expected-output{background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.expected-output__label{font-weight:700;color:var(--accent-green);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.challenge-box{background:rgba(188,140,255,.06);border:1px solid rgba(188,140,255,.15);border-radius:var(--radius-md);padding:20px;margin-top:32px}.challenge-box__title{font-family:var(--font-display);font-weight:700;color:var(--accent-purple);margin-bottom:8px}.challenge-box__body{font-size:.875rem;color:var(--text-secondary);line-height:1.7}
+</style>
+</head>
+<body>
+<div class="lab-page">
+  <a href="../index.html" class="lab-page__back">← Back to Course</a>
+  <div class="lab-page__badge-row">
+    <span class="badge badge--advanced">Advanced</span>
+    <span class="badge badge--time">⏱ 60 minutes</span>
+  </div>
+
+  <h1 class="lab-page__title">Lab 6: Build a Full-Stack App with Agent Mode</h1>
+  <p class="lab-page__subtitle">Use Copilot's Agent Mode to build a complete todo application with a React frontend and Express backend. Experience autonomous multi-file creation, terminal commands, and iterative problem solving.</p>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🎯 Objectives</h2>
+    <ul class="objectives-list">
+      <li>Activate and use Agent Mode in VS Code</li>
+      <li>Provide a natural language specification for a full-stack app</li>
+      <li>Observe Agent Mode creating multiple files autonomously</li>
+      <li>Review and approve terminal commands (npm install, etc.)</li>
+      <li>Watch Agent Mode iteratively fix errors</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📋 Prerequisites</h2>
+    <ul class="prereq-list">
+      <li>Node.js 18+ and npm installed</li>
+      <li>VS Code 1.99+ with GitHub Copilot</li>
+      <li>Copilot Pro, Pro+, or Business subscription (Agent Mode required)</li>
+      <li>Completed Module 6 on Agent Mode</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📝 Step-by-Step Instructions</h2>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">1</span>Set Up an Empty Project</div>
+      <div class="step__body">
+        <ol>
+          <li>Create a new folder: <code>copilot-todo-app</code></li>
+          <li>Open it in VS Code</li>
+          <li>Initialize git: open terminal and run <code>git init</code></li>
+          <li>This gives Agent Mode a clean workspace to build in</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">2</span>Activate Agent Mode</div>
+      <div class="step__body">
+        <ol>
+          <li>Open Copilot Chat (<code>Ctrl+Shift+I</code>)</li>
+          <li>At the top of the chat panel, find the mode dropdown (shows "Ask" by default)</li>
+          <li>Click the dropdown and select <strong>"Agent"</strong></li>
+          <li>You'll see the chat icon change to indicate Agent Mode is active</li>
+        </ol>
+        <div class="callout callout--info">
+          <span class="callout__icon">ℹ️</span>
+          <div>In Agent Mode, Copilot can create files, edit files, run terminal commands, and iterate on errors — all autonomously. You'll be asked to approve each terminal command before it runs.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">3</span>Provide the Application Specification</div>
+      <div class="step__body">
+        <p>Paste this complete specification into the Agent Mode chat:</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">Agent Mode Prompt — paste this entire block</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code>Build a full-stack Todo application with the following specs:
+
+## Backend (Express.js)
+- File: server/index.js
+- Express server on port 3001
+- In-memory storage (array of todo objects)
+- REST API endpoints:
+  - GET /api/todos - List all todos (support ?status=completed|active filter)
+  - POST /api/todos - Create todo { title: string, description?: string }
+  - PUT /api/todos/:id - Update todo (toggle completed, edit title/description)
+  - DELETE /api/todos/:id - Delete a todo
+  - DELETE /api/todos - Delete all completed todos (bulk cleanup)
+- CORS enabled for localhost:3000
+- Each todo: { id: uuid, title, description, completed: false, createdAt, updatedAt }
+- Proper error handling and validation
+
+## Frontend (React with Vite)
+- Create React app in client/ folder using Vite
+- Components:
+  - App.jsx - Main layout
+  - TodoList.jsx - Renders filtered list of todos
+  - TodoItem.jsx - Single todo with checkbox, edit, delete
+  - AddTodo.jsx - Form to create new todo (title + optional description)
+  - FilterBar.jsx - Filter buttons: All, Active, Completed + item count
+- Features:
+  - Add new todos with Enter key
+  - Toggle todo completion with checkbox
+  - Inline editing on double-click
+  - Delete individual todos
+  - "Clear completed" button
+  - Filter by All/Active/Completed
+  - Show count: "X items left"
+- Styling: Modern CSS with CSS modules or a single styles.css
+  - Clean, minimal design with good spacing
+  - Smooth transitions for checkbox and delete
+  - Responsive layout
+
+## Setup
+- Create package.json files for both server and client
+- Add a root package.json with scripts to run both concurrently
+- Install all necessary dependencies</code></pre>
+        </div>
+        <p>Press Enter and watch Agent Mode work. It will:</p>
+        <ol>
+          <li>Create the folder structure (<code>server/</code>, <code>client/</code>)</li>
+          <li>Generate all source files</li>
+          <li>Ask permission to run terminal commands (npm init, npm install, etc.)</li>
+          <li>If it encounters errors, it will read them and fix the issues automatically</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">4</span>Review and Approve Actions</div>
+      <div class="step__body">
+        <p>As Agent Mode works, you'll see:</p>
+        <ul>
+          <li><strong>File creation notifications</strong> — Review each file diff before accepting</li>
+          <li><strong>Terminal command prompts</strong> — You must click "Run" to approve commands like <code>npm install</code></li>
+          <li><strong>Iterative fixes</strong> — If a build fails, Agent Mode reads the error and attempts to fix it</li>
+        </ul>
+        <div class="callout callout--warning">
+          <span class="callout__icon">⚠️</span>
+          <div><strong>Always read terminal commands before approving!</strong> Legitimate commands will be things like <code>npm install express cors uuid</code>, <code>npm create vite@latest</code>, and <code>npm run dev</code>. Be cautious of any command that seems unusual.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">5</span>Test the Application</div>
+      <div class="step__body">
+        <ol>
+          <li>Once Agent Mode finishes, start both servers (it may have already done this)</li>
+          <li>If not, run: <code>npm run dev</code> from the root (or the command Agent Mode created)</li>
+          <li>Open <code>http://localhost:3000</code> in your browser</li>
+          <li>Test all features:</li>
+        </ol>
+        <ul>
+          <li>✅ Add a todo with just a title</li>
+          <li>✅ Add a todo with title + description</li>
+          <li>✅ Check/uncheck to toggle completion</li>
+          <li>✅ Double-click to inline edit</li>
+          <li>✅ Delete a single todo</li>
+          <li>✅ Filter by All / Active / Completed</li>
+          <li>✅ "Clear completed" removes all done items</li>
+          <li>✅ Item count updates correctly</li>
+        </ul>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Result</div>
+          <div style="font-size:.875rem;color:var(--text-secondary)">A fully working todo app in the browser with all CRUD operations functional, real-time UI updates, and a clean modern design. The backend API responds correctly to all endpoint tests.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">6</span>Iterate with Agent Mode</div>
+      <div class="step__body">
+        <p>If anything isn't working perfectly, continue the conversation:</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">Follow-up prompts to try</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code><span class="cm">// If styling needs work:</span>
+"The styling looks basic. Make it more polished with shadows, transitions, and better spacing."
+
+<span class="cm">// If a feature is missing:</span>
+"The inline editing on double-click isn't working. Please fix it."
+
+<span class="cm">// To add features:</span>
+"Add a dark/light theme toggle button to the header."
+
+<span class="cm">// To add persistence:</span>
+"Add localStorage persistence so todos survive page refresh."</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">💡 Tips &amp; Best Practices</h2>
+    <div class="callout callout--tip">
+      <span class="callout__icon">💡</span>
+      <div>
+        <ul style="list-style:none;padding:0;margin:0">
+          <li style="margin-bottom:8px">• <strong>Detailed specs = better results.</strong> The more specific your initial prompt, the fewer iterations needed.</li>
+          <li style="margin-bottom:8px">• <strong>Let it finish.</strong> Don't interrupt Agent Mode mid-flow — let it complete its plan.</li>
+          <li style="margin-bottom:8px">• <strong>Use git.</strong> Commit before Agent Mode runs so you can revert if needed: <code>git add . && git commit -m "before agent mode"</code></li>
+          <li>• <strong>Check the file tree.</strong> Agent Mode shows which files it created/modified — review the structure.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="challenge-box">
+    <div class="challenge-box__title">🏆 Extra Credit Challenge</div>
+    <div class="challenge-box__body">
+      <p>After the basic app works, use Agent Mode to add these features in a single prompt:</p>
+      <ul style="margin-top:8px;padding-left:20px">
+        <li>Drag-and-drop reordering of todos</li>
+        <li>Due dates with a date picker</li>
+        <li>Priority levels (Low/Medium/High) with color indicators</li>
+        <li>Search/filter by text</li>
+        <li>Export todos as JSON file download</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script src="../app.js"></script>
+</body>
+</html>

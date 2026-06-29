@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 11: Copilot CLI — Copilot Mastery</title>
+<link rel="stylesheet" href="../styles.css">
+<style>body{background:var(--bg-primary)}.lab-page{max-width:900px;margin:0 auto;padding:40px 24px 80px}.lab-page__back{display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);font-size:.875rem;margin-bottom:32px;text-decoration:none}.lab-page__back:hover{color:var(--accent-blue)}.lab-page__badge-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.lab-page__title{font-family:var(--font-display);font-size:2rem;font-weight:800;margin-bottom:12px}.lab-page__subtitle{color:var(--text-secondary);font-size:1rem;margin-bottom:32px;line-height:1.7}.lab-section{margin-bottom:40px}.lab-section__title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border-glass)}.step{margin-bottom:24px;padding:20px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md)}.step__number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(88,166,255,.15);color:var(--accent-blue);font-weight:700;font-size:.8125rem;margin-right:10px}.step__title{font-weight:700;font-size:1rem;margin-bottom:10px;display:flex;align-items:center}.step__body{color:var(--text-secondary);font-size:.875rem;line-height:1.7}.step__body code{background:rgba(110,118,129,.15);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:.8125rem}.step__body ol,.step__body ul{padding-left:20px;margin:8px 0}.step__body li{margin-bottom:6px}.objectives-list{list-style:none;padding:0}.objectives-list li{padding:8px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.objectives-list li::before{content:'✓';color:var(--accent-green);font-weight:700}.prereq-list{list-style:none;padding:0}.prereq-list li{padding:6px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.prereq-list li::before{content:'•';color:var(--accent-purple);font-weight:700}.expected-output{background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.expected-output__label{font-weight:700;color:var(--accent-green);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.tip-box{background:rgba(88,166,255,.06);border:1px solid rgba(88,166,255,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.tip-box__label{font-weight:700;color:var(--accent-blue);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.warning-box{background:rgba(210,153,34,.06);border:1px solid rgba(210,153,34,.25);border-radius:var(--radius-md);padding:16px;margin:12px 0}.warning-box__label{font-weight:700;color:#d29922;font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.challenge-box{background:rgba(188,140,255,.06);border:1px solid rgba(188,140,255,.15);border-radius:var(--radius-md);padding:20px;margin-top:32px}.challenge-box__title{font-family:var(--font-display);font-weight:700;color:var(--accent-purple);margin-bottom:8px}.challenge-box__body{font-size:.875rem;color:var(--text-secondary);line-height:1.7}.nav-bottom{display:flex;justify-content:space-between;margin-top:48px;padding-top:24px;border-top:1px solid var(--border-glass)}.nav-bottom a{color:var(--accent-blue);text-decoration:none;font-size:.875rem}.nav-bottom a:hover{text-decoration:underline}</style>
+</head>
+<body>
+<div class="lab-page">
+  <a href="../index.html" class="lab-page__back">← Back to Course</a>
+  <div class="lab-page__badge-row"><span class="badge badge--beginner">Beginner</span><span class="badge badge--time">⏱ 20 minutes</span></div>
+
+  <h1 class="lab-page__title">Lab 11: Copilot in the Command Line</h1>
+  <p class="lab-page__subtitle">Master GitHub Copilot CLI to translate natural language into shell commands, explain complex commands, and supercharge your terminal workflow.</p>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🎯 Objectives</h2>
+    <ul class="objectives-list">
+      <li>Install and configure the GitHub Copilot CLI extension</li>
+      <li>Use <code>gh copilot suggest</code> to generate shell commands from plain English</li>
+      <li>Use <code>gh copilot explain</code> to understand complex commands</li>
+      <li>Build practical workflows with AI-generated terminal commands</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📋 Prerequisites</h2>
+    <ul class="prereq-list">
+      <li>GitHub CLI (<code>gh</code>) installed and authenticated</li>
+      <li>An active GitHub Copilot subscription</li>
+      <li>A terminal (PowerShell, Bash, or Zsh)</li>
+    </ul>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="lab-section">
+    <h2 class="lab-section__title">🚀 Steps</h2>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">1</span> Install the Copilot CLI Extension</div>
+      <div class="step__body">
+        <p>Open your terminal and install the Copilot extension for GitHub CLI:</p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Terminal</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code>gh extension install github/gh-copilot</code></pre>
+        </div>
+        <p>Verify the installation:</p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Terminal</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code>gh copilot --help</code></pre>
+        </div>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Output</div>
+          <pre style="margin:0;font-size:.8125rem;color:var(--text-secondary)">Your AI command line copilot.
+
+Usage:
+  copilot [command]
+
+Available Commands:
+  explain     Explain a command
+  suggest     Suggest a command</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">2</span> Generate Commands with <code>gh copilot suggest</code></div>
+      <div class="step__body">
+        <p>The <code>suggest</code> command translates natural language into shell commands. It supports three command types:</p>
+        <ul>
+          <li><strong>generic shell command</strong> — general OS commands</li>
+          <li><strong>gh command</strong> — GitHub CLI-specific commands</li>
+          <li><strong>git command</strong> — Git version control commands</li>
+        </ul>
+        <p>Try these exercises one at a time:</p>
+
+        <h4 style="color:var(--accent-blue);margin:16px 0 8px">Exercise 2a: Find Large Files</h4>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Terminal</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code>gh copilot suggest "Find all files larger than 100MB in the current directory recursively"</code></pre>
+        </div>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Suggestion</div>
+          <pre style="margin:0;font-size:.8125rem;color:var(--text-secondary)">find . -type f -size +100M</pre>
+        </div>
+
+        <h4 style="color:var(--accent-blue);margin:16px 0 8px">Exercise 2b: Disk Usage Analysis</h4>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Terminal</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code>gh copilot suggest "Show disk usage of all subdirectories sorted by size in human readable format"</code></pre>
+        </div>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Suggestion</div>
+          <pre style="margin:0;font-size:.8125rem;color:var(--text-secondary)">du -h --max-depth=1 | sort -hr</pre>
+        </div>
+
+        <h4 style="color:var(--accent-blue);margin:16px 0 8px">Exercise 2c: Kill a Process on a Port</h4>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Terminal</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code>gh copilot suggest "Find and kill the process running on port 3000"</code></pre>
+        </div>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Suggestion (Linux/macOS)</div>
+          <pre style="margin:0;font-size:.8125rem;color:var(--text-secondary)">lsof -ti:3000 | xargs kill -9</pre>
+        </div>
+
+        <h4 style="color:var(--accent-blue);margin:16px 0 8px">Exercise 2d: Archive a Directory</h4>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Terminal</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code>gh copilot suggest "Create a tar.gz archive of the src directory excluding node_modules"</code></pre>
+        </div>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Suggestion</div>
+          <pre style="margin:0;font-size:.8125rem;color:var(--text-secondary)">tar -czf src.tar.gz --exclude='node_modules' src/</pre>
+        </div>
+
+        <h4 style="color:var(--accent-blue);margin:16px 0 8px">Exercise 2e: Git History Visualization</h4>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Terminal</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code>gh copilot suggest "Show git log with a graph view, one line per commit, for the last 20 commits"</code></pre>
+        </div>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Suggestion</div>
+          <pre style="margin:0;font-size:.8125rem;color:var(--text-secondary)">git log --oneline --graph --decorate -n 20</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">3</span> Understand Commands with <code>gh copilot explain</code></div>
+      <div class="step__body">
+        <p>The <code>explain</code> command breaks down complex commands into plain English. Try explaining these real-world commands:</p>
+
+        <h4 style="color:var(--accent-blue);margin:16px 0 8px">Exercise 3a: Explain a find + grep pipeline</h4>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Terminal</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code>gh copilot explain "find . -name '*.js' -not -path './node_modules/*' | xargs grep -l 'TODO'"</code></pre>
+        </div>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Explanation</div>
+          <pre style="margin:0;font-size:.8125rem;color:var(--text-secondary);white-space:pre-wrap">This command searches for JavaScript files containing TODO comments:
+• find . -name '*.js'  →  Find all files ending in .js starting from current directory
+• -not -path './node_modules/*'  →  Exclude the node_modules directory
+• | xargs grep -l 'TODO'  →  Pipe the filenames to grep, which lists only files containing "TODO"</pre>
+        </div>
+
+        <h4 style="color:var(--accent-blue);margin:16px 0 8px">Exercise 3b: Explain an awk command</h4>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Terminal</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code>gh copilot explain "awk -F',' '{sum+=$3; count++} END {printf \"Average: %.2f\n\", sum/count}' data.csv"</code></pre>
+        </div>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Explanation</div>
+          <pre style="margin:0;font-size:.8125rem;color:var(--text-secondary);white-space:pre-wrap">This command calculates the average of the 3rd column in a CSV file:
+• -F','  →  Use comma as the field separator
+• {sum+=$3; count++}  →  For each row, add the 3rd field to sum and increment counter
+• END {printf "Average: %.2f\n", sum/count}  →  After processing all rows, print the average</pre>
+        </div>
+
+        <h4 style="color:var(--accent-blue);margin:16px 0 8px">Exercise 3c: Explain a curl + jq pipeline</h4>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Terminal</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code>gh copilot explain "curl -s https://api.github.com/users/octocat/repos | jq '[.[] | {name: .name, stars: .stargazers_count}] | sort_by(.stars) | reverse | .[0:5]'"</code></pre>
+        </div>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected Explanation</div>
+          <pre style="margin:0;font-size:.8125rem;color:var(--text-secondary);white-space:pre-wrap">This command fetches GitHub repositories and shows the top 5 by stars:
+• curl -s  →  Silently fetch the JSON response from GitHub's API
+• jq '[.[] | {name, stars}]'  →  Extract name and star count from each repo
+• sort_by(.stars) | reverse  →  Sort by stars in descending order
+• .[0:5]  →  Take only the first 5 results</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">4</span> Practical Workflow: System Monitoring Script</div>
+      <div class="step__body">
+        <p>Use Copilot CLI to build a monitoring script step by step. Ask for each command individually:</p>
+
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Terminal — Ask each one</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="cm"># Ask Copilot for each of these commands:</span>
+gh copilot suggest "Show current CPU usage percentage"
+gh copilot suggest "Show memory usage in human readable format"
+gh copilot suggest "List the top 5 processes by memory usage"
+gh copilot suggest "Show all listening network ports"
+gh copilot suggest "Check if a website is reachable and show response time"</code></pre>
+        </div>
+
+        <p>Combine the suggestions into a monitoring script:</p>
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">monitor.sh — Assembled from Copilot suggestions</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="cm">#!/bin/bash</span>
+<span class="cm"># System Monitor Script — built with GitHub Copilot CLI</span>
+
+<span class="kw">echo</span> <span class="str">"===== System Monitor Report ====="</span>
+<span class="kw">echo</span> <span class="str">"Date: $(date)"</span>
+<span class="kw">echo</span> <span class="str">""</span>
+
+<span class="kw">echo</span> <span class="str">"--- CPU Usage ---"</span>
+top -bn1 | grep <span class="str">"Cpu(s)"</span> | awk <span class="str">'{print "Usage: " $2 "%"}'</span>
+<span class="kw">echo</span> <span class="str">""</span>
+
+<span class="kw">echo</span> <span class="str">"--- Memory Usage ---"</span>
+free -h | awk <span class="str">'/^Mem:/ {print "Total: "$2, "Used: "$3, "Free: "$4}'</span>
+<span class="kw">echo</span> <span class="str">""</span>
+
+<span class="kw">echo</span> <span class="str">"--- Top 5 Processes by Memory ---"</span>
+ps aux --sort=-%mem | head -6
+<span class="kw">echo</span> <span class="str">""</span>
+
+<span class="kw">echo</span> <span class="str">"--- Listening Ports ---"</span>
+ss -tlnp 2>/dev/null || netstat -tlnp 2>/dev/null
+<span class="kw">echo</span> <span class="str">""</span>
+
+<span class="kw">echo</span> <span class="str">"--- Website Health Check ---"</span>
+<span class="kw">for</span> site <span class="kw">in</span> google.com github.com; <span class="kw">do</span>
+  response_time=$(curl -o /dev/null -s -w <span class="str">"%{time_total}"</span> https://$site)
+  <span class="kw">echo</span> <span class="str">"$site: ${response_time}s"</span>
+<span class="kw">done</span>
+
+<span class="kw">echo</span> <span class="str">""</span>
+<span class="kw">echo</span> <span class="str">"===== Report Complete ====="</span></code></pre>
+        </div>
+
+        <div class="tip-box">
+          <div class="tip-box__label">💡 Tip</div>
+          <p style="margin:0;font-size:.875rem;color:var(--text-secondary)">When Copilot suggests a command, you can choose to <strong>Run</strong>, <strong>Copy</strong>, or <strong>Revise</strong> it. Always review commands before running them, especially those with <code>rm</code>, <code>kill</code>, or <code>sudo</code>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step">
+      <div class="step__title"><span class="step__number">5</span> GitHub CLI Specific Suggestions</div>
+      <div class="step__body">
+        <p>Copilot also excels at generating <code>gh</code> commands for GitHub operations:</p>
+
+        <div class="code-block">
+          <div class="code-block__header"><div class="code-block__dots"><span class="code-block__dot code-block__dot--red"></span><span class="code-block__dot code-block__dot--yellow"></span><span class="code-block__dot code-block__dot--green"></span></div><span class="code-block__lang">Terminal</span><button class="code-block__copy" onclick="copyCode(this)">⧉ Copy</button></div>
+          <pre><code><span class="cm"># Create a PR with title and body</span>
+gh copilot suggest "Create a pull request with title 'Fix login bug' and assign it to me"
+
+<span class="cm"># List open issues with a label</span>
+gh copilot suggest "List all open issues labeled as 'bug' in this repo"
+
+<span class="cm"># View workflow runs</span>
+gh copilot suggest "Show the last 5 GitHub Actions workflow runs and their status"
+
+<span class="cm"># Clone and setup</span>
+gh copilot suggest "Fork a repo and clone my fork locally"</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Challenge -->
+  <div class="challenge-box">
+    <div class="challenge-box__title">🏆 Challenge Extension</div>
+    <div class="challenge-box__body">
+      <p>Chain multiple Copilot CLI suggestions to build a <strong>deployment script</strong> that:</p>
+      <ol>
+        <li>Runs tests and exits if they fail</li>
+        <li>Builds the project</li>
+        <li>Creates a Git tag with the current version</li>
+        <li>Pushes the tag to the remote</li>
+        <li>Creates a GitHub release with auto-generated release notes</li>
+      </ol>
+      <p>Use <code>gh copilot suggest</code> for each step, then assemble them into a single <code>deploy.sh</code> script.</p>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="nav-bottom">
+    <a href="lab10.html">← Lab 10: Security Audit</a>
+    <a href="lab12.html">Lab 12: Multi-Language Challenge →</a>
+  </div>
+</div>
+
+<script>
+function copyCode(btn) {
+  const code = btn.closest('.code-block').querySelector('code');
+  navigator.clipboard.writeText(code.textContent).then(() => {
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = '⧉ Copy', 2000);
+  });
+}
+</script>
+</body>
+</html>

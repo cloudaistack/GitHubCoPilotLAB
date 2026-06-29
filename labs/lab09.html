@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 9: Custom Instructions Lab — Copilot Mastery</title>
+<link rel="stylesheet" href="../styles.css">
+<style>body{background:var(--bg-primary)}.lab-page{max-width:900px;margin:0 auto;padding:40px 24px 80px}.lab-page__back{display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);font-size:.875rem;margin-bottom:32px;text-decoration:none}.lab-page__back:hover{color:var(--accent-blue)}.lab-page__badge-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.lab-page__title{font-family:var(--font-display);font-size:2rem;font-weight:800;margin-bottom:12px}.lab-page__subtitle{color:var(--text-secondary);font-size:1rem;margin-bottom:32px;line-height:1.7}.lab-section{margin-bottom:40px}.lab-section__title{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border-glass)}.step{margin-bottom:24px;padding:20px;background:var(--bg-card);border:1px solid var(--border-glass);border-radius:var(--radius-md)}.step__number{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(88,166,255,.15);color:var(--accent-blue);font-weight:700;font-size:.8125rem;margin-right:10px}.step__title{font-weight:700;font-size:1rem;margin-bottom:10px;display:flex;align-items:center}.step__body{color:var(--text-secondary);font-size:.875rem;line-height:1.7}.step__body code{background:rgba(110,118,129,.15);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:.8125rem}.step__body ol,.step__body ul{padding-left:20px;margin:8px 0}.step__body li{margin-bottom:6px}.objectives-list{list-style:none}.objectives-list li{padding:8px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.objectives-list li::before{content:'✓';color:var(--accent-green);font-weight:700}.prereq-list{list-style:none}.prereq-list li{padding:6px 0;font-size:.875rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px}.prereq-list li::before{content:'•';color:var(--accent-purple);font-weight:700}.expected-output{background:rgba(63,185,80,.06);border:1px solid rgba(63,185,80,.15);border-radius:var(--radius-md);padding:16px;margin:12px 0}.expected-output__label{font-weight:700;color:var(--accent-green);font-size:.8125rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}.challenge-box{background:rgba(188,140,255,.06);border:1px solid rgba(188,140,255,.15);border-radius:var(--radius-md);padding:20px;margin-top:32px}.challenge-box__title{font-family:var(--font-display);font-weight:700;color:var(--accent-purple);margin-bottom:8px}.challenge-box__body{font-size:.875rem;color:var(--text-secondary);line-height:1.7}</style>
+</head>
+<body>
+<div class="lab-page">
+  <a href="../index.html" class="lab-page__back">← Back to Course</a>
+  <div class="lab-page__badge-row"><span class="badge badge--advanced">Advanced</span><span class="badge badge--time">⏱ 35 minutes</span></div>
+
+  <h1 class="lab-page__title">Lab 9: Custom Instructions Lab</h1>
+  <p class="lab-page__subtitle">Configure Copilot for a team project with custom instructions, reusable prompt templates, and validation that the AI follows your coding standards consistently.</p>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">🎯 Objectives</h2>
+    <ul class="objectives-list">
+      <li>Create a <code>.github/copilot-instructions.md</code> file</li>
+      <li>Write reusable prompt templates in <code>.github/prompts/</code></li>
+      <li>Validate Copilot follows your custom instructions</li>
+      <li>Understand how instructions affect code generation</li>
+    </ul>
+  </div>
+
+  <div class="lab-section">
+    <h2 class="lab-section__title">📝 Step-by-Step Instructions</h2>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">1</span>Create the Project Structure</div>
+      <div class="step__body">
+        <ol>
+          <li>Create a folder <code>team-project</code> and open it in VS Code</li>
+          <li>Initialize: <code>npm init -y</code> and install TypeScript</li>
+          <li>Create the folder structure: <code>.github/</code>, <code>.github/prompts/</code>, <code>src/</code></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">2</span>Write Custom Instructions</div>
+      <div class="step__body">
+        <p>Create <code>.github/copilot-instructions.md</code> with these team standards:</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">.github/copilot-instructions.md</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code><span class="cm"># Copilot Instructions for Team Project</span>
+
+## Language & Framework
+- Use TypeScript with strict mode enabled
+- Use functional components with React hooks (no class components)
+- Use Zod for runtime validation, never manual type checking
+- Use date-fns for date manipulation, never raw Date methods
+
+## Code Style
+- Prefer `const` over `let`. Never use `var`
+- Use arrow functions for callbacks and small utilities
+- Use named exports, not default exports
+- Maximum function length: 30 lines. Extract helpers if longer
+- All functions must have explicit return types
+
+## Naming Conventions
+- Files: kebab-case (e.g., `user-service.ts`)
+- Functions/variables: camelCase
+- Types/Interfaces: PascalCase, prefix interfaces with 'I' (e.g., `IUserProfile`)
+- Constants: UPPER_SNAKE_CASE
+- Boolean variables: prefix with is/has/should (e.g., `isActive`)
+
+## Error Handling
+- Always use custom error classes extending BaseError
+- Never throw plain strings or generic Error
+- All async functions must have try/catch with proper error logging
+- Use Result pattern (Ok/Err) for expected failure cases
+
+## Testing
+- Use Vitest for testing
+- Test file naming: `*.test.ts` co-located with source
+- Minimum 80% branch coverage
+- Use factory functions for test data, not inline objects
+
+## Documentation
+- All public functions must have JSDoc with @param, @returns, @throws
+- Include usage examples in JSDoc for complex functions
+
+## Security
+- Never log sensitive data (passwords, tokens, PII)
+- Always validate and sanitize user input
+- Use parameterized queries for database operations</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">3</span>Create Prompt Templates</div>
+      <div class="step__body">
+        <p>Create <code>.github/prompts/create-api-endpoint.prompt.md</code>:</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">.github/prompts/create-api-endpoint.prompt.md</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code><span class="cm"># Create API Endpoint</span>
+
+Create a new API endpoint with the following specification:
+
+## Endpoint: {{METHOD}} {{PATH}}
+
+### Requirements:
+- Create the route handler in `src/routes/`
+- Create the service function in `src/services/`
+- Create Zod validation schema in `src/schemas/`
+- Follow team coding standards from copilot-instructions.md
+- Include error handling with custom error classes
+- Add JSDoc documentation
+- Create a test file with at least 5 test cases
+
+### Input: {{INPUT_SCHEMA}}
+### Output: {{OUTPUT_SCHEMA}}
+### Business Logic: {{DESCRIPTION}}</code></pre>
+        </div>
+        <p>Create another template <code>.github/prompts/create-data-model.prompt.md</code>:</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">.github/prompts/create-data-model.prompt.md</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code><span class="cm"># Create Data Model</span>
+
+Create a TypeScript data model with the following:
+
+## Model: {{MODEL_NAME}}
+
+### Fields: {{FIELDS}}
+
+### Requirements:
+- TypeScript interface with 'I' prefix
+- Zod validation schema
+- Factory function for creating instances with defaults
+- Serialization/deserialization methods
+- Test factory function for generating test data
+- Follow all team coding standards</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">4</span>Test the Instructions</div>
+      <div class="step__body">
+        <p>Create <code>src/services/user-service.ts</code> and ask Copilot to generate a user service. Verify it follows your custom instructions:</p>
+        <ul>
+          <li>✅ Uses TypeScript strict types?</li>
+          <li>✅ Named exports (not default)?</li>
+          <li>✅ Arrow functions for callbacks?</li>
+          <li>✅ Explicit return types?</li>
+          <li>✅ Custom error classes?</li>
+          <li>✅ JSDoc on all public functions?</li>
+          <li>✅ Boolean vars prefixed with is/has?</li>
+          <li>✅ Zod for validation (not manual)?</li>
+        </ul>
+        <div class="expected-output">
+          <div class="expected-output__label">✅ Expected</div>
+          <div style="font-size:.875rem;color:var(--text-secondary)">Copilot should generate code that follows most or all of your custom instructions. If it misses some, refine your instructions file and try again.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step__title"><span class="step__number">5</span>Use Prompt Templates</div>
+      <div class="step__body">
+        <p>In Copilot Chat, reference your prompt template:</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__lang">Copilot Chat</span><button class="code-block__copy">⧉ Copy</button></div>
+          <pre><code>Use #prompt:create-api-endpoint with:
+- METHOD: POST
+- PATH: /api/users
+- INPUT_SCHEMA: { name: string, email: string, role: 'admin' | 'user' }
+- OUTPUT_SCHEMA: { id: string, name: string, email: string, role: string, createdAt: string }
+- DESCRIPTION: Create a new user with email uniqueness validation</code></pre>
+        </div>
+        <p>Copilot should generate all the files specified in the template: route handler, service, schema, and tests.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="challenge-box">
+    <div class="challenge-box__title">🏆 Extra Credit Challenge</div>
+    <div class="challenge-box__body">
+      <p>Create additional prompt templates for: database migration creation, React component scaffolding, and error class definition. Share them with your team by committing the <code>.github/prompts/</code> folder.</p>
+    </div>
+  </div>
+</div>
+<script src="../app.js"></script>
+</body>
+</html>
