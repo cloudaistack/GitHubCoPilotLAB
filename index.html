@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Copilot Mastery — Complete Training Course</title>
+  <meta name="description" content="Master GitHub Copilot from fundamentals to advanced agent mode. 10 modules, 15 hands-on labs, premium learning experience.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="header" id="top">
+  <a href="#top" class="header__logo">
+    <span class="header__logo-icon">🤖</span>
+    <span>Copilot Mastery</span>
+  </a>
+
+  <nav class="header__nav">
+    <a href="#modules" class="header__nav-link active">Modules</a>
+    <a href="#labs-overview" class="header__nav-link">Labs</a>
+    <a href="#pricing-info" class="header__nav-link">Plans</a>
+    <a href="#resources" class="header__nav-link">Resources</a>
+  </nav>
+
+  <div class="header__search">
+    <span class="header__search-icon">🔍</span>
+    <input type="text" class="header__search-input" placeholder="Search course…" aria-label="Search course content">
+    <span class="header__search-shortcut">Ctrl+K</span>
+    <div class="search-results"></div>
+  </div>
+
+  <button class="header__menu-toggle" aria-label="Toggle menu">☰</button>
+  <div class="header__progress" style="width:0%"></div>
+</header>
+
+<!-- ========== SIDEBAR ========== -->
+<aside class="sidebar">
+  <div class="sidebar__section-title">Course Modules</div>
+
+  <a class="sidebar__item" data-section="module-1">
+    <span class="sidebar__item-number">01</span> Introduction to Copilot
+  </a>
+  <a class="sidebar__item" data-section="module-2">
+    <span class="sidebar__item-number">02</span> Getting Started
+  </a>
+  <a class="sidebar__item" data-section="module-3">
+    <span class="sidebar__item-number">03</span> Chat Fundamentals
+  </a>
+  <a class="sidebar__item" data-section="module-4">
+    <span class="sidebar__item-number">04</span> Slash Commands
+  </a>
+  <a class="sidebar__item" data-section="module-5">
+    <span class="sidebar__item-number">05</span> Prompt Engineering
+  </a>
+  <a class="sidebar__item" data-section="module-6">
+    <span class="sidebar__item-number">06</span> Agent Mode
+  </a>
+  <a class="sidebar__item" data-section="module-7">
+    <span class="sidebar__item-number">07</span> Testing with Copilot
+  </a>
+  <a class="sidebar__item" data-section="module-8">
+    <span class="sidebar__item-number">08</span> Docs &amp; Code Review
+  </a>
+  <a class="sidebar__item" data-section="module-9">
+    <span class="sidebar__item-number">09</span> Advanced Features
+  </a>
+  <a class="sidebar__item" data-section="module-10">
+    <span class="sidebar__item-number">10</span> Enterprise Practices
+  </a>
+
+  <div class="sidebar__section-title" style="margin-top:24px">Sections</div>
+  <a class="sidebar__item" data-section="labs-overview">
+    <span class="sidebar__item-number">🧪</span> All Labs
+  </a>
+  <a class="sidebar__item" data-section="pricing-info">
+    <span class="sidebar__item-number">💳</span> Plans &amp; Pricing
+  </a>
+  <a class="sidebar__item" data-section="resources">
+    <span class="sidebar__item-number">📚</span> Resources
+  </a>
+
+  <div class="sidebar__progress-section">
+    <div class="sidebar__progress-label">
+      <span>Progress</span>
+      <span><span class="sidebar__progress-pct">0%</span></span>
+    </div>
+    <div class="sidebar__progress-bar">
+      <div class="sidebar__progress-fill" style="width:0%"></div>
+    </div>
+    <div style="font-size:0.7rem;color:var(--text-tertiary);margin-top:6px">
+      <span class="sidebar__progress-completed">0 / 0</span> topics completed
+    </div>
+  </div>
+</aside>
+
+<!-- ========== MAIN CONTENT ========== -->
+<main class="main">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <span class="hero__badge">
+      <span class="hero__badge-dot"></span>
+      Updated for 2026 — Agent Mode &amp; MCP Included
+    </span>
+
+    <h1 class="hero__title">
+      Master <span class="hero__title-gradient">GitHub Copilot</span><br>
+      From Zero to AI-Powered Developer
+    </h1>
+
+    <p class="hero__subtitle">
+      The most comprehensive, hands-on training course for GitHub Copilot.
+      10 in-depth modules, 15 real-world labs, and everything you need to 10× your development workflow.
+    </p>
+
+    <div class="hero__stats">
+      <div class="hero__stat">
+        <div class="hero__stat-value"><span class="accent-blue">10</span></div>
+        <div class="hero__stat-label">Modules</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat-value"><span class="accent-purple">15</span></div>
+        <div class="hero__stat-label">Hands-on Labs</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat-value"><span class="accent-green">50+</span></div>
+        <div class="hero__stat-label">Code Examples</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat-value">20<span class="accent-blue">h</span></div>
+        <div class="hero__stat-label">Content</div>
+      </div>
+    </div>
+
+    <div class="hero__cta-group">
+      <a href="#module-1" class="btn btn--primary">Start Learning →</a>
+      <a href="#labs-overview" class="btn btn--secondary">Browse Labs</a>
+    </div>
+  </section>
+
+  <!-- ===== MODULE 1 ===== -->
+  <section class="section" id="module-1">
+    <div class="modules-grid">
+      <div class="module-card animate-on-scroll">
+        <div class="module-card__header">
+          <div class="module-card__number module-card__number--blue">01</div>
+          <div class="module-card__info">
+            <h2 class="module-card__title">Introduction to GitHub Copilot</h2>
+            <div class="module-card__meta">
+              <span class="module-card__meta-item">📖 6 Topics</span>
+              <span class="module-card__meta-item">⏱ 45 min</span>
+              <span class="module-card__meta-item">🟢 Beginner</span>
+            </div>
+            <p class="module-card__description">Understand what GitHub Copilot is, how it works under the hood, its evolution from autocomplete to agentic AI, and the different plans available.</p>
+          </div>
+          <span class="module-card__toggle">▾</span>
+        </div>
+        <div class="module-card__content">
+          <div class="module-card__content-inner">
+            <ul class="topics-list">
+              <li class="topics-list__item">
+                <input type="checkbox" id="t1-1">
+                <label for="t1-1"><strong>What is GitHub Copilot?</strong> — GitHub Copilot is an AI-powered coding assistant developed by GitHub in collaboration with OpenAI. It integrates directly into your editor and provides real-time code suggestions, chat-based assistance, and autonomous coding capabilities. Copilot is trained on billions of lines of public code and uses large language models (LLMs) to understand context and generate relevant code.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t1-2">
+                <label for="t1-2"><strong>AI-Powered Pair Programming</strong> — Think of Copilot as a tireless pair programmer that never judges your questions. It reads your code context — open files, comments, function names, imports — and suggests completions that fit naturally. Unlike traditional autocomplete that matches syntax patterns, Copilot understands <em>intent</em> and can generate entire functions, algorithms, and even test suites from a single comment.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t1-3">
+                <label for="t1-3"><strong>How It Works Under the Hood</strong> — When you type code, your editor sends context (surrounding code, file name, language, open tabs) to GitHub's cloud service. This context is processed by an LLM which generates completions. The model considers the programming language, coding patterns, your project structure, and natural language comments to produce relevant suggestions. All processing happens server-side; no model runs locally.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t1-4">
+                <label for="t1-4"><strong>Copilot's Evolution</strong> — Copilot has evolved dramatically: <em>Phase 1 (2021)</em>: Ghost text autocomplete in VS Code. <em>Phase 2 (2023)</em>: Copilot Chat for conversational coding. <em>Phase 3 (2024)</em>: Multi-model support (GPT-4o, Claude, Gemini). <em>Phase 4 (2025-26)</em>: Agent Mode for autonomous multi-file editing, MCP integration, and Copilot Workspace for planning entire features from issues.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t1-5">
+                <label for="t1-5"><strong>Supported Languages &amp; Editors</strong> — Copilot works with virtually every programming language but excels with Python, JavaScript/TypeScript, Java, C#, Go, Ruby, C/C++, PHP, and Rust. It's available in VS Code, Visual Studio, JetBrains IDEs (IntelliJ, PyCharm, WebStorm, etc.), Neovim, Xcode, and GitHub.com directly.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t1-6">
+                <label for="t1-6"><strong>Key Benefits &amp; Limitations</strong> — Benefits include 55% faster task completion (GitHub research), reduced context switching, learning new APIs faster, and generating boilerplate. Limitations: Copilot can produce incorrect or insecure code, may suggest copyrighted patterns, and works best with clear context. Always review suggestions critically.</label>
+              </li>
+            </ul>
+
+            <!-- Lab Card -->
+            <div class="lab-card">
+              <div class="lab-card__header">
+                <div class="lab-card__title">
+                  <span class="lab-card__title-icon">🧪</span>
+                  Lab 1: Setting Up Your Environment
+                </div>
+                <div class="lab-card__badges">
+                  <span class="badge badge--beginner">Beginner</span>
+                  <span class="badge badge--time">⏱ 15 min</span>
+                </div>
+              </div>
+              <p class="lab-card__description">Install VS Code, add the GitHub Copilot extension, authenticate with your GitHub account, and verify everything works with your first AI-powered suggestion.</p>
+              <a href="labs/lab01.html" class="lab-card__btn" target="_blank">Open Lab →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODULE 2 ===== -->
+  <section class="section" id="module-2">
+    <div class="modules-grid">
+      <div class="module-card animate-on-scroll">
+        <div class="module-card__header">
+          <div class="module-card__number module-card__number--purple">02</div>
+          <div class="module-card__info">
+            <h2 class="module-card__title">Getting Started — Your First Copilot Experience</h2>
+            <div class="module-card__meta">
+              <span class="module-card__meta-item">📖 5 Topics</span>
+              <span class="module-card__meta-item">⏱ 60 min</span>
+              <span class="module-card__meta-item">🟢 Beginner</span>
+            </div>
+            <p class="module-card__description">Learn the fundamentals of working with Copilot's ghost text suggestions, tab completion, and how Copilot uses your code context to generate relevant completions.</p>
+          </div>
+          <span class="module-card__toggle">▾</span>
+        </div>
+        <div class="module-card__content">
+          <div class="module-card__content-inner">
+            <ul class="topics-list">
+              <li class="topics-list__item">
+                <input type="checkbox" id="t2-1">
+                <label for="t2-1"><strong>Understanding Ghost Text</strong> — Ghost text appears as dimmed, inline suggestions as you type. These are Copilot's real-time predictions for what you might write next. Ghost text can range from a single word to entire multi-line functions. It appears automatically after a brief pause in typing and updates as your context changes.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t2-2">
+                <label for="t2-2"><strong>Accepting &amp; Rejecting Suggestions</strong> — Press <code>Tab</code> to accept a full suggestion. Press <code>Esc</code> to dismiss it. Use <code>Ctrl+→</code> (Cmd+→ on Mac) to accept word-by-word, giving you granular control. To see alternative suggestions, press <code>Alt+]</code> for next and <code>Alt+[</code> for previous. Press <code>Ctrl+Enter</code> to open the Copilot completions panel showing up to 10 alternatives.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t2-3">
+                <label for="t2-3"><strong>Tab Completion Best Practices</strong> — Write descriptive function names and Copilot will infer the implementation. Add a comment describing what you want before writing code. Copilot works best when you establish patterns — write one example function and it will follow the pattern for subsequent ones. Keep related code in the same file for better context.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t2-4">
+                <label for="t2-4"><strong>How Copilot Reads Context</strong> — Copilot analyzes: (1) the current file you're editing, (2) other open tabs in your editor, (3) file names and paths, (4) import statements, (5) comments and docstrings, (6) variable and function names. The more descriptive your code is, the better suggestions you'll receive. Naming a file <code>user_authentication.py</code> gives Copilot more context than <code>utils.py</code>.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t2-5">
+                <label for="t2-5"><strong>Common Patterns for Great Suggestions</strong> — Use comment-driven development: write a comment, then let Copilot generate the code. Define type hints and interfaces first. Write one example in a series and let Copilot continue the pattern. Use descriptive variable names. Keep your code well-organized and your functions focused.</label>
+              </li>
+            </ul>
+
+            <div class="callout callout--tip">
+              <span class="callout__icon">💡</span>
+              <div><strong>Pro Tip:</strong> If Copilot's suggestion isn't quite right, don't reject it entirely. Accept what's correct with word-by-word acceptance (Ctrl+→), then modify the rest manually. This is often faster than writing from scratch.</div>
+            </div>
+
+            <div class="lab-card">
+              <div class="lab-card__header">
+                <div class="lab-card__title">
+                  <span class="lab-card__title-icon">🧪</span>
+                  Lab 2: Hello Copilot — Build a Calculator
+                </div>
+                <div class="lab-card__badges">
+                  <span class="badge badge--beginner">Beginner</span>
+                  <span class="badge badge--time">⏱ 25 min</span>
+                </div>
+              </div>
+              <p class="lab-card__description">Create a complete Python calculator application by writing function signatures and comments, then letting Copilot generate all the implementation code. Experience the magic of AI-powered coding firsthand.</p>
+              <a href="labs/lab02.html" class="lab-card__btn" target="_blank">Open Lab →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODULE 3 ===== -->
+  <section class="section" id="module-3">
+    <div class="modules-grid">
+      <div class="module-card animate-on-scroll">
+        <div class="module-card__header">
+          <div class="module-card__number module-card__number--green">03</div>
+          <div class="module-card__info">
+            <h2 class="module-card__title">Copilot Chat Fundamentals</h2>
+            <div class="module-card__meta">
+              <span class="module-card__meta-item">📖 5 Topics</span>
+              <span class="module-card__meta-item">⏱ 60 min</span>
+              <span class="module-card__meta-item">🟡 Intermediate</span>
+            </div>
+            <p class="module-card__description">Master Copilot Chat — the conversational interface that lets you ask questions, generate code, debug issues, and get explanations through natural language dialogue.</p>
+          </div>
+          <span class="module-card__toggle">▾</span>
+        </div>
+        <div class="module-card__content">
+          <div class="module-card__content-inner">
+            <ul class="topics-list">
+              <li class="topics-list__item">
+                <input type="checkbox" id="t3-1">
+                <label for="t3-1"><strong>Opening &amp; Using Copilot Chat</strong> — Access the Chat panel via the Copilot icon in the sidebar or press <code>Ctrl+Shift+I</code>. The chat panel supports multi-turn conversations where Copilot remembers previous messages. You can ask it to explain code, generate new code, fix bugs, write tests, and much more. Responses include formatted code blocks you can insert directly into your editor.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t3-2">
+                <label for="t3-2"><strong>Inline Chat (Ctrl+I)</strong> — Press <code>Ctrl+I</code> anywhere in your code to open inline chat. This is perfect for quick edits: select a block of code, press Ctrl+I, and ask Copilot to modify it. The changes appear as a diff you can accept or reject. Inline chat is contextually aware of the code around your cursor, making it ideal for targeted modifications.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t3-3">
+                <label for="t3-3"><strong>Chat Participants</strong> — <code>@workspace</code>: Asks questions about your entire project — find files, understand architecture, search across codebase. <code>@vscode</code>: Get help with VS Code settings, keybindings, extensions, and editor features. <code>@terminal</code>: Get help with terminal commands, explain errors, suggest fixes for failed commands. These participants scope Copilot's context for more relevant answers.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t3-4">
+                <label for="t3-4"><strong>Understanding Chat Context</strong> — Copilot Chat uses several context sources: the currently active file, selected text, recently viewed files, and the conversation history. You can explicitly add context using <code>#file</code> to reference specific files, <code>#selection</code> for selected code, <code>#editor</code> for the visible editor content, and <code>#codebase</code> for project-wide context through embeddings-based search.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t3-5">
+                <label for="t3-5"><strong>Effective Chat Strategies</strong> — Be specific in your requests. Instead of "fix this code," say "fix the null pointer exception in the getUserById function when the user doesn't exist." Provide examples of desired output. Use follow-up messages to refine responses. Start new chat sessions for unrelated tasks to avoid context pollution.</label>
+              </li>
+            </ul>
+
+            <div class="lab-card">
+              <div class="lab-card__header">
+                <div class="lab-card__title">
+                  <span class="lab-card__title-icon">🧪</span>
+                  Lab 3: Chat-Driven Development
+                </div>
+                <div class="lab-card__badges">
+                  <span class="badge badge--intermediate">Intermediate</span>
+                  <span class="badge badge--time">⏱ 35 min</span>
+                </div>
+              </div>
+              <p class="lab-card__description">Build a complete Node.js REST API for a bookstore entirely through conversation with Copilot Chat. You'll use the chat panel, inline chat, and chat participants to create routes, models, and middleware.</p>
+              <a href="labs/lab03.html" class="lab-card__btn" target="_blank">Open Lab →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODULE 4 ===== -->
+  <section class="section" id="module-4">
+    <div class="modules-grid">
+      <div class="module-card animate-on-scroll">
+        <div class="module-card__header">
+          <div class="module-card__number module-card__number--orange">04</div>
+          <div class="module-card__info">
+            <h2 class="module-card__title">Slash Commands Mastery</h2>
+            <div class="module-card__meta">
+              <span class="module-card__meta-item">📖 7 Topics</span>
+              <span class="module-card__meta-item">⏱ 50 min</span>
+              <span class="module-card__meta-item">🟡 Intermediate</span>
+            </div>
+            <p class="module-card__description">Master every slash command available in Copilot Chat. Learn when and how to use /explain, /fix, /tests, /doc, /refactor, and more to supercharge your workflow.</p>
+          </div>
+          <span class="module-card__toggle">▾</span>
+        </div>
+        <div class="module-card__content">
+          <div class="module-card__content-inner">
+            <ul class="topics-list">
+              <li class="topics-list__item">
+                <input type="checkbox" id="t4-1">
+                <label for="t4-1"><strong>/explain — Understanding Code</strong> — Select any code and type <code>/explain</code> in chat. Copilot provides a detailed, line-by-line explanation of what the code does, its purpose, and how it works. Perfect for understanding unfamiliar codebases, reviewing pull requests, or learning new libraries. Tip: Select specific functions rather than entire files for more focused explanations.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t4-2">
+                <label for="t4-2"><strong>/fix — Debugging Code</strong> — When you encounter a bug, select the problematic code and use <code>/fix</code>. Copilot analyzes the code for common issues: off-by-one errors, null references, incorrect logic, missing error handling, and type mismatches. It suggests a corrected version with an explanation of what was wrong. You can also paste error messages for targeted fixes.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t4-3">
+                <label for="t4-3"><strong>/tests — Generating Unit Tests</strong> — Select a function and use <code>/tests</code> to generate comprehensive unit tests. Copilot creates tests covering normal cases, edge cases, error cases, and boundary conditions. It automatically detects your testing framework (Jest, PyTest, JUnit, etc.) and generates tests in the appropriate style with proper imports and assertions.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t4-4">
+                <label for="t4-4"><strong>/doc — Adding Documentation</strong> — Use <code>/doc</code> to generate documentation for your code. For functions, it creates JSDoc, docstrings, or XML docs based on the language. It includes parameter descriptions, return types, examples, and throws/raises documentation. For classes, it documents the purpose, constructor, and public methods.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t4-5">
+                <label for="t4-5"><strong>/refactor — Improving Code Quality</strong> — The <code>/refactor</code> command analyzes your code for improvement opportunities: extracting functions, reducing complexity, applying design patterns, improving naming, and removing duplication. Copilot explains each change and why it improves the code. You can specify goals like "refactor for readability" or "refactor to use async/await."</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t4-6">
+                <label for="t4-6"><strong>/clear — Managing Sessions</strong> — Use <code>/clear</code> to reset the chat conversation history. This is useful when switching between unrelated tasks or when the conversation context has become too cluttered. A fresh context often produces better, more focused suggestions.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t4-7">
+                <label for="t4-7"><strong>Combining Slash Commands</strong> — Powerful workflows combine multiple commands: First <code>/explain</code> to understand unfamiliar code, then <code>/fix</code> to address issues, <code>/refactor</code> to improve it, <code>/doc</code> to document it, and <code>/tests</code> to verify it. This pipeline transforms legacy code into well-tested, documented, maintainable code.</label>
+              </li>
+            </ul>
+
+            <div class="lab-card">
+              <div class="lab-card__header">
+                <div class="lab-card__title">
+                  <span class="lab-card__title-icon">🧪</span>
+                  Lab 4: Slash Command Workout
+                </div>
+                <div class="lab-card__badges">
+                  <span class="badge badge--intermediate">Intermediate</span>
+                  <span class="badge badge--time">⏱ 30 min</span>
+                </div>
+              </div>
+              <p class="lab-card__description">You're given a deliberately messy, buggy JavaScript file. Use every slash command to explain, fix, test, document, and refactor it into clean, production-quality code.</p>
+              <a href="labs/lab04.html" class="lab-card__btn" target="_blank">Open Lab →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODULE 5 ===== -->
+  <section class="section" id="module-5">
+    <div class="modules-grid">
+      <div class="module-card animate-on-scroll">
+        <div class="module-card__header">
+          <div class="module-card__number module-card__number--pink">05</div>
+          <div class="module-card__info">
+            <h2 class="module-card__title">Prompt Engineering for Copilot</h2>
+            <div class="module-card__meta">
+              <span class="module-card__meta-item">📖 6 Topics</span>
+              <span class="module-card__meta-item">⏱ 75 min</span>
+              <span class="module-card__meta-item">🟡 Intermediate</span>
+            </div>
+            <p class="module-card__description">Learn the art of crafting perfect prompts. Understand how comments, naming, context, and structure dramatically improve Copilot's output quality.</p>
+          </div>
+          <span class="module-card__toggle">▾</span>
+        </div>
+        <div class="module-card__content">
+          <div class="module-card__content-inner">
+            <ul class="topics-list">
+              <li class="topics-list__item">
+                <input type="checkbox" id="t5-1">
+                <label for="t5-1"><strong>Writing Effective Prompts</strong> — The quality of Copilot's suggestions is directly proportional to the quality of your prompts. Be specific, provide context, state your constraints, and describe the expected behavior. Instead of <code># sort list</code>, write <code># Sort a list of user objects by last_name ascending, case-insensitive, handling None values by placing them at the end</code>.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t5-2">
+                <label for="t5-2"><strong>Anatomy of a Good Prompt</strong> — A great prompt has four parts: (1) <em>Intent</em> — what you want to achieve, (2) <em>Context</em> — relevant background information, (3) <em>Constraints</em> — requirements and limitations, (4) <em>Examples</em> — sample inputs and outputs. The more of these you include, the better the result. Comments serve as natural prompts in code.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t5-3">
+                <label for="t5-3"><strong>Context Management</strong> — File names act as prompts: <code>email_validator.py</code> tells Copilot the purpose. Imports signal which libraries to use. Type hints define expected shapes. Comments provide natural language context. Opening related files in tabs gives Copilot more context to work with. Structure your project logically for maximum AI assistance.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t5-4">
+                <label for="t5-4"><strong>Few-Shot Prompting</strong> — Provide one or two examples before asking Copilot to generate more. If you write a function to validate email, then start writing a function to validate phone numbers, Copilot will follow the same validation pattern (error types, return format, edge cases). This technique is incredibly powerful for maintaining consistency.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t5-5">
+                <label for="t5-5"><strong>Negative Prompting</strong> — Tell Copilot what NOT to do: <code># Do NOT use recursion, use iterative approach</code>, <code># Do NOT use any external libraries</code>, <code># Do NOT use var, use const and let only</code>. Negative constraints are surprisingly effective at steering suggestions away from unwanted patterns.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t5-6">
+                <label for="t5-6"><strong>Prompt Patterns &amp; Templates</strong> — Develop reusable prompt patterns: "Create a [TYPE] that [DOES WHAT] using [TECHNOLOGY] with [CONSTRAINTS]." For chat: "I have a [LANGUAGE] [COMPONENT] that [CURRENT BEHAVIOR]. I need it to [DESIRED BEHAVIOR]. Here's the relevant code: [CODE]." Consistent patterns lead to consistent results.</label>
+              </li>
+            </ul>
+
+            <div class="lab-card">
+              <div class="lab-card__header">
+                <div class="lab-card__title">
+                  <span class="lab-card__title-icon">🧪</span>
+                  Lab 5: Prompt Engineering Challenge
+                </div>
+                <div class="lab-card__badges">
+                  <span class="badge badge--intermediate">Intermediate</span>
+                  <span class="badge badge--time">⏱ 40 min</span>
+                </div>
+              </div>
+              <p class="lab-card__description">10 prompt challenges of increasing difficulty. Each gives you a coding goal — craft the perfect prompt to get Copilot to generate optimal code. Compare your prompts against expert solutions.</p>
+              <a href="labs/lab05.html" class="lab-card__btn" target="_blank">Open Lab →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODULE 6 ===== -->
+  <section class="section" id="module-6">
+    <div class="modules-grid">
+      <div class="module-card animate-on-scroll">
+        <div class="module-card__header">
+          <div class="module-card__number module-card__number--cyan">06</div>
+          <div class="module-card__info">
+            <h2 class="module-card__title">Agent Mode &amp; Autonomous Workflows</h2>
+            <div class="module-card__meta">
+              <span class="module-card__meta-item">📖 6 Topics</span>
+              <span class="module-card__meta-item">⏱ 90 min</span>
+              <span class="module-card__meta-item">🔴 Advanced</span>
+            </div>
+            <p class="module-card__description">Unlock Copilot's most powerful feature: Agent Mode. Let Copilot autonomously edit multiple files, run terminal commands, and iteratively solve complex problems.</p>
+          </div>
+          <span class="module-card__toggle">▾</span>
+        </div>
+        <div class="module-card__content">
+          <div class="module-card__content-inner">
+            <ul class="topics-list">
+              <li class="topics-list__item">
+                <input type="checkbox" id="t6-1">
+                <label for="t6-1"><strong>What is Agent Mode?</strong> — Agent Mode transforms Copilot from a suggestion engine into an autonomous coding agent. Instead of waiting for you to accept line-by-line suggestions, Agent Mode can plan a multi-step approach, create and edit multiple files, run terminal commands, observe results, and iterate until the task is complete. It's like having a junior developer who can execute tasks independently.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t6-2">
+                <label for="t6-2"><strong>Activating Agent Mode</strong> — In VS Code, open Copilot Chat and switch the mode dropdown from "Ask" or "Edit" to "Agent." You can also start in agent mode by typing your request and selecting the Agent option. Agent mode requires VS Code 1.99+ and a Copilot Pro, Pro+, or Business subscription. The agent icon (sparkle) indicates when Agent Mode is active.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t6-3">
+                <label for="t6-3"><strong>Multi-File Editing</strong> — Agent Mode can create new files, modify existing ones, and reorganize your project structure. It understands file dependencies — if you ask it to add a new API endpoint, it will update the route file, create the controller, add the model, update imports, and even modify configuration files. All changes are shown as diffs you can review before applying.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t6-4">
+                <label for="t6-4"><strong>Terminal Command Execution</strong> — Agent Mode can run terminal commands with your permission. It will install npm packages, run tests, start servers, execute database migrations, and more. Each command requires your approval before executing. The agent reads command output and adapts its approach if something fails — like a developer debugging in real-time.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t6-5">
+                <label for="t6-5"><strong>Iterative Problem Solving</strong> — When Agent Mode encounters errors (failed tests, build errors, runtime exceptions), it automatically attempts to fix them. It reads error messages, identifies the root cause, applies fixes, and re-runs the verification. This feedback loop continues until the task succeeds or it needs your guidance. It's remarkably effective for debugging.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t6-6">
+                <label for="t6-6"><strong>Best Practices for Agent Mode</strong> — Start with clear, well-scoped requests. Break complex tasks into smaller chunks. Review all file changes before accepting. Always verify terminal commands before approving. Use Agent Mode for scaffolding and boilerplate, then refine manually. Keep a Git branch for agent-generated changes so you can easily revert if needed.</label>
+              </li>
+            </ul>
+
+            <div class="callout callout--warning">
+              <span class="callout__icon">⚠️</span>
+              <div><strong>Important:</strong> Agent Mode runs commands on your system. Always review terminal commands before approving them. Never blindly accept commands that modify system files, install unknown packages, or access sensitive data.</div>
+            </div>
+
+            <div class="lab-card">
+              <div class="lab-card__header">
+                <div class="lab-card__title">
+                  <span class="lab-card__title-icon">🧪</span>
+                  Lab 6: Build a Full-Stack App with Agent Mode
+                </div>
+                <div class="lab-card__badges">
+                  <span class="badge badge--advanced">Advanced</span>
+                  <span class="badge badge--time">⏱ 60 min</span>
+                </div>
+              </div>
+              <p class="lab-card__description">Use Agent Mode to build a complete todo application with a React frontend and Express backend from a natural language specification. Experience autonomous multi-file development.</p>
+              <a href="labs/lab06.html" class="lab-card__btn" target="_blank">Open Lab →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODULE 7 ===== -->
+  <section class="section" id="module-7">
+    <div class="modules-grid">
+      <div class="module-card animate-on-scroll">
+        <div class="module-card__header">
+          <div class="module-card__number module-card__number--green">07</div>
+          <div class="module-card__info">
+            <h2 class="module-card__title">Copilot for Testing</h2>
+            <div class="module-card__meta">
+              <span class="module-card__meta-item">📖 5 Topics</span>
+              <span class="module-card__meta-item">⏱ 60 min</span>
+              <span class="module-card__meta-item">🟡 Intermediate</span>
+            </div>
+            <p class="module-card__description">Transform your testing workflow with Copilot. Generate comprehensive test suites, practice TDD with AI assistance, and learn to cover edge cases you might miss.</p>
+          </div>
+          <span class="module-card__toggle">▾</span>
+        </div>
+        <div class="module-card__content">
+          <div class="module-card__content-inner">
+            <ul class="topics-list">
+              <li class="topics-list__item">
+                <input type="checkbox" id="t7-1">
+                <label for="t7-1"><strong>Generating Unit Tests with /tests</strong> — Select a function and use <code>/tests</code>. Copilot generates tests covering: normal operation, boundary values, error conditions, null/undefined inputs, empty collections, and type edge cases. It detects your test framework from package.json or existing test files and generates compatible test code with proper assertions.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t7-2">
+                <label for="t7-2"><strong>Test-Driven Development with Copilot</strong> — Write the test first, then let Copilot implement the function. Describe your function's behavior in test assertions, and Copilot will generate an implementation that passes those tests. This is TDD accelerated: you think about behavior, Copilot handles implementation. The tests serve as a specification.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t7-3">
+                <label for="t7-3"><strong>Testing Frameworks Integration</strong> — Copilot works seamlessly with popular frameworks: <em>Jest</em> (JavaScript/TypeScript) with describe/it blocks, mocking, and snapshots. <em>PyTest</em> (Python) with fixtures, parametrize, and markers. <em>JUnit 5</em> (Java) with annotations and assertj. <em>xUnit/NUnit</em> (.NET) with attributes and FluentAssertions.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t7-4">
+                <label for="t7-4"><strong>Edge Case Generation</strong> — Ask Copilot in chat: "What edge cases should I test for this function?" It will identify cases you might miss: integer overflow, empty strings vs null, Unicode characters, concurrent access, timezone issues, floating-point precision, and more. Then use <code>/tests</code> with these edge cases as comments for comprehensive coverage.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t7-5">
+                <label for="t7-5"><strong>Mocking and Test Doubles</strong> — Copilot excels at generating mocks. It can create mock implementations for APIs, databases, file systems, and third-party services. It recognizes mocking libraries (jest.mock, unittest.mock, Mockito) and generates appropriate test doubles with realistic fake data.</label>
+              </li>
+            </ul>
+
+            <div class="lab-card">
+              <div class="lab-card__header">
+                <div class="lab-card__title">
+                  <span class="lab-card__title-icon">🧪</span>
+                  Lab 7: TDD with Copilot
+                </div>
+                <div class="lab-card__badges">
+                  <span class="badge badge--intermediate">Intermediate</span>
+                  <span class="badge badge--time">⏱ 40 min</span>
+                </div>
+              </div>
+              <p class="lab-card__description">Practice Test-Driven Development: given function specifications, write tests first with Copilot, then implement the functions. Covers Python with pytest including fixtures and parametrized tests.</p>
+              <a href="labs/lab07.html" class="lab-card__btn" target="_blank">Open Lab →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODULE 8 ===== -->
+  <section class="section" id="module-8">
+    <div class="modules-grid">
+      <div class="module-card animate-on-scroll">
+        <div class="module-card__header">
+          <div class="module-card__number module-card__number--purple">08</div>
+          <div class="module-card__info">
+            <h2 class="module-card__title">Copilot for Documentation &amp; Code Review</h2>
+            <div class="module-card__meta">
+              <span class="module-card__meta-item">📖 6 Topics</span>
+              <span class="module-card__meta-item">⏱ 50 min</span>
+              <span class="module-card__meta-item">🟡 Intermediate</span>
+            </div>
+            <p class="module-card__description">Use Copilot to generate documentation, write commit messages, create pull request descriptions, and assist with thorough code reviews.</p>
+          </div>
+          <span class="module-card__toggle">▾</span>
+        </div>
+        <div class="module-card__content">
+          <div class="module-card__content-inner">
+            <ul class="topics-list">
+              <li class="topics-list__item">
+                <input type="checkbox" id="t8-1">
+                <label for="t8-1"><strong>Auto-Generating JSDoc &amp; Docstrings</strong> — Place your cursor above a function and use <code>/doc</code> or type <code>/**</code> (JS) / <code>"""</code> (Python) to trigger Copilot's documentation generation. It creates complete documentation including parameter descriptions, return values, exceptions, examples, and complexity notes. Copilot reads the implementation to write accurate docs.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t8-2">
+                <label for="t8-2"><strong>README Generation</strong> — Ask Copilot Chat: "@workspace Generate a comprehensive README for this project." It will analyze your project structure, dependencies, and code to create a README with: project description, installation instructions, usage examples, API documentation, contributing guidelines, and license information. Refine with follow-up prompts.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t8-3">
+                <label for="t8-3"><strong>Commit Message Generation</strong> — In the Source Control panel, Copilot can auto-generate commit messages based on your staged changes. Click the sparkle icon in the commit message input. It follows conventional commit format and summarizes changes accurately. You can configure the style (conventional, gitmoji, etc.) in settings.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t8-4">
+                <label for="t8-4"><strong>PR Description Writing</strong> — When creating a pull request on GitHub, Copilot can generate the PR description. It summarizes the changes, lists affected files, describes the motivation, and adds testing notes. On GitHub.com, click the Copilot icon in the PR description field. This saves significant time for large PRs.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t8-5">
+                <label for="t8-5"><strong>Code Review Assistance</strong> — Use Copilot to review code: select code and ask "Review this code for potential issues, security vulnerabilities, performance problems, and best practice violations." Copilot provides detailed feedback with suggestions for improvement. On GitHub.com, Copilot can provide automated review comments on PRs.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t8-6">
+                <label for="t8-6"><strong>CHANGELOG &amp; API Documentation</strong> — Copilot can generate CHANGELOGs from git history and API documentation from your codebase. Ask it to create OpenAPI/Swagger specs from your Express routes, or generate TypeDoc/Sphinx documentation from your source code. It understands documentation standards and formats.</label>
+              </li>
+            </ul>
+
+            <div class="lab-card">
+              <div class="lab-card__header">
+                <div class="lab-card__title">
+                  <span class="lab-card__title-icon">🧪</span>
+                  Lab 8: Documentation Sprint
+                </div>
+                <div class="lab-card__badges">
+                  <span class="badge badge--intermediate">Intermediate</span>
+                  <span class="badge badge--time">⏱ 35 min</span>
+                </div>
+              </div>
+              <p class="lab-card__description">Take an undocumented Python project and use Copilot to add complete documentation: docstrings for every function, a comprehensive README, a CHANGELOG, and API documentation.</p>
+              <a href="labs/lab08.html" class="lab-card__btn" target="_blank">Open Lab →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODULE 9 ===== -->
+  <section class="section" id="module-9">
+    <div class="modules-grid">
+      <div class="module-card animate-on-scroll">
+        <div class="module-card__header">
+          <div class="module-card__number module-card__number--blue">09</div>
+          <div class="module-card__info">
+            <h2 class="module-card__title">Advanced Features &amp; Customization</h2>
+            <div class="module-card__meta">
+              <span class="module-card__meta-item">📖 7 Topics</span>
+              <span class="module-card__meta-item">⏱ 75 min</span>
+              <span class="module-card__meta-item">🔴 Advanced</span>
+            </div>
+            <p class="module-card__description">Customize Copilot for your team. Configure custom instructions, create prompt templates, integrate MCP servers, and explore vision capabilities.</p>
+          </div>
+          <span class="module-card__toggle">▾</span>
+        </div>
+        <div class="module-card__content">
+          <div class="module-card__content-inner">
+            <ul class="topics-list">
+              <li class="topics-list__item">
+                <input type="checkbox" id="t9-1">
+                <label for="t9-1"><strong>Custom Instructions (.github/copilot-instructions.md)</strong> — Create a file at <code>.github/copilot-instructions.md</code> in your repository to provide project-wide instructions to Copilot. These instructions are automatically included in every Copilot interaction. Use them to specify coding standards, preferred patterns, forbidden practices, naming conventions, and architectural guidelines. Example: "Always use TypeScript strict mode. Prefer functional components with hooks. Use Zod for validation."</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t9-2">
+                <label for="t9-2"><strong>Prompt Files (.github/prompts/*.prompt.md)</strong> — Create reusable prompt templates in <code>.github/prompts/</code>. Each <code>.prompt.md</code> file defines a template with variables that team members can invoke. Example: <code>create-api-endpoint.prompt.md</code> could define a template for consistently generating REST endpoints with your team's conventions. Invoke them in chat with <code>#prompt:create-api-endpoint</code>.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t9-3">
+                <label for="t9-3"><strong>Model Context Protocol (MCP)</strong> — MCP allows Copilot to connect to external tools and data sources. Configure MCP servers in your VS Code settings or <code>.vscode/mcp.json</code> to give Copilot access to databases, APIs, documentation sites, Figma designs, or internal tools. Copilot can then query these sources during conversations, making it aware of your specific infrastructure.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t9-4">
+                <label for="t9-4"><strong>Vision Capabilities</strong> — Copilot can analyze images and UI mockups. Drag a screenshot or design mockup into the chat and ask Copilot to generate the corresponding HTML/CSS, React component, or SwiftUI view. It understands layouts, colors, typography, and component structure from visual designs. This bridges the gap between designers and developers.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t9-5">
+                <label for="t9-5"><strong>Copilot Workspace</strong> — Copilot Workspace (on GitHub.com) lets you go from an issue to a fully implemented PR. It reads the issue, analyzes your codebase, creates a plan, generates a specification, implements the changes across multiple files, and opens a PR — all from a natural language issue description. Review and refine the plan before Copilot implements it.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t9-6">
+                <label for="t9-6"><strong>Content Exclusion</strong> — Configure content exclusion rules to prevent Copilot from accessing sensitive files. In your organization settings or repository <code>.github/copilot</code> config, specify patterns for files that Copilot should never read: <code>*.env</code>, <code>**/secrets/**</code>, <code>*.key</code>. This ensures sensitive credentials and proprietary code are never sent to the Copilot service.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t9-7">
+                <label for="t9-7"><strong>Multi-Model Selection</strong> — Copilot now supports multiple AI models. In VS Code, you can choose between GPT-4o, Claude 3.5/4 Sonnet, Gemini 2.5 Pro, and o3/o4-mini for different tasks. Some models excel at reasoning (o3), others at speed (GPT-4o-mini), and others at code generation (Claude Sonnet). Switch models per-conversation based on your needs.</label>
+              </li>
+            </ul>
+
+            <div class="lab-card">
+              <div class="lab-card__header">
+                <div class="lab-card__title">
+                  <span class="lab-card__title-icon">🧪</span>
+                  Lab 9: Custom Instructions Lab
+                </div>
+                <div class="lab-card__badges">
+                  <span class="badge badge--advanced">Advanced</span>
+                  <span class="badge badge--time">⏱ 35 min</span>
+                </div>
+              </div>
+              <p class="lab-card__description">Create custom instruction files for a team project, write reusable prompt templates, and validate that Copilot follows your team's coding standards consistently.</p>
+              <a href="labs/lab09.html" class="lab-card__btn" target="_blank">Open Lab →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODULE 10 ===== -->
+  <section class="section" id="module-10">
+    <div class="modules-grid">
+      <div class="module-card animate-on-scroll">
+        <div class="module-card__header">
+          <div class="module-card__number module-card__number--orange">10</div>
+          <div class="module-card__info">
+            <h2 class="module-card__title">Enterprise &amp; Team Best Practices</h2>
+            <div class="module-card__meta">
+              <span class="module-card__meta-item">📖 6 Topics</span>
+              <span class="module-card__meta-item">⏱ 60 min</span>
+              <span class="module-card__meta-item">🔴 Advanced</span>
+            </div>
+            <p class="module-card__description">Implement Copilot at scale. Learn about enterprise features, security considerations, measuring ROI, and establishing organization-wide policies for responsible AI usage.</p>
+          </div>
+          <span class="module-card__toggle">▾</span>
+        </div>
+        <div class="module-card__content">
+          <div class="module-card__content-inner">
+            <ul class="topics-list">
+              <li class="topics-list__item">
+                <input type="checkbox" id="t10-1">
+                <label for="t10-1"><strong>Business vs Enterprise Plans</strong> — <em>Copilot Business</em> ($19/user/month): Organization-wide management, policy controls, IP indemnity, content exclusion, audit logs. <em>Copilot Enterprise</em> ($39/user/month): Everything in Business plus knowledge bases from your repositories, fine-tuned to your codebase, Bing search integration, and Copilot Workspace. Enterprise provides personalized suggestions based on your organization's code patterns.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t10-2">
+                <label for="t10-2"><strong>Security &amp; Privacy</strong> — Copilot Business/Enterprise does NOT retain your code for training. Code snippets are sent for processing and discarded. Enable content exclusion for sensitive repos. Copilot includes a duplicate detection filter that blocks suggestions matching public code (configurable). All data is encrypted in transit (TLS 1.2+) and processed in secure environments. SOC 2 Type II certified.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t10-3">
+                <label for="t10-3"><strong>Responsible AI Usage</strong> — Establish guidelines: always review generated code before committing. Don't use Copilot for security-critical code without expert review. Understand that Copilot can reflect biases in training data. Never paste sensitive data (API keys, credentials) into Copilot Chat. Educate your team that Copilot is an assistant, not a replacement for understanding the code.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t10-4">
+                <label for="t10-4"><strong>Measuring Productivity &amp; ROI</strong> — Track metrics: acceptance rate (what percentage of suggestions are accepted), time-to-completion for tasks, lines of code assisted, developer satisfaction surveys, and pull request velocity. GitHub provides organization-level analytics showing suggestion frequency, acceptance rates, and language breakdowns. Aim for a 25-40% acceptance rate as a healthy baseline.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t10-5">
+                <label for="t10-5"><strong>Organization Policies</strong> — Create clear policies covering: which repositories enable Copilot, code review requirements for AI-generated code, approved use cases and prohibited ones, data handling procedures, incident response for problematic suggestions, and training requirements for new team members. Document these in a Copilot usage guide accessible to all developers.</label>
+              </li>
+              <li class="topics-list__item">
+                <input type="checkbox" id="t10-6">
+                <label for="t10-6"><strong>Rollout Strategy</strong> — Start with a pilot team of 5-10 enthusiastic developers. Measure baseline metrics before enabling Copilot. Run the pilot for 4-6 weeks, collecting both quantitative metrics and qualitative feedback. Create champions who can train and support others. Roll out department-by-department with training sessions. Provide ongoing support and best practice sharing.</label>
+              </li>
+            </ul>
+
+            <div class="lab-card">
+              <div class="lab-card__header">
+                <div class="lab-card__title">
+                  <span class="lab-card__title-icon">🧪</span>
+                  Lab 10: Security &amp; Best Practices Audit
+                </div>
+                <div class="lab-card__badges">
+                  <span class="badge badge--advanced">Advanced</span>
+                  <span class="badge badge--time">⏱ 40 min</span>
+                </div>
+              </div>
+              <p class="lab-card__description">Audit a sample codebase for security vulnerabilities using Copilot, create an organization Copilot policy document, and review AI-generated code for quality and security issues.</p>
+              <a href="labs/lab10.html" class="lab-card__btn" target="_blank">Open Lab →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LABS OVERVIEW ===== -->
+  <section class="section" id="labs-overview">
+    <div class="section__header animate-on-scroll">
+      <div class="section__label">Hands-On Practice</div>
+      <h2 class="section__title">All 15 Labs</h2>
+      <p class="section__subtitle">Each lab is a standalone exercise with step-by-step instructions, real code, and expected outcomes.</p>
+    </div>
+
+    <div class="labs-grid stagger-children">
+      <!-- Lab 1 -->
+      <a href="labs/lab01.html" class="lab-overview-card" target="_blank">
+        <div class="lab-overview-card__number">Lab 01</div>
+        <div class="lab-overview-card__title">Setting Up Your Environment</div>
+        <div class="lab-overview-card__desc">Install VS Code, GitHub Copilot extension, sign in, and verify your setup with your first AI suggestion.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--beginner">Beginner</span>
+          <span class="badge badge--time">⏱ 15 min</span>
+        </div>
+      </a>
+
+      <!-- Lab 2 -->
+      <a href="labs/lab02.html" class="lab-overview-card" target="_blank">
+        <div class="lab-overview-card__number">Lab 02</div>
+        <div class="lab-overview-card__title">Hello Copilot — Build a Calculator</div>
+        <div class="lab-overview-card__desc">Create a Python calculator using only Copilot suggestions. Write function signatures, let Copilot do the rest.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--beginner">Beginner</span>
+          <span class="badge badge--time">⏱ 25 min</span>
+        </div>
+      </a>
+
+      <!-- Lab 3 -->
+      <a href="labs/lab03.html" class="lab-overview-card" target="_blank">
+        <div class="lab-overview-card__number">Lab 03</div>
+        <div class="lab-overview-card__title">Chat-Driven Development</div>
+        <div class="lab-overview-card__desc">Build a Node.js REST API for a bookstore entirely through Copilot Chat conversations.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--intermediate">Intermediate</span>
+          <span class="badge badge--time">⏱ 35 min</span>
+        </div>
+      </a>
+
+      <!-- Lab 4 -->
+      <a href="labs/lab04.html" class="lab-overview-card" target="_blank">
+        <div class="lab-overview-card__number">Lab 04</div>
+        <div class="lab-overview-card__title">Slash Command Workout</div>
+        <div class="lab-overview-card__desc">Transform a messy, buggy JavaScript file using /explain, /fix, /tests, /doc, and /refactor commands.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--intermediate">Intermediate</span>
+          <span class="badge badge--time">⏱ 30 min</span>
+        </div>
+      </a>
+
+      <!-- Lab 5 -->
+      <a href="labs/lab05.html" class="lab-overview-card" target="_blank">
+        <div class="lab-overview-card__number">Lab 05</div>
+        <div class="lab-overview-card__title">Prompt Engineering Challenge</div>
+        <div class="lab-overview-card__desc">10 challenges of increasing difficulty. Craft perfect prompts and compare against expert solutions.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--intermediate">Intermediate</span>
+          <span class="badge badge--time">⏱ 40 min</span>
+        </div>
+      </a>
+
+      <!-- Lab 6 -->
+      <a href="labs/lab06.html" class="lab-overview-card" target="_blank">
+        <div class="lab-overview-card__number">Lab 06</div>
+        <div class="lab-overview-card__title">Full-Stack App with Agent Mode</div>
+        <div class="lab-overview-card__desc">Build a React + Express todo app using Agent Mode's autonomous multi-file editing capabilities.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--advanced">Advanced</span>
+          <span class="badge badge--time">⏱ 60 min</span>
+        </div>
+      </a>
+
+      <!-- Lab 7 -->
+      <a href="labs/lab07.html" class="lab-overview-card" target="_blank">
+        <div class="lab-overview-card__number">Lab 07</div>
+        <div class="lab-overview-card__title">TDD with Copilot</div>
+        <div class="lab-overview-card__desc">Write tests first, then implement. Practice TDD with Python &amp; pytest, powered by Copilot.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--intermediate">Intermediate</span>
+          <span class="badge badge--time">⏱ 40 min</span>
+        </div>
+      </a>
+
+      <!-- Lab 8 -->
+      <a href="labs/lab08.html" class="lab-overview-card" target="_blank">
+        <div class="lab-overview-card__number">Lab 08</div>
+        <div class="lab-overview-card__title">Documentation Sprint</div>
+        <div class="lab-overview-card__desc">Document an entire undocumented Python project: docstrings, README, CHANGELOG, and API docs.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--intermediate">Intermediate</span>
+          <span class="badge badge--time">⏱ 35 min</span>
+        </div>
+      </a>
+
+      <!-- Lab 9 -->
+      <a href="labs/lab09.html" class="lab-overview-card" target="_blank">
+        <div class="lab-overview-card__number">Lab 09</div>
+        <div class="lab-overview-card__title">Custom Instructions Lab</div>
+        <div class="lab-overview-card__desc">Create copilot-instructions.md, prompt templates, and validate consistent code generation.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--advanced">Advanced</span>
+          <span class="badge badge--time">⏱ 35 min</span>
+        </div>
+      </a>
+
+      <!-- Lab 10 -->
+      <a href="labs/lab10.html" class="lab-overview-card" target="_blank">
+        <div class="lab-overview-card__number">Lab 10</div>
+        <div class="lab-overview-card__title">Security &amp; Best Practices Audit</div>
+        <div class="lab-overview-card__desc">Audit code for vulnerabilities, create policy documents, and review AI-generated code quality.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--advanced">Advanced</span>
+          <span class="badge badge--time">⏱ 40 min</span>
+        </div>
+      </a>
+
+      <!-- Lab 11 -->
+      <a href="labs/lab11.html" class="lab-overview-card" target="_blank">
+        <div class="lab-overview-card__number">Lab 11 — Bonus</div>
+        <div class="lab-overview-card__title">Copilot CLI</div>
+        <div class="lab-overview-card__desc">Use GitHub Copilot in the terminal to explain commands, suggest shell scripts, and automate tasks.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--intermediate">Intermediate</span>
+          <span class="badge badge--time">⏱ 20 min</span>
+        </div>
+      </a>
+
+      <!-- Lab 12 -->
+      <a href="labs/lab12.html" class="lab-overview-card" target="_blank">
+        <div class="lab-overview-card__number">Lab 12 — Bonus</div>
+        <div class="lab-overview-card__title">Multi-Language Challenge</div>
+        <div class="lab-overview-card__desc">Solve the same problem in Python, JavaScript, Java, and C# — observe how Copilot adapts to each language.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--intermediate">Intermediate</span>
+          <span class="badge badge--time">⏱ 45 min</span>
+        </div>
+      </a>
+
+      <!-- Lab 13 -->
+      <a href="labs/lab13.html" class="lab-overview-card" target="_blank">
+        <div class="lab-overview-card__number">Lab 13 — Bonus</div>
+        <div class="lab-overview-card__title">Database Operations</div>
+        <div class="lab-overview-card__desc">Build CRUD operations with Copilot for both SQL (PostgreSQL) and NoSQL (MongoDB) databases.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--intermediate">Intermediate</span>
+          <span class="badge badge--time">⏱ 35 min</span>
+        </div>
+      </a>
+
+      <!-- Lab 14 -->
+      <a href="labs/lab14.html" class="lab-overview-card" target="_blank">
+        <div class="lab-overview-card__number">Lab 14 — Bonus</div>
+        <div class="lab-overview-card__title">API Integration</div>
+        <div class="lab-overview-card__desc">Consume and integrate third-party APIs (REST &amp; GraphQL) with Copilot's assistance.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--intermediate">Intermediate</span>
+          <span class="badge badge--time">⏱ 30 min</span>
+        </div>
+      </a>
+
+      <!-- Lab 15 -->
+      <a href="labs/lab15.html" class="lab-overview-card" target="_blank">
+        <div class="lab-overview-card__number">Lab 15 — Capstone</div>
+        <div class="lab-overview-card__title">Capstone: Weather Dashboard</div>
+        <div class="lab-overview-card__desc">Build a complete weather dashboard from scratch using every Copilot feature learned in this course.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--advanced">Advanced</span>
+          <span class="badge badge--time">⏱ 90 min</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section class="section" id="pricing-info">
+    <div class="section__header animate-on-scroll">
+      <div class="section__label">Plans &amp; Pricing</div>
+      <h2 class="section__title">GitHub Copilot Plans</h2>
+      <p class="section__subtitle">Choose the plan that fits your needs — from free tier to full enterprise.</p>
+    </div>
+
+    <div class="pricing-grid stagger-children">
+      <div class="pricing-card">
+        <div class="pricing-card__name">Free</div>
+        <div class="pricing-card__price">$0</div>
+        <p class="pricing-card__description">Get started with AI-assisted coding at no cost.</p>
+        <ul class="pricing-card__features">
+          <li>2,000 code completions / month</li>
+          <li>50 chat messages / month</li>
+          <li>GPT-4o &amp; Claude Sonnet</li>
+          <li>VS Code &amp; GitHub.com</li>
+          <li>Public code filter</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-card__name">Pro</div>
+        <div class="pricing-card__price">$10 <span class="pricing-card__price-period">/ month</span></div>
+        <p class="pricing-card__description">Unlimited suggestions for individual developers.</p>
+        <ul class="pricing-card__features">
+          <li>Unlimited completions</li>
+          <li>Unlimited chat messages</li>
+          <li>Multiple model choices</li>
+          <li>Agent Mode (limited)</li>
+          <li>All IDEs supported</li>
+          <li>Copilot CLI access</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card pricing-card--featured">
+        <div class="pricing-card__name">Pro+</div>
+        <div class="pricing-card__price">$39 <span class="pricing-card__price-period">/ month</span></div>
+        <p class="pricing-card__description">Maximum power for serious developers.</p>
+        <ul class="pricing-card__features">
+          <li>Everything in Pro</li>
+          <li>Full Agent Mode</li>
+          <li>Premium models (o3, Gemini Pro)</li>
+          <li>Copilot Workspace</li>
+          <li>Higher rate limits</li>
+          <li>Priority processing</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-card__name">Business</div>
+        <div class="pricing-card__price">$19 <span class="pricing-card__price-period">/ user / mo</span></div>
+        <p class="pricing-card__description">For teams that need management &amp; control.</p>
+        <ul class="pricing-card__features">
+          <li>Everything in Pro</li>
+          <li>Organization management</li>
+          <li>Policy controls</li>
+          <li>Audit logs</li>
+          <li>IP indemnity</li>
+          <li>Content exclusion</li>
+        </ul>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-card__name">Enterprise</div>
+        <div class="pricing-card__price">$39 <span class="pricing-card__price-period">/ user / mo</span></div>
+        <p class="pricing-card__description">Maximum security, customization, and knowledge bases.</p>
+        <ul class="pricing-card__features">
+          <li>Everything in Business</li>
+          <li>Knowledge bases</li>
+          <li>Fine-tuned to your code</li>
+          <li>Copilot Workspace</li>
+          <li>SAML SSO</li>
+          <li>Dedicated support</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESOURCES ===== -->
+  <section class="section" id="resources">
+    <div class="section__header animate-on-scroll">
+      <div class="section__label">Keep Learning</div>
+      <h2 class="section__title">Resources &amp; References</h2>
+      <p class="section__subtitle">Official documentation, community resources, and further reading.</p>
+    </div>
+
+    <div class="labs-grid stagger-children">
+      <div class="lab-overview-card">
+        <div class="lab-overview-card__number">Official</div>
+        <div class="lab-overview-card__title">GitHub Copilot Documentation</div>
+        <div class="lab-overview-card__desc">The complete official documentation covering setup, features, configuration, and best practices.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--beginner">Essential</span>
+        </div>
+      </div>
+
+      <div class="lab-overview-card">
+        <div class="lab-overview-card__number">Guide</div>
+        <div class="lab-overview-card__title">Prompt Engineering Guide</div>
+        <div class="lab-overview-card__desc">GitHub's official guide to writing effective prompts for Copilot, including tips, patterns, and examples.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--intermediate">Recommended</span>
+        </div>
+      </div>
+
+      <div class="lab-overview-card">
+        <div class="lab-overview-card__number">Blog</div>
+        <div class="lab-overview-card__title">GitHub Blog — Copilot</div>
+        <div class="lab-overview-card__desc">Stay updated with the latest Copilot features, research findings, and product announcements.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--beginner">Updates</span>
+        </div>
+      </div>
+
+      <div class="lab-overview-card">
+        <div class="lab-overview-card__number">Community</div>
+        <div class="lab-overview-card__title">GitHub Community Discussions</div>
+        <div class="lab-overview-card__desc">Connect with other Copilot users, share tips, ask questions, and learn from real-world experiences.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--beginner">Community</span>
+        </div>
+      </div>
+
+      <div class="lab-overview-card">
+        <div class="lab-overview-card__number">Research</div>
+        <div class="lab-overview-card__title">Copilot Productivity Study</div>
+        <div class="lab-overview-card__desc">GitHub's research paper showing 55% faster task completion and 46% more code written per day with Copilot.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--intermediate">Data</span>
+        </div>
+      </div>
+
+      <div class="lab-overview-card">
+        <div class="lab-overview-card__number">Trust</div>
+        <div class="lab-overview-card__title">Copilot Trust Center</div>
+        <div class="lab-overview-card__desc">Security, privacy, and compliance information for enterprise evaluation and deployment.</div>
+        <div class="lab-overview-card__footer">
+          <span class="badge badge--advanced">Enterprise</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p class="footer__text">GitHub Copilot Mastery Course — Built for developers who want to work smarter with AI.</p>
+    <div class="footer__links">
+      <a href="#top" class="footer__link">Back to Top</a>
+      <a href="#module-1" class="footer__link">Start Course</a>
+      <a href="#labs-overview" class="footer__link">Labs</a>
+    </div>
+    <p class="footer__text" style="margin-top:16px; font-size:0.75rem">
+      This is an educational resource. GitHub Copilot is a product of GitHub, Inc. All trademarks belong to their respective owners.
+    </p>
+  </footer>
+
+</main>
+
+<!-- Back to Top -->
+<button class="back-to-top" aria-label="Back to top">↑</button>
+
+<script src="app.js"></script>
+</body>
+</html>
